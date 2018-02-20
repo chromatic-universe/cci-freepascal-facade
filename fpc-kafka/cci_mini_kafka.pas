@@ -1,4 +1,4 @@
-//cci_mini_kafka    chromatic unvierse 2018  william k .johnson
+//cci_mini_kafka    chromatic unviverse 2018  william k .johnson
 //librdkafka wrapper facade for free pascal
 
 unit cci_mini_kafka;

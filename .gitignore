@@ -44,9 +44,6 @@ Uncomment these types if you want even more clean repository. But be careful.
 *.a
 *.o
 *.ocx
-*.lpr
-*.lpi
-*.lfm
 *.bak
 *.ppu
 *.or
