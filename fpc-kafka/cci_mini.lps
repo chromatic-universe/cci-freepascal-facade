@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="15">
+      <Unit0>
+        <Filename Value="cci_mini.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="15" Y="20"/>
+        <UsageCount Value="252"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="../../cci-mini/cci_kingi_console.pas"/>
+        <ComponentName Value="cci_mini_ecosystem"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="16"/>
+        <CursorPos X="10" Y="31"/>
+        <UsageCount Value="21"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../../cci-mini/cci_mini_kafka.pas"/>
+        <UsageCount Value="20"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="cci_kingi_console.pas"/>
+        <ComponentName Value="cci_mini_ecosystem"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="14"/>
+        <CursorPos X="23" Y="33"/>
+        <UsageCount Value="252"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="cci_mini_kafka.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="9"/>
+        <CursorPos X="53" Y="27"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/lazarus/IdAboutVCL.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="62"/>
+        <CursorPos X="3" Y="76"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/lazarus/IdAbout.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="11"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/fpc/IdStream.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="6" Y="20"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="/dev_t/free_pascal_lib/lazarus/System/IdStream.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <CursorPos X="16" Y="22"/>
+        <UsageCount Value="11"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="/usr/lib/lazarus/1.6/ide/lazarus.pp"/>
+        <UnitName Value="Lazarus"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="24" Y="10"/>
+        <UsageCount Value="10"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="/dev_t/free_pascal_lib/Lib/System/IdStream.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="14"/>
+        <CursorPos X="2" Y="19"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="/dev_t/free_pascal_lib/lazarus/System/IdStreamVCL.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos X="11" Y="26"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/dev_t/free_pascal_lib/Lib/System/IdStreamVCL.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="25"/>
+        <CursorPos X="26" Y="29"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="cci_kingi_console.pas"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6" Y="2"/>
+        <UsageCount Value="20"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="cci_king_console.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="2"/>
+        <CursorPos X="34" Y="9"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit14>
+    </Units>
+    <JumpHistory Count="8" HistoryIndex="7">
+      <Position1>
+        <Filename Value="cci_mini_kafka.pas"/>
+        <Caret Line="13" Column="43"/>
+      </Position1>
+      <Position2>
+        <Filename Value="cci_mini_kafka.pas"/>
+        <Caret Line="21" Column="10"/>
+      </Position2>
+      <Position3>
+        <Filename Value="cci_mini_kafka.pas"/>
+        <Caret Line="16" Column="47"/>
+      </Position3>
+      <Position4>
+        <Filename Value="cci_king_console.pas"/>
+      </Position4>
+      <Position5>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="20" Column="31" TopLine="4"/>
+      </Position5>
+      <Position6>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="11" TopLine="10"/>
+      </Position6>
+      <Position7>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="33" Column="49" TopLine="17"/>
+      </Position7>
+      <Position8>
+        <Filename Value="cci_mini.lpr"/>
+        <Caret Line="20"/>
+      </Position8>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>
