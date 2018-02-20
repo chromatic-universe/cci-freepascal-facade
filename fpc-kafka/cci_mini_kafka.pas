@@ -22,14 +22,14 @@ type
     pas_rdkakfa_type_t = (rd_kafka_producer , rd_kafka_consumer);
 
 
-    procedure snacks; cdecl;
+
     //fetch kafka version string
     function rd_kafka_version_str:PAnsiChar ; cdecl;
 
 
 implementation
 
-procedure snacks; cdecl; external;
+
 function rd_kafka_version_str:PAnsiChar ; cdecl;   external;
 
 end.
