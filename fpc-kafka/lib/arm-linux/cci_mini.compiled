@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1454176020"/>
-  <Params Value=" -Tlinux -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -Fi/cci_src/cci-freepascal-facade/fpc-kafka/lib/arm-linux -Fl/dev_t/lib -Fl/opt/gnome/lib -Fu/usr/lib/lazarus/1.6/lcl/units/arm-linux/gtk2 -Fu/usr/lib/lazarus/1.6/lcl/units/arm-linux -Fu/usr/lib/lazarus/1.6/components/lazutils/lib/arm-linux -Fu/usr/lib/lazarus/1.6/packager/units/arm-linux -Fu/cci_src/cci-freepascal-facade/fpc-kafka/ -FU/cci_src/cci-freepascal-facade/fpc-kafka/lib/arm-linux/ -dLCL -dLCLgtk2 cci_mini.lpr"/>
-</CONFIG>
