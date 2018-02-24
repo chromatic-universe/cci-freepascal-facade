@@ -27,7 +27,9 @@ object frm_dev_info: Tfrm_dev_info
       Top = 0
       Width = 50
       Caption = 'version : '
+      Font.Color = clNavy
       ParentColor = False
+      ParentFont = False
     end
     object ed_version: TEdit
       Tag = 2
@@ -45,9 +47,11 @@ object frm_dev_info: Tfrm_dev_info
       Left = 128
       Height = 17
       Top = 72
-      Width = 85
-      Caption = 'debug contexts'
+      Width = 88
+      Caption = 'debug contexts:'
+      Font.Color = clNavy
       ParentColor = False
+      ParentFont = False
     end
     object ed_debug_str: TEdit
       Left = 8

@@ -21,6 +21,7 @@ type
     sb_kafka: TStatusBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    TrayIcon1: TTrayIcon;
     procedure btn_kafkaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure mi_dev_infoClick(Sender: TObject);
