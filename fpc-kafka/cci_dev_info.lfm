@@ -1,7 +1,7 @@
 object frm_dev_info: Tfrm_dev_info
-  Left = 943
+  Left = 530
   Height = 240
-  Top = 148
+  Top = 149
   Width = 320
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -65,23 +65,32 @@ object frm_dev_info: Tfrm_dev_info
       TabOrder = 2
     end
     object Button1: TButton
-      Left = 120
+      Left = 98
       Height = 25
-      Top = 168
-      Width = 75
+      Top = 200
+      Width = 150
       Caption = 'close'
       OnClick = Button1Click
       ParentShowHint = False
       TabOrder = 0
     end
     object btn_test_conf: TButton
-      Left = 120
+      Left = 98
       Height = 25
       Top = 136
-      Width = 75
+      Width = 150
       Caption = 'test config'
       OnClick = btn_test_confClick
       TabOrder = 3
     end
+  end
+  object btn_test_conf1: TButton
+    Left = 98
+    Height = 25
+    Top = 168
+    Width = 150
+    Caption = 'error descriptions'
+    OnClick = btn_test_conf1Click
+    TabOrder = 1
   end
 end
