@@ -74,6 +74,12 @@ type
                                       rd_kafka_timestamp_log_append_time
                                     );
     //
+    pas_ptr_pas_t_compare_func = ^pas_t_compare_func;
+    pas_t_compare_func = function( const a : pointer;
+                                   const b : pointer;
+                                   const opaque : pointer ) : ctypes.cint32; cdecl;
+
+    //
     /////
     // @enum rd_kafka_resp_err_t
     // @brief Error codes.
@@ -481,6 +487,74 @@ type
                                                          start : ctypes.cint32;
                                                          stop  : ctypes.cint32 ); cdecl;
 
+     // delete partition from list.
+     //
+     // @param rktparlist list to modify
+     // @param topic      topic name to match
+     // @param partition  partition to match
+     //
+     // @returns 1 if partition was found (and removed), else 0.
+     //
+     // @remark Any held indices to elems[] are unusable after this call returns 1.
+     //
+     function rd_kafka_topic_partition_list_del( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+				                 topic : PAnsichar;
+                                                 partition : ctypes.cint32 ) : ctypes.cint32; cdecl;
+
+
+     // delete partition from list by elems[] index.
+     //
+     // @returns 1 if partition was found (and removed), else 0.
+     //
+     // @sa rd_kafka_topic_partition_list_del()
+     //
+     function rd_kafka_topic_partition_list_del_by_idx ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                         idx : ctypes.cint32 ) : ctypes.cint32; cdecl;
+
+
+
+     // make a copy of an existing list.
+     //
+     // @param src   the existing list to copy.
+     //
+     // @returns a new list fully populated to be identical to \p src
+     //
+     function  rd_kafka_topic_partition_list_copy ( const src : pas_ptr_rd_kafka_topic_partition_list_t )
+                                                 : pas_ptr_rd_kafka_topic_partition_list_t; cdecl;
+
+
+     // set offset to \p offset for \p topic and \p partition
+     //
+     // @returns RD_KAFKA_RESP_ERR_NO_ERROR on success or
+     //          RD_KAFKA_RESP_ERR__UNKNOWN_PARTITION if \p partition was not found
+     //          in the list.
+     //
+     function rd_kafka_topic_partition_list_set_offset ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+	     	                                         topic : PAnsiChar;
+                                                         partition : ctypes.cint32;
+                                                         offset : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl;
+
+
+     // find element by \p topic and \p partition.
+     //
+     // @returns a pointer to the first matching element, or NULL if not found.
+     //
+     function rd_kafka_topic_partition_list_find ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+				                   topic : PAnsiChar;
+                                                   partition : ctypes.cint32 ) : pas_ptr_rd_kafka_topic_partition_t; cdecl;
+
+
+     // @brief sort list using comparator \p cmp.
+     //
+     // If \p cmp is NULL the default comparator will be used that
+     // sorts by ascending topic name and partition.
+     //
+     procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                   cmp : pas_ptr_pas_t_compare_func;
+                                                   opaque : pointer ); cdecl;
+
+
+
 
 
 
@@ -509,6 +583,24 @@ function rd_kafka_topic_partition_list_add ( rkparlist : pas_ptr_rd_kafka_topic_
                                              topic  : PAnsiChar;
                                              partition : ctypes.cint32 ) : pas_ptr_rd_kafka_topic_partition_t; cdecl;  external;
 //
+function rd_kafka_topic_partition_list_del( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+				            topic : PAnsichar;
+                                            partition : ctypes.cint32 ) : ctypes.cint32; cdecl; external;
+function rd_kafka_topic_partition_list_del_by_idx ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                    idx : ctypes.cint32 ) : ctypes.cint32; cdecl;  external;
+//
+function  rd_kafka_topic_partition_list_copy ( const src : pas_ptr_rd_kafka_topic_partition_list_t )
+                                                : pas_ptr_rd_kafka_topic_partition_list_t; cdecl;  external;
+//
+function rd_kafka_topic_partition_list_set_offset ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+	     	                                         topic : PAnsiChar;
+                                                         partition : ctypes.cint32;
+                                                         offset : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl; external;
+//
+function rd_kafka_topic_partition_list_find ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+				                   topic : PAnsiChar;
+                                                   partition : ctypes.cint32 ) : pas_ptr_rd_kafka_topic_partition_t; cdecl;  external;
+//
 procedure rd_kafka_get_err_descs( var errdescs : array of pas_rd_kafka_err_desc;
        		                  var cntp : ctypes.cuint64 )  cdecl;    external;
 //
@@ -520,6 +612,9 @@ procedure rd_kafka_topic_partition_list_add_range ( rktparlist : pas_ptr_rd_kafk
                                                     topic  : PAnsiChar;
                                                     start : ctypes.cint32;
                                                     stop  : ctypes.cint32 ); cdecl; external;
+procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                  cmp : pas_ptr_pas_t_compare_func;
+                                                  opaque : pointer ); cdecl; external;
 
 
 end.
