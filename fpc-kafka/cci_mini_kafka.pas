@@ -65,7 +65,7 @@ type
                            rd_kafka_consumer
                          );
     //
-    pss_rd_kafka_timestamp_type_t = (
+    pas_rd_kafka_timestamp_type_t = (
                                       //timestamp not available
                                       rd_kafka_timestamp_not_available ,
                                       //message cration time
@@ -300,9 +300,9 @@ type
 
     ////typedefs
     //
-    ptr_pas_rd_kafka_t                             =  type pointer;
+    pas_ptr_rd_kafka_t                             =  type pointer;
     //pas_rd_kafka_topic_s                       = ^pas_rd_kafka_topic_t;
-    ptr_pas_rd_kafka_conf_t                        =  type pointer;
+    pas_ptr_rd_kafka_conf_t                        =  type pointer;
     //ptr_pas_rd_kafka_topic_conf_s                   = ^pas_rd_kafka_topic_conf_t;
     //ptr_pas_rd_kafka_queue_s                        = ^pas_rd_kafka_queue_t;
 
@@ -395,7 +395,7 @@ type
     //
     // @sa rd_kafka_conf_set(), rd_kafka_conf_destroy()
     //
-    function  rd_kafka_conf_new : ptr_pas_rd_kafka_conf_t ;  cdecl;
+    function  rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t ;  cdecl;
     // returns the error code name (enum name).
     // param err Error code to translate
     function rd_kafka_err2name ( err : pas_rd_kafka_resp_err_t ) : PAnsiChar;  cdecl;
@@ -458,6 +458,30 @@ type
      //
      procedure rd_kafka_topic_partition_list_destroy ( rkparlist : pas_ptr_rd_kafka_topic_partition_list_t ); cdecl;
 
+     // @brief add topic+partition to list
+     //
+     // @param rktparlist list to extend
+     // @param topic      topic name (copied)
+     // @param partition  partition id
+     //
+     // @returns The object which can be used to fill in additionals fields.
+     function rd_kafka_topic_partition_list_add ( rkparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                  topic  : PAnsiChar;
+                                                  partition : ctypes.cint32 ) : pas_ptr_rd_kafka_topic_partition_t; cdecl;
+
+     // @brief add range of partitions from \p start to \p stop inclusive.
+     //
+     // @param rktparlist list to extend
+     // @param topic      topic name (copied)
+     // @param start      start partition of range
+     // @param stop       last partition of range (inclusive)
+     //
+     procedure rd_kafka_topic_partition_list_add_range ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                         topic  : PAnsiChar;
+                                                         start : ctypes.cint32;
+                                                         stop  : ctypes.cint32 ); cdecl;
+
+
 
 
 
@@ -470,7 +494,7 @@ function rd_kafka_version_str : PAnsiChar ; cdecl;   external;
 //
 function rd_kafka_get_debug_contexts : PAnsiChar ; cdecl;  external;
 //
-function rd_kafka_conf_new : ptr_pas_rd_kafka_conf_t ;  cdecl; external;
+function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t ;  cdecl; external;
 //
 function rd_kafka_err2name ( err : pas_rd_kafka_resp_err_t ) : PAnsiChar;  cdecl;   external;
 //
@@ -481,12 +505,21 @@ function rd_kafka_last_error : pas_rd_kafka_resp_err_t; cdecl; external;
 function rd_kafka_topic_partition_list_new ( size : ctypes.cint32 )
                                                  : pas_ptr_rd_kafka_topic_partition_list_t; cdecl; external;
 //
+function rd_kafka_topic_partition_list_add ( rkparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                             topic  : PAnsiChar;
+                                             partition : ctypes.cint32 ) : pas_ptr_rd_kafka_topic_partition_t; cdecl;  external;
+//
 procedure rd_kafka_get_err_descs( var errdescs : array of pas_rd_kafka_err_desc;
        		                  var cntp : ctypes.cuint64 )  cdecl;    external;
 //
 procedure rd_kafka_topic_partition_destroy ( rktpar : pas_ptr_rd_kafka_topic_partition_t ); cdecl; external;
 //
 procedure rd_kafka_topic_partition_list_destroy ( rkparlist : pas_ptr_rd_kafka_topic_partition_list_t ); cdecl;  external;
+//
+procedure rd_kafka_topic_partition_list_add_range ( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                    topic  : PAnsiChar;
+                                                    start : ctypes.cint32;
+                                                    stop  : ctypes.cint32 ); cdecl; external;
 
 
 end.

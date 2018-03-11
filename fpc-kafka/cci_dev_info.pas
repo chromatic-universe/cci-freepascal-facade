@@ -50,7 +50,7 @@ end;
 
 procedure Tfrm_dev_info.btn_test_confClick(Sender: TObject);
 var
-   conf_ptr : ptr_pas_rd_kafka_conf_t;
+   conf_ptr : pas_ptr_rd_kafka_conf_t;
    reply : integer;
 begin
      conf_ptr :=  cci_mini_kafka.rd_kafka_conf_new();
