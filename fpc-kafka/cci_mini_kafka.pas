@@ -329,7 +329,7 @@ type
      //
      // generic place holder for a specific Topic+Partition.
      //
-     // @sa rd_kafka_topic_partition_list_new()
+     // rd_kafka_topic_partition_list_new()
      ///
      pas_ptr_rd_kafka_topic_partition_t  = ^pas_rd_kafka_topic_partition_t;
      pas_rd_kafka_topic_partition_t = record
@@ -343,7 +343,13 @@ type
             _private : pointer;                   // INTERNAL USE ONLY,
      end;                                         // INITIALIZE TO ZERO, DO NOT TOUCH
 
-
+     // a growable list of topic partitions.
+     pas_ptr_rd_kafka_topic_partition_list_t = ^pas_rd_kafka_topic_partition_list_t;
+     pas_rd_kafka_topic_partition_list_t = record
+        cnt :  ctypes.cint32;                       //current number of elements
+        size : ctypes.cint32;                       //vurrent allocated size
+        elems : pas_ptr_rd_kafka_topic_partition_t; //element array[]
+     end;
 
 
     ////exports
@@ -422,14 +428,36 @@ type
      // and should not be used, use rd_kafka_last_error() instead.
      function rd_kafka_last_error : pas_rd_kafka_resp_err_t; cdecl;
 
-      //returns the full list of error codes.
-      procedure rd_kafka_get_err_descs( var errdescs : array of pas_rd_kafka_err_desc;
+     //returns the full list of error codes.
+     procedure rd_kafka_get_err_descs( var errdescs : array of pas_rd_kafka_err_desc;
 			                var cntp : ctypes.cuint64 ); cdecl;
 
-      // destroy a rd_kafka_topic_partition_t.
-      // @remark This must not be called for elements in a topic partition list.
-      //
-      procedure rd_kafka_topic_partition_destroy ( rktpar : pas_ptr_rd_kafka_topic_partition_t ); cdecl;
+     // destroy a rd_kafka_topic_partition_t.
+     // this must not be called for elements in a topic partition list.
+     //
+     procedure rd_kafka_topic_partition_destroy ( rktpar : pas_ptr_rd_kafka_topic_partition_t ); cdecl;
+
+
+     // create a new list/vector topic+partition container.
+     //
+     // @param size  initial allocated size used when the expected number of
+     //              elements is known or can be estimated.
+     //              Avoids reallocation and possibly relocation of the
+     //              elems array.
+     //
+     // @returns a newly allocated topic+partition list.
+     //
+     // @remark use rd_kafka_topic_partition_list_destroy() to free all resources
+     //         in use by a list and the list itself.
+     // @sa     rd_kafka_topic_partition_list_add()
+     //
+     function rd_kafka_topic_partition_list_new ( size : ctypes.cint32 )
+                                                 : pas_ptr_rd_kafka_topic_partition_list_t; cdecl;
+
+     // free all resources used by the list and the list itself.
+     //
+     procedure rd_kafka_topic_partition_list_destroy ( rkparlist : pas_ptr_rd_kafka_topic_partition_list_t ); cdecl;
+
 
 
 
@@ -450,10 +478,15 @@ function rd_kafka_err2str ( err : pas_rd_kafka_resp_err_t ) : PAnsiChar; cdecl; 
 //
 function rd_kafka_last_error : pas_rd_kafka_resp_err_t; cdecl; external;
 //
+function rd_kafka_topic_partition_list_new ( size : ctypes.cint32 )
+                                                 : pas_ptr_rd_kafka_topic_partition_list_t; cdecl; external;
+//
 procedure rd_kafka_get_err_descs( var errdescs : array of pas_rd_kafka_err_desc;
        		                  var cntp : ctypes.cuint64 )  cdecl;    external;
 //
 procedure rd_kafka_topic_partition_destroy ( rktpar : pas_ptr_rd_kafka_topic_partition_t ); cdecl; external;
+//
+procedure rd_kafka_topic_partition_list_destroy ( rkparlist : pas_ptr_rd_kafka_topic_partition_list_t ); cdecl;  external;
 
 
 end.
