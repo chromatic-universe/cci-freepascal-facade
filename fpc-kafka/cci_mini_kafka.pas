@@ -65,6 +65,7 @@ type
                            rd_kafka_consumer
                          );
     //
+    pas_ptr_rd_kafka_timestamp_type_t =  ^pas_rd_kafka_timestamp_type_t;
     pas_rd_kafka_timestamp_type_t = (
                                       //timestamp not available
                                       rd_kafka_timestamp_not_available ,
@@ -613,6 +614,27 @@ type
       //
       function  rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 
+      // returns the message timestamp for a consumed message.
+      //
+      // the timestamp is the number of milliseconds since the epoch (UTC).
+      //
+      // \p tstype (if not NULL) is updated to indicate the type of timestamp.
+      //
+      // @returns message timestamp, or -1 if not available.
+      //
+      // @remark message timestamps require broker version 0.10.0 or later.
+      //
+      function rd_kafka_message_timestamp( const rkmessage : pas_ptr_rd_kafka_message_t;
+				           tstype : pas_ptr_rd_kafka_timestamp_type_t ) : ctypes.cint64; cdecl;
+
+
+      // returns the latency for a produced message measured from
+      //        the produce() call.
+      //
+      // @returns the latency in microseconds, or -1 if not available.
+      //
+      function rd_kafka_message_latency (const rkmessage : pas_ptr_rd_kafka_message_t ) : ctypes.cint64;  cdecl;
+
 
 
 
@@ -671,7 +693,12 @@ procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topi
                                                   cmp : pas_ptr_pas_t_compare_func;
                                                   opaque : pointer ); cdecl; external;
 //
+function rd_kafka_message_timestamp( const rkmessage : pas_ptr_rd_kafka_message_t;
+				           tstype : pas_ptr_rd_kafka_timestamp_type_t ) : ctypes.cint64; cdecl; external;
+//
 procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cdecl;  external;
+//
+function rd_kafka_message_latency (const rkmessage : pas_ptr_rd_kafka_message_t ) : ctypes.cint64;  cdecl; external;
 //
 function  rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
@@ -690,6 +717,8 @@ begin
 
        result := rd_kafka_err2str( err_msg.err );
 end;
+
+
 
 
 end.
