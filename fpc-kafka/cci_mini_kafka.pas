@@ -358,6 +358,52 @@ type
      end;
 
 
+     // FIXME: this doesn't show up in docs for some reason
+     // cCompound rd_kafka_message_t is not documented."
+     // a kafka message as returned by the \c rd_kafka_consume//() family
+     //        of functions as well as provided to the Producer \c dr_msg_cb().
+     //
+     // for the consumer this object has two purposes:
+     //  - provide the application with a consumed message. (\c err == 0)
+     //  - report per-topic+partition consumer errors (\c err != 0)
+     //
+     // the application must check \c err to decide what action to take.
+     //
+     // when the application is finished with a message it must call
+     // rd_kafka_message_destroy() unless otherwise noted.
+     //
+     pas_ptr_rd_kafka_message_t = ^pas_rd_kafka_message_t;
+     pas_rd_kafka_message_t  = record
+	    err : pas_rd_kafka_resp_err_t;   /////< Non-zero for error signaling. ///
+	    rkt : pas_ptr_rd_kafka_t;        /////< Topic ///
+	    partition : ctypes.cint32;       /////< Partition ///
+	    payload : pointer;               /////< Producer: original message payload.
+				             // Consumer: Depends on the value of \c err :
+				             // - \c err==0: Message payload.
+				             // - \c err!=0: Error string ///
+	    len : ctypes.cint64;             /////< Depends on the value of \c err :
+	                                     // - \c err==0: Message payload length
+				             // - \c err!=0: Error string length ///
+	    key :  pointer;                   /////< Depends on the value of \c err :
+				             // - \c err==0: Optional message key ///
+	    key_len : ctypes.cint64;         /////< Depends on the value of \c err :
+				             // - \c err==0: Optional message key length///
+	    offset  : ctypes.cint64;          /////< Consume:
+                                             // - Message offset (or offset for error
+				             //   if \c err!=0 if applicable).
+                                             // - dr_msg_cb:
+                                             //   Message offset assigned by broker.
+                                             //   If \c produce.offset.report is set then
+                                             //   each message will have this field set,
+                                             //   otherwise only the last message in
+                                             //   each produced internal batch will
+                                             //   have this field set, otherwise 0. ///
+	    _private : pointer;              //_private;           /////< Consume:
+				             //  - rdkafka private pointer: DO NOT MODIFY
+				             //  - dr_msg_cb:
+                                             //    msg_opaque from produce() call ///
+    end;
+
     ////exports
     //
     // returns the librdkafka version as string.
@@ -555,6 +601,9 @@ type
 
 
 
+      // frees resources for \p rkmessage and hands ownership back to rdkafka.
+      //
+      procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cdecl;
 
 
 
@@ -615,6 +664,8 @@ procedure rd_kafka_topic_partition_list_add_range ( rktparlist : pas_ptr_rd_kafk
 procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
                                                   cmp : pas_ptr_pas_t_compare_func;
                                                   opaque : pointer ); cdecl; external;
+//
+procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cdecl;  external;
 
 
 end.

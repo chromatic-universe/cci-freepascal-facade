@@ -14,6 +14,7 @@ type
 
   Tfrm_mini_kafka_main = class(TForm)
     Image1: TImage;
+    Image2: TImage;
     ImageList1: TImageList;
     MainMenu1: TMainMenu;
     mi_utils: TMenuItem;
