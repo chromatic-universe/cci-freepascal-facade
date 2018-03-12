@@ -45,7 +45,7 @@ unit cci_mini_kafka;
 {$linklib rdkafka}
 {$linklib cci_kafka_utils}
 {$linklib c}
-
+{$INLINE ON}
 
 interface
 
@@ -606,6 +606,12 @@ type
       procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cdecl;
 
 
+      // returns the error string for an errored rd_kafka_message_t or NULL if
+      //        there was no error.
+      //
+      // @remark This function MUST NOT be used with the producer.
+      //
+      function  rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 
 
 
@@ -666,6 +672,24 @@ procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topi
                                                   opaque : pointer ); cdecl; external;
 //
 procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cdecl;  external;
+//
+function  rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
+var
+    err_msg : pas_rd_kafka_message_t;
+begin
+       err_msg := rkmessage^;
+       if ( integer( err_msg.err ) = 0 ) then
+       begin
+	      result := nil;
+       end;
+
+       if ( err_msg.payload <> nil ) then
+       begin
+	     result := PAnsiChar( err_msg.payload );
+       end;
+
+       result := rd_kafka_err2str( err_msg.err );
+end;
 
 
 end.
