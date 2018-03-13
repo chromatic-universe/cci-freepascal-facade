@@ -29,7 +29,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="cci_mini.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -52,6 +52,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="cci_about.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_about"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

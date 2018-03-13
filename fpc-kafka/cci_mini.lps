@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="17">
+    <Units Count="18">
       <Unit0>
         <Filename Value="cci_mini.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -15,9 +15,9 @@
         <Filename Value="cci_mini_kafka.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="626"/>
-        <CursorPos X="125" Y="649"/>
-        <UsageCount Value="80"/>
+        <TopLine Value="518"/>
+        <CursorPos X="78" Y="664"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -26,10 +26,10 @@
         <ComponentName Value="frm_mini_kafka_main"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="20"/>
-        <CursorPos X="100" Y="47"/>
-        <UsageCount Value="76"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="35"/>
+        <CursorPos X="59" Y="39"/>
+        <UsageCount Value="78"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -40,12 +40,24 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="49"/>
-        <CursorPos X="136" Y="83"/>
-        <UsageCount Value="56"/>
+        <TopLine Value="34"/>
+        <CursorPos X="24" Y="40"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
+        <Filename Value="cci_about.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_about"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="30" Y="11"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit4>
+      <Unit5>
         <Filename Value="../../cci-mini/cci_kingi_console.pas"/>
         <ComponentName Value="cci_mini_ecosystem"/>
         <HasResources Value="True"/>
@@ -53,225 +65,210 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="10" Y="31"/>
-        <UsageCount Value="17"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="../../cci-mini/cci_mini_kafka.pas"/>
         <UsageCount Value="16"/>
       </Unit5>
       <Unit6>
+        <Filename Value="../../cci-mini/cci_mini_kafka.pas"/>
+        <UsageCount Value="15"/>
+      </Unit6>
+      <Unit7>
         <Filename Value="cci_kingi_console.pas"/>
         <ComponentName Value="cci_mini_ecosystem"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="2"/>
-        <UsageCount Value="16"/>
-      </Unit6>
-      <Unit7>
+        <UsageCount Value="15"/>
+      </Unit7>
+      <Unit8>
         <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/lazarus/IdAboutVCL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="3" Y="76"/>
-        <UsageCount Value="6"/>
-      </Unit7>
-      <Unit8>
+        <UsageCount Value="5"/>
+      </Unit8>
+      <Unit9>
         <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/lazarus/IdAbout.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="11"/>
-        <UsageCount Value="6"/>
-      </Unit8>
-      <Unit9>
+        <UsageCount Value="5"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/fpc/IdStream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="6" Y="20"/>
-        <UsageCount Value="6"/>
-      </Unit9>
-      <Unit10>
+        <UsageCount Value="5"/>
+      </Unit10>
+      <Unit11>
         <Filename Value="/dev_t/free_pascal_lib/lazarus/System/IdStream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="16" Y="22"/>
-        <UsageCount Value="7"/>
-      </Unit10>
-      <Unit11>
+        <UsageCount Value="6"/>
+      </Unit11>
+      <Unit12>
         <Filename Value="/usr/lib/lazarus/1.6/ide/lazarus.pp"/>
         <UnitName Value="Lazarus"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="24" Y="10"/>
-        <UsageCount Value="6"/>
-      </Unit11>
-      <Unit12>
+        <UsageCount Value="5"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="/dev_t/free_pascal_lib/Lib/System/IdStream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="14"/>
         <CursorPos X="2" Y="19"/>
-        <UsageCount Value="6"/>
-      </Unit12>
-      <Unit13>
+        <UsageCount Value="5"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="/dev_t/free_pascal_lib/lazarus/System/IdStreamVCL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="11" Y="26"/>
-        <UsageCount Value="6"/>
-      </Unit13>
-      <Unit14>
+        <UsageCount Value="5"/>
+      </Unit14>
+      <Unit15>
         <Filename Value="/dev_t/free_pascal_lib/Lib/System/IdStreamVCL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="26" Y="29"/>
-        <UsageCount Value="6"/>
-      </Unit14>
-      <Unit15>
+        <UsageCount Value="5"/>
+      </Unit15>
+      <Unit16>
         <Filename Value="/usr/share/lazarus/1.8.0/lcl/include/customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2891"/>
         <CursorPos X="68" Y="2908"/>
-        <UsageCount Value="18"/>
-      </Unit15>
-      <Unit16>
+        <UsageCount Value="17"/>
+      </Unit16>
+      <Unit17>
         <Filename Value="/dev_t/librdkafka/src/rdkafka.c"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="494"/>
         <CursorPos X="37" Y="515"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="C++"/>
-      </Unit16>
+      </Unit17>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="453" Column="52" TopLine="416"/>
+        <Caret Line="619" Column="53" TopLine="585"/>
       </Position1>
       <Position2>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="469" Column="23" TopLine="437"/>
+        <Caret Line="607" Column="106" TopLine="591"/>
       </Position2>
       <Position3>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="304" Column="10" TopLine="290"/>
+        <Caret Line="612" Column="105" TopLine="591"/>
       </Position3>
       <Position4>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="398" Column="58" TopLine="376"/>
+        <Caret Line="658" Column="9" TopLine="647"/>
       </Position4>
       <Position5>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="486" Column="42" TopLine="462"/>
+        <Caret Line="667" Column="42" TopLine="647"/>
       </Position5>
       <Position6>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="479" Column="17" TopLine="449"/>
+        <Caret Line="680" Column="35" TopLine="651"/>
       </Position6>
       <Position7>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="502" Column="76" TopLine="482"/>
+        <Caret Line="683" Column="24" TopLine="650"/>
       </Position7>
       <Position8>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="498" Column="56" TopLine="461"/>
+        <Caret Line="678" Column="40" TopLine="650"/>
       </Position8>
       <Position9>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="504" Column="14" TopLine="473"/>
+        <Caret Line="680" Column="76" TopLine="650"/>
       </Position9>
       <Position10>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="517" Column="70" TopLine="486"/>
+        <Caret Line="626" Column="48" TopLine="590"/>
       </Position10>
       <Position11>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="525" Column="17" TopLine="501"/>
+        <Caret Line="636" Column="14" TopLine="610"/>
       </Position11>
       <Position12>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="536" Column="17" TopLine="509"/>
+        <Caret Line="647" Column="58" TopLine="626"/>
       </Position12>
       <Position13>
         <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="76" Column="7" TopLine="60"/>
+        <Caret Line="676" Column="74" TopLine="642"/>
       </Position13>
       <Position14>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="553" Column="29" TopLine="516"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="47" Column="100" TopLine="20"/>
       </Position14>
       <Position15>
         <Filename Value="cci_king_console.pas"/>
-        <Caret Line="52" Column="20" TopLine="20"/>
+        <Caret Line="46" Column="100" TopLine="19"/>
       </Position15>
       <Position16>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="405" Column="72" TopLine="370"/>
+        <Filename Value="cci_about.pas"/>
+        <Caret Line="10" Column="30"/>
       </Position16>
       <Position17>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="360" Column="6" TopLine="346"/>
+        <Filename Value="cci_about.pas"/>
+        <Caret Line="11" Column="30"/>
       </Position17>
       <Position18>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="613" Column="30" TopLine="579"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="38" Column="45" TopLine="19"/>
       </Position18>
       <Position19>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="619" Column="53" TopLine="585"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="39" Column="45" TopLine="19"/>
       </Position19>
       <Position20>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="607" Column="106" TopLine="591"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="40" Column="45" TopLine="19"/>
       </Position20>
       <Position21>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="612" Column="105" TopLine="591"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="41" Column="45" TopLine="19"/>
       </Position21>
       <Position22>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="614" Column="110" TopLine="647"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="40" Column="45" TopLine="19"/>
       </Position22>
       <Position23>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="658" Column="9" TopLine="647"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="41" Column="45" TopLine="19"/>
       </Position23>
       <Position24>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="667" Column="42" TopLine="647"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="33" Column="46" TopLine="27"/>
       </Position24>
       <Position25>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="680" Column="35" TopLine="651"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="34" Column="46" TopLine="28"/>
       </Position25>
       <Position26>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="683" Column="24" TopLine="650"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="35" Column="46" TopLine="29"/>
       </Position26>
       <Position27>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="678" Column="40" TopLine="650"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="36" Column="46" TopLine="30"/>
       </Position27>
       <Position28>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="680" Column="76" TopLine="650"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="35" Column="46" TopLine="29"/>
       </Position28>
       <Position29>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="626" Column="48" TopLine="590"/>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="36" Column="46" TopLine="29"/>
       </Position29>
-      <Position30>
-        <Filename Value="cci_mini_kafka.pas"/>
-        <Caret Line="636" Column="14" TopLine="610"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="cci_dev_info.pas"/>
-        <Line Value="78"/>
-      </Item1>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

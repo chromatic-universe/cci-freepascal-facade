@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, cci_mini_kafka, cci_king_console, cci_dev_info;
+  Forms, cci_mini_kafka, cci_king_console, cci_dev_info, cci_about;
 
 {$R *.res}
 
@@ -16,6 +16,7 @@ begin
   Application.Initialize;
   Application.CreateForm(Tfrm_mini_kafka_main, frm_mini_kafka_main);
   Application.CreateForm(Tfrm_dev_info, frm_dev_info);
+  Application.CreateForm(Tfrm_about, frm_about);
   Application.Run;
 end.
 
