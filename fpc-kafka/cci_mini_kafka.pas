@@ -672,6 +672,20 @@ type
                                                 var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;
 
 
+       // replace the message's current headers with a new list.
+       //
+       // @param hdrs New header list. The message object assumes ownership of
+       //             the list, the list will be destroyed automatically with
+       //             the message object.
+       //             The new headers list may be updated until the message object
+       //             is passed or returned to librdkafka.
+       //
+       // @remark The existing headers object, if any, will be destroyed.
+       ///
+       procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
+                                                hdrs : pas_ptr_rd_kafka_headers_t ) cdecl;
+
+
 
 implementation
 
@@ -740,6 +754,9 @@ function rd_kafka_message_headers ( const message : pas_ptr_rd_kafka_message_t;
 //
 function rd_kafka_message_detach_headers( message : pas_ptr_rd_kafka_message_t;
                                           var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
+//
+procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
+                                                hdrs : pas_ptr_rd_kafka_headers_t ) cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
