@@ -307,7 +307,10 @@ type
 
     ////typedefs
     //
+    //private abi
+    //
     pas_ptr_rd_kafka_t                             =  type pointer;
+    pas_ptr_rd_kafka_headers_t                     =  type pointer;
     //pas_rd_kafka_topic_s                       = ^pas_rd_kafka_topic_t;
     pas_ptr_rd_kafka_conf_t                        =  type pointer;
     //ptr_pas_rd_kafka_topic_conf_s                   = ^pas_rd_kafka_topic_conf_t;
@@ -636,6 +639,38 @@ type
       function rd_kafka_message_latency (const rkmessage : pas_ptr_rd_kafka_message_t ) : ctypes.cint64;  cdecl;
 
 
+      // get the message header list.
+      //
+      // the returned pointer in \p //hdrsp is associated with the \p rkmessage and
+      // must not be used after destruction of the message object or the header
+      // list is replaced with rd_kafka_message_set_headers().
+      //
+      // @returns RD_KAFKA_RESP_ERR_NO_ERROR if headers were returned,
+      //          RD_KAFKA_RESP_ERR__NOENT if the message has no headers,
+      //          or another error code if the headers could not be parsed.
+      //
+      // @remark headers require broker version 0.11.0.0 or later.
+      //
+      // @remark as an optimization the raw protocol headers are parsed on
+      //         the first call to this function.
+      function  rd_kafka_message_headers ( const message : pas_ptr_rd_kafka_message_t;
+                                           var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;
+
+
+
+       // get the message header list and detach the list from the message
+       //        making the application the owner of the headers.
+       //        The application must eventually destroy the headers using
+       //        rd_kafka_headers_destroy().
+       //        The message's headers will be set to NULL.
+       //
+       //        Otherwise same semantics as rd_kafka_message_headers()
+       //
+       // @sa rd_kafka_message_headers
+       //
+       function rd_kafka_message_detach_headers( message : pas_ptr_rd_kafka_message_t;
+                                                var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;
+
 
 
 implementation
@@ -700,7 +735,13 @@ procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cd
 //
 function rd_kafka_message_latency (const rkmessage : pas_ptr_rd_kafka_message_t ) : ctypes.cint64;  cdecl; external;
 //
-function  rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
+function rd_kafka_message_headers ( const message : pas_ptr_rd_kafka_message_t;
+                                    var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
+//
+function rd_kafka_message_detach_headers( message : pas_ptr_rd_kafka_message_t;
+                                          var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
+//
+function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
     err_msg : pas_rd_kafka_message_t;
 begin

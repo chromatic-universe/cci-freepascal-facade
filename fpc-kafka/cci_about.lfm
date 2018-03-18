@@ -1,14 +1,14 @@
 object frm_about: Tfrm_about
-  Left = 655
+  Left = 920
   Height = 184
-  Top = 237
+  Top = 320
   Width = 299
   BorderStyle = bsToolWindow
   Caption = 'about chromatic umiverse'
   ClientHeight = 184
   ClientWidth = 299
   Position = poScreenCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.8.2.0'
   Visible = True
   object Image2: TImage
     Left = 0
