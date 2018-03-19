@@ -686,6 +686,15 @@ type
                                                 hdrs : pas_ptr_rd_kafka_headers_t ) cdecl;
 
 
+       // returns the number of header key/value pairs
+       //
+       // @param hdrs   Headers to count
+       ///
+       function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl;
+
+
+
+
 
 implementation
 
@@ -757,6 +766,8 @@ function rd_kafka_message_detach_headers( message : pas_ptr_rd_kafka_message_t;
 //
 procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
                                                 hdrs : pas_ptr_rd_kafka_headers_t ) cdecl; external;
+//
+function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
