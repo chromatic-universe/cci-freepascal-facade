@@ -79,6 +79,20 @@ type
     pas_t_compare_func = function( const a : pointer;
                                    const b : pointer;
                                    const opaque : pointer ) : ctypes.cint32; cdecl;
+     //
+     // @enum rd_kafka_conf_res_t
+     // coonfiguration result type
+     //
+     pas_ptr_rd_kafka_conf_res_t = ^pas_rd_kafka_conf_res_t;
+     pas_rd_kafka_conf_res_t =  (
+                                      //unknown configuration name
+	                              rd_kafka_conf_unknown = -2 ,
+                                      //invalid configuration value
+	                              rd__kafka_conf_invalid = -1 ,
+                                      //configuration okay
+	                              rd_kafka_conf_ok = 0
+                                );
+
 
     //
     /////
