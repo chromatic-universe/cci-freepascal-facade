@@ -710,6 +710,16 @@ type
        function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t; cdecl;
 
 
+       //
+       // dstroys a conf object.
+       procedure rd_kafka_conf_destroy( conf : pas_ptr_rd_kafka_conf_t ); cdecl;
+
+       // creates a copy/duplicate of configuration object \p conf
+       //
+       // @remark Interceptors are NOT copied to the new configuration object.
+       // @sa rd_kafka_interceptor_f_on_conf_dup
+       //
+       function rd_kafka_conf_dup( const conf : pas_ptr_rd_kafka_conf_t ) : pas_ptr_rd_kafka_conf_t; cdecl;
 
 
 
@@ -765,7 +775,7 @@ procedure rd_kafka_topic_partition_list_add_range ( rktparlist : pas_ptr_rd_kafk
 procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
                                                   cmp : pas_ptr_pas_t_compare_func;
                                                   opaque : pointer ); cdecl; external;
-//
+//                                                                               procedure rd_kafka_conf_destroy( conf : pas_ptr_rd_kafka_conf_t ); cdecl;
 function rd_kafka_message_timestamp( const rkmessage : pas_ptr_rd_kafka_message_t;
 				           tstype : pas_ptr_rd_kafka_timestamp_type_t ) : ctypes.cint64; cdecl; external;
 //
@@ -785,6 +795,10 @@ procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
 function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl; external;
 //
 function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t; cdecl;  external;
+//
+procedure rd_kafka_conf_destroy( conf : pas_ptr_rd_kafka_conf_t ); cdecl;  external;
+//
+function rd_kafka_conf_dup( const conf : pas_ptr_rd_kafka_conf_t ) : pas_ptr_rd_kafka_conf_t; cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
