@@ -435,40 +435,11 @@ type
     // returns comma-separated list of available debugging contexts.
     //
     function rd_kafka_get_debug_contexts : PAnsiChar ; cdecl;
-    /////
-    // create configuration object.
-    //
-    // When providing your own configuration to the \c rd_kafka_//_new_//() calls
-    // the rd_kafka_conf_t objects needs to be created with this function
-    // which will set up the defaults.
-    // I.e.:
-    // @code
-    //   pas_rd_kafka_conf_t //myconf;
-    //   pas_rd_kafka_conf_res_t res;
-    //
-    //   myconf = rd_kafka_conf_new();
-    //   res = rd_kafka_conf_set(myconf, "socket.timeout.ms", "600",
-    //                           errstr, sizeof(errstr));
-    //   if (res != RD_KAFKA_CONF_OK)
-    //      die("%s\n", errstr);
-    //
-    //   rk = rd_kafka_new(..., myconf);
-    // @endcode
-    //
-    // Please see CONFIGURATION.md for the default settings or use
-    // rd_kafka_conf_properties_show() to provide the information at runtime.
-    //
-    // The properties are identical to the Apache Kafka configuration properties
-    // whenever possible.
-    //
-    // @returns A new rd_kafka_conf_t object with defaults set.
-    //
-    // @sa rd_kafka_conf_set(), rd_kafka_conf_destroy()
-    //
-    function  rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t ;  cdecl;
+
     // returns the error code name (enum name).
     // param err Error code to translate
     function rd_kafka_err2name ( err : pas_rd_kafka_resp_err_t ) : PAnsiChar;  cdecl;
+
     // returns a human readable representation of a kafka error.
     // @param err Error code to translate
     function rd_kafka_err2str ( err : pas_rd_kafka_resp_err_t ) : PAnsiChar; cdecl;
@@ -707,6 +678,38 @@ type
        function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl;
 
 
+       // vceate configuration object.
+       //
+       // when providing your own configuration to the \c rd_kafka_//_new_//() calls
+       // the rd_kafka_conf_t objects needs to be created with this function
+       // which will set up the defaults.
+       // I.e.:
+       // @code
+       //   rd_kafka_conf_t //myconf;
+       //   rd_kafka_conf_res_t res;
+       //
+       //   myconf = rd_kafka_conf_new();
+       //   res = rd_kafka_conf_set(myconf, "socket.timeout.ms", "600",
+       //                           errstr, sizeof(errstr));
+       //   if (res != RD_KAFKA_CONF_OK)
+       //      die("%s\n", errstr);
+       //
+       //   rk = rd_kafka_new(..., myconf);
+       // @endcode
+       //
+       // please see CONFIGURATION.md for the default settings or use
+       // rd_kafka_conf_properties_show() to provide the information at runtime.
+       //
+       // the properties are identical to the Apache Kafka configuration properties
+       // whenever possible.
+       //
+       // @returns A new rd_kafka_conf_t object with defaults set.
+       //
+       // @sa rd_kafka_conf_set(), rd_kafka_conf_destroy()
+       //
+       function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t; cdecl;
+
+
 
 
 
@@ -716,8 +719,6 @@ implementation
 function rd_kafka_version_str : PAnsiChar ; cdecl;   external;
 //
 function rd_kafka_get_debug_contexts : PAnsiChar ; cdecl;  external;
-//
-function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t ;  cdecl; external;
 //
 function rd_kafka_err2name ( err : pas_rd_kafka_resp_err_t ) : PAnsiChar;  cdecl;   external;
 //
@@ -782,6 +783,8 @@ procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
                                                 hdrs : pas_ptr_rd_kafka_headers_t ) cdecl; external;
 //
 function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl; external;
+//
+function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t; cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
