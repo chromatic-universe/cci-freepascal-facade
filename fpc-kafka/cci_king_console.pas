@@ -45,7 +45,7 @@ var
 implementation
 
  uses
-  cci_mini_kafka , cci_dev_info , cci_about;
+  rdkafka , cci_dev_info , cci_about;
 
 {$R *.lfm}
 
@@ -58,7 +58,7 @@ end;
 
 procedure Tfrm_mini_kafka_main.FormCreate(Sender: TObject);
 begin
-      sb_kafka.Panels[0].Text :=  concat( 'kafka version->' , cci_mini_kafka.rd_kafka_version_str );
+      sb_kafka.Panels[0].Text :=  concat( 'kafka version->' , rdkafka.rd_kafka_version_str );
 
 end;
 

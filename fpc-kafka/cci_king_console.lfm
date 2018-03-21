@@ -12,7 +12,7 @@ object frm_mini_kafka_main: Tfrm_mini_kafka_main
   OnCreate = FormCreate
   ParentBiDiMode = False
   Position = poScreenCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.8.2.0'
   object sb_kafka: TStatusBar
     Left = 0
     Height = 25

@@ -37,7 +37,7 @@ var
 implementation
 
 uses
-     cci_mini_kafka  , ctypes;
+     rdkafka  , ctypes;
 
 {$R *.lfm}
 
@@ -53,7 +53,7 @@ var
    conf_ptr : pas_ptr_rd_kafka_conf_t;
    reply : integer;
 begin
-     conf_ptr :=  cci_mini_kafka.rd_kafka_conf_new();
+     conf_ptr :=  rdkafka.rd_kafka_conf_new();
      if( conf_ptr <> nil ) then
        reply := Application.MessageBox( 'kafka conf object created..' ,
                                         'rdkafka', MB_ICONINFORMATION )
@@ -71,7 +71,7 @@ begin
      try
              setlength( desc_arr , 256 );
              dw_arr := 16;
-             cci_mini_kafka.rd_kafka_get_err_descs( desc_arr , dw_arr );
+             rdkafka.rd_kafka_get_err_descs( desc_arr , dw_arr );
              for i := 0 to dw_arr - 1  do
              begin
                  desc :=  ord( desc_arr[i].code );
@@ -85,8 +85,8 @@ end;
 
 procedure Tfrm_dev_info.FormActivate(Sender: TObject);
 begin
-     ed_version.Text :=  cci_mini_kafka.rd_kafka_version_str;
-     ed_debug_str.Text :=  cci_mini_kafka.rd_kafka_get_debug_contexts;
+     ed_version.Text :=  rdkafka.rd_kafka_version_str;
+     ed_debug_str.Text :=  rdkafka.rd_kafka_get_debug_contexts;
 
 
 end;

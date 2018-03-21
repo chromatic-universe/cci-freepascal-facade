@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, cci_mini_kafka, cci_king_console, cci_dev_info, cci_about;
+  Forms, rdkafka, cci_king_console, cci_dev_info, cci_about;
 
 {$R *.res}
 

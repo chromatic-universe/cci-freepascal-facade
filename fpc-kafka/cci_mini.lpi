@@ -35,7 +35,7 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="cci_mini_kafka.pas"/>
+        <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit1>
       <Unit2>
