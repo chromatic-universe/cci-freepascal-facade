@@ -74,11 +74,7 @@ type
                                       //log append time
                                       rd_kafka_timestamp_log_append_time
                                     );
-    //
-    pas_ptr_pas_t_compare_func = ^pas_t_compare_func;
-    pas_t_compare_func = function( const a : pointer;
-                                   const b : pointer;
-                                   const opaque : pointer ) : ctypes.cint32; cdecl;
+     //
      //
      // @enum rd_kafka_conf_res_t
      // coonfiguration result type
@@ -95,7 +91,7 @@ type
 
 
     //
-    /////
+    //
     // @enum rd_kafka_resp_err_t
     // @brief Error codes.
     //
@@ -318,7 +314,6 @@ type
                                     rd_kafka_resp_err_operation_not_attempted = 55 ,
 	                            rd_kafka_resp_err_end_all
                                    );
-
     ////typedefs
     //
     //private abi
@@ -329,6 +324,18 @@ type
     pas_ptr_rd_kafka_conf_t                        =  type pointer;
     ptr_pas_rd_kafka_topic_conf_s                  =  type pointer;
     ptr_pas_rd_kafka_queue_t                       =  type pointer;
+    pas_ptr_rd_kafka_message_t                     =  ^pas_rd_kafka_message_t;
+    ////function pointers
+    pas_ptr_pas_t_compare_func = ^pas_t_compare_func;
+    pas_t_compare_func = function( const a : pointer;
+                                   const b : pointer;
+                                   const opaque : pointer ) : ctypes.cint32; cdecl;
+    //
+
+    pas_ptr_pas_dr_msg_cb = ^pas_dr_msg_cb;
+    pas_dr_msg_cb = procedure( rk : pas_ptr_rd_kafka_t;
+                               rkmessage : pas_ptr_rd_kafka_message_t;
+                               opaque : pointer );
 
     ////records
     //
@@ -341,7 +348,6 @@ type
        name : PAnsiChar;
        desc : PAnsiChar;
     end;
-
 
      // topic partition place holder
      //
@@ -390,7 +396,6 @@ type
      // when the application is finished with a message it must call
      // rd_kafka_message_destroy() unless otherwise noted.
      //
-     pas_ptr_rd_kafka_message_t = ^pas_rd_kafka_message_t;
      pas_rd_kafka_message_t  = record
 	    err : pas_rd_kafka_resp_err_t;   /////< Non-zero for error signaling. ///
 	    rkt : pas_ptr_rd_kafka_t;        /////< Topic ///
@@ -766,6 +771,24 @@ type
        // deprecated ->skipped   <willian lk. johnson>
        //
 
+       //
+       //  producer: Set delivery report callback in provided \p conf object.
+       //
+       // the delivery report callback will be called once for each message
+       // accepted by rd_kafka_produce() (et.al) with \p err set to indicate
+       // the result of the produce request.
+       //
+       // the callback is called when a message is succesfully produced or
+       // if librdkafka encountered a permanent failure, or the retry counter for
+       // temporary errors has been exhausted.
+       //
+       // an application must call rd_kafka_poll() at regular intervals to
+       // serve queued delivery report callbacks.
+       //
+       procedure rd_kafka_conf_set_dr_msg_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                              msg_cb : pas_ptr_pas_dr_msg_cb ); cdecl;
+
+
 
 
 
@@ -858,6 +881,9 @@ function rd_kafka_conf_set(  const conf : pas_ptr_rd_kafka_conf_t;
                              errstr_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t ; cdecl;  external;
 //
 procedure rd_kafka_conf_set_events( conf : pas_ptr_rd_kafka_conf_t; events : ctypes.cuint64 ); cdecl; external;
+//
+procedure rd_kafka_conf_set_dr_msg_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                        msg_cb : pas_ptr_pas_dr_msg_cb ); cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
