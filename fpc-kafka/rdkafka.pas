@@ -324,19 +324,26 @@ type
     pas_ptr_rd_kafka_conf_t                        =  type pointer;
     ptr_pas_rd_kafka_topic_conf_s                  =  type pointer;
     ptr_pas_rd_kafka_queue_t                       =  type pointer;
+    //forward declarations
+    pas_ptr_rd_kafka_topic_partition_list_t        =  ^pas_rd_kafka_topic_partition_list_t;
     pas_ptr_rd_kafka_message_t                     =  ^pas_rd_kafka_message_t;
-    ////function pointers
+    ////function pointers & callbacks
+    //
     pas_ptr_pas_t_compare_func = ^pas_t_compare_func;
     pas_t_compare_func = function( const a : pointer;
                                    const b : pointer;
                                    const opaque : pointer ) : ctypes.cint32; cdecl;
     //
-
     pas_ptr_pas_dr_msg_cb = ^pas_dr_msg_cb;
     pas_dr_msg_cb = procedure( rk : pas_ptr_rd_kafka_t;
                                rkmessage : pas_ptr_rd_kafka_message_t;
                                opaque : pointer );
-
+    //
+    pas_ptr_pas_rebalance_cb = ^pas_rebalance_cb;
+    pas_rebalance_cb = procedure(  rk : pas_ptr_rd_kafka_t;
+                                   err : pas_rd_kafka_resp_err_t;
+                                   partitions : pas_ptr_rd_kafka_topic_partition_list_t;
+                                   opaque : pointer );
     ////records
     //
     //error code value, name and description.
@@ -374,7 +381,6 @@ type
      end;                                         // INITIALIZE TO ZERO, DO NOT TOUCH
 
      // a growable list of topic partitions.
-     pas_ptr_rd_kafka_topic_partition_list_t = ^pas_rd_kafka_topic_partition_list_t;
      pas_rd_kafka_topic_partition_list_t = record
         cnt :  ctypes.cint32;                       //current number of elements
         size : ctypes.cint32;                       //vurrent allocated size
@@ -790,6 +796,68 @@ type
 
 
 
+       //
+       //  consumer: set rebalance callback for use with
+       //                     coordinated consumer group balancing.
+       //
+       // the \p err field is set to either RD_KAFKA_RESP_ERR__ASSIGN_PARTITIONS
+       // or RD_KAFKA_RESP_ERR__REVOKE_PARTITIONS and 'partitions'
+       // contains the full partition set that was either assigned or revoked.
+       //
+       // registering a \p rebalance_cb turns off librdkafka's automatic
+       // partition assignment/revocation and instead delegates that responsibility
+       // to the application's \p rebalance_cb.
+       //
+       // The rebalance callback is responsible for updating librdkafka's
+       // assignment set based on the two events: RD_KAFKA_RESP_ERR__ASSIGN_PARTITIONS
+       // and RD_KAFKA_RESP_ERR__REVOKE_PARTITIONS but should also be able to handle
+       // arbitrary rebalancing failures where \p err is neither of those.
+       // @remark In this latter case (arbitrary error), the application must
+       //         call rd_kafka_assign(rk, NULL) to synchronize state.
+       //
+       // without a rebalance callback this is done automatically by librdkafka
+       // but registering a rebalance callback gives the application flexibility
+       // in performing other operations along with the assinging/revocation,
+       // such as fetching offsets from an alternate location (on assign)
+       // or manually committing offsets (on revoke).
+       //
+       // @remark The \p partitions list is destroyed by librdkafka on return
+       //         return from the rebalance_cb and must not be freed or
+       //         saved by the application.
+       //
+       // the following example shows the application's responsibilities:
+       // @code
+       //    static void rebalance_cb (rd_kafka_t //rk, rd_kafka_resp_err_t err,
+       //                              rd_kafka_topic_partition_list_t //partitions,
+       //                              void //opaque) {
+       //
+       //        switch (err)
+       //        {
+       //          case RD_KAFKA_RESP_ERR__ASSIGN_PARTITIONS:
+       //             // application may load offets from arbitrary external
+       //             // storage here and update \p partitions
+       //
+       //             rd_kafka_assign(rk, partitions);
+       //             break;
+       //
+       //          case RD_KAFKA_RESP_ERR__REVOKE_PARTITIONS:
+       //             if (manual_commits) // Optional explicit manual commit
+       //                 rd_kafka_commit(rk, partitions, 0); // sync commit
+       //
+       //             rd_kafka_assign(rk, NULL);
+       //             break;
+       //
+       //          default:
+       //             handle_unlikely_error(err);
+       //             rd_kafka_assign(rk, NULL); // sync state
+       //             break;
+       //         }
+       //    }
+       // @endcode
+       //
+       procedure rd_kafka_conf_set_rebalance_cb ( conf : pas_ptr_rd_kafka_conf_t;
+                                                  rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl;
+
 
 
 
@@ -884,6 +952,9 @@ procedure rd_kafka_conf_set_events( conf : pas_ptr_rd_kafka_conf_t; events : cty
 //
 procedure rd_kafka_conf_set_dr_msg_cb( conf : pas_ptr_rd_kafka_conf_t;
                                         msg_cb : pas_ptr_pas_dr_msg_cb ); cdecl; external;
+//
+procedure rd_kafka_conf_set_rebalance_cb ( conf : pas_ptr_rd_kafka_conf_t;
+                                                  rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var

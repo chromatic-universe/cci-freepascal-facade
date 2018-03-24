@@ -15,9 +15,9 @@
         <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="868"/>
-        <CursorPos X="72" Y="886"/>
-        <UsageCount Value="89"/>
+        <TopLine Value="939"/>
+        <CursorPos X="78" Y="957"/>
+        <UsageCount Value="90"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -29,7 +29,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="35"/>
         <CursorPos X="59" Y="39"/>
-        <UsageCount Value="85"/>
+        <UsageCount Value="86"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="34"/>
         <CursorPos X="82" Y="49"/>
-        <UsageCount Value="65"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -53,7 +53,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <CursorPos X="30" Y="11"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -151,7 +151,7 @@
         <DefaultSyntaxHighlighter Value="C++"/>
       </Unit17>
     </Units>
-    <JumpHistory Count="12" HistoryIndex="11">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="36" Column="46" TopLine="30"/>
@@ -200,6 +200,38 @@
         <Filename Value="rdkafka.pas"/>
         <Caret Line="885" TopLine="867"/>
       </Position12>
+      <Position13>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="851" Column="50" TopLine="820"/>
+      </Position13>
+      <Position14>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="963" Column="105" TopLine="944"/>
+      </Position14>
+      <Position15>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="334" Column="124" TopLine="316"/>
+      </Position15>
+      <Position16>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="340" Column="70" TopLine="325"/>
+      </Position16>
+      <Position17>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="342" Column="43" TopLine="324"/>
+      </Position17>
+      <Position18>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="316" Column="118" TopLine="304"/>
+      </Position18>
+      <Position19>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="346" Column="55" TopLine="334"/>
+      </Position19>
+      <Position20>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="849" Column="101" TopLine="832"/>
+      </Position20>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
