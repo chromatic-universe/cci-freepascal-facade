@@ -344,6 +344,10 @@ type
                                    err : pas_rd_kafka_resp_err_t;
                                    partitions : pas_ptr_rd_kafka_topic_partition_list_t;
                                    opaque : pointer );
+    //
+    pas_ptr_consume_cb = ^pas_consume_cb;
+    pas_consume_cb = procedure(  rk_message : pas_ptr_rd_kafka_message_t;
+                                 opaque : pointer );
     ////records
     //
     //error code value, name and description.
@@ -795,6 +799,14 @@ type
                                               msg_cb : pas_ptr_pas_dr_msg_cb ); cdecl;
 
 
+       //
+       //  consumer: set consume callback for use with rd_kafka_consumer_poll()
+       //
+       //
+       procedure rd_kafka_conf_set_consume_cb ( conf : pas_ptr_rd_kafka_conf_t;
+                                                consume_cb : pas_ptr_consume_cb ); cdecl;
+
+
 
        //
        //  consumer: set rebalance callback for use with
@@ -955,6 +967,9 @@ procedure rd_kafka_conf_set_dr_msg_cb( conf : pas_ptr_rd_kafka_conf_t;
 //
 procedure rd_kafka_conf_set_rebalance_cb ( conf : pas_ptr_rd_kafka_conf_t;
                                                   rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl; external;
+//
+procedure rd_kafka_conf_set_consume_cb ( conf : pas_ptr_rd_kafka_conf_t;
+                                         consume_cb : pas_ptr_consume_cb ); cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var

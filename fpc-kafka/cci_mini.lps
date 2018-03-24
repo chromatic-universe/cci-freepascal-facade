@@ -15,9 +15,9 @@
         <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="939"/>
-        <CursorPos X="78" Y="957"/>
-        <UsageCount Value="90"/>
+        <TopLine Value="957"/>
+        <CursorPos X="108" Y="982"/>
+        <UsageCount Value="125"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -29,7 +29,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="35"/>
         <CursorPos X="59" Y="39"/>
-        <UsageCount Value="86"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="34"/>
         <CursorPos X="82" Y="49"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="101"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -53,7 +53,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <CursorPos X="30" Y="11"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -65,11 +65,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="10" Y="31"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="12"/>
       </Unit5>
       <Unit6>
         <Filename Value="../../cci-mini/cci_mini_kafka.pas"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="11"/>
       </Unit6>
       <Unit7>
         <Filename Value="cci_kingi_console.pas"/>
@@ -78,80 +78,80 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="2"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="11"/>
       </Unit7>
       <Unit8>
         <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/lazarus/IdAboutVCL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="3" Y="76"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit8>
       <Unit9>
         <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/lazarus/IdAbout.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="3" Y="11"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit9>
       <Unit10>
         <Filename Value="/dev_t/free_pascal_lib/indy-10.2.0.3/fpc/IdStream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="6" Y="20"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit10>
       <Unit11>
         <Filename Value="/dev_t/free_pascal_lib/lazarus/System/IdStream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="15"/>
         <CursorPos X="16" Y="22"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="2"/>
       </Unit11>
       <Unit12>
         <Filename Value="/usr/lib/lazarus/1.6/ide/lazarus.pp"/>
         <UnitName Value="Lazarus"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="24" Y="10"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit12>
       <Unit13>
         <Filename Value="/dev_t/free_pascal_lib/Lib/System/IdStream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="14"/>
         <CursorPos X="2" Y="19"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit13>
       <Unit14>
         <Filename Value="/dev_t/free_pascal_lib/lazarus/System/IdStreamVCL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="11" Y="26"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit14>
       <Unit15>
         <Filename Value="/dev_t/free_pascal_lib/Lib/System/IdStreamVCL.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="25"/>
         <CursorPos X="26" Y="29"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="1"/>
       </Unit15>
       <Unit16>
         <Filename Value="/usr/share/lazarus/1.8.0/lcl/include/customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2891"/>
         <CursorPos X="68" Y="2908"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="13"/>
       </Unit16>
       <Unit17>
         <Filename Value="/dev_t/librdkafka/src/rdkafka.c"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="494"/>
         <CursorPos X="37" Y="515"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="C++"/>
       </Unit17>
     </Units>
-    <JumpHistory Count="20" HistoryIndex="19">
+    <JumpHistory Count="21" HistoryIndex="20">
       <Position1>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="36" Column="46" TopLine="30"/>
@@ -232,6 +232,10 @@
         <Filename Value="rdkafka.pas"/>
         <Caret Line="849" Column="101" TopLine="832"/>
       </Position20>
+      <Position21>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="801" Column="10" TopLine="780"/>
+      </Position21>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
