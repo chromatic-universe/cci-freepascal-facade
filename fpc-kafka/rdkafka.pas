@@ -751,6 +751,23 @@ type
 				   const errstr : PAnsiChar;
                                    errstr_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t ; cdecl;
 
+       //
+       // enable event sourcing.
+       // events is a bitmask of RD_KAFKA_EVENT_* of events to enable
+       // for consumption by `rd_kafka_queue_poll()`.
+       //
+       procedure rd_kafka_conf_set_events( conf : pas_ptr_rd_kafka_conf_t; events : ctypes.cuint64 ); cdecl;
+
+       //
+       // rd_kafka_conf_set_dr_cb
+       // deprecated See rd_kafka_conf_set_dr_msg_cb()
+       //
+       //
+       // deprecated ->skipped   <willian lk. johnson>
+       //
+
+
+
 
 
 implementation
@@ -839,6 +856,8 @@ function rd_kafka_conf_set(  const conf : pas_ptr_rd_kafka_conf_t;
 			     const value : PAnsiChar;
 			     const errstr : PAnsiChar;
                              errstr_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t ; cdecl;  external;
+//
+procedure rd_kafka_conf_set_events( conf : pas_ptr_rd_kafka_conf_t; events : ctypes.cuint64 ); cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
