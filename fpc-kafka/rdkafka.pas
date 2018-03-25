@@ -345,9 +345,15 @@ type
                                    partitions : pas_ptr_rd_kafka_topic_partition_list_t;
                                    opaque : pointer );
     //
-    pas_ptr_consume_cb = ^pas_consume_cb;
+    pas_ptr_pas_consume_cb = ^pas_consume_cb;
     pas_consume_cb = procedure(  rk_message : pas_ptr_rd_kafka_message_t;
                                  opaque : pointer );
+    //
+    pas_ptr_pas_offset_commit_cb = ^pas_offset_commit_cb;
+    pas_offset_commit_cb = procedure(  rk : pas_ptr_rd_kafka_t;
+                                        err : pas_rd_kafka_resp_err_t;
+                                        partitions : pas_ptr_rd_kafka_topic_partition_list_t;
+                                        opaque : pointer );
     ////records
     //
     //error code value, name and description.
@@ -804,7 +810,7 @@ type
        //
        //
        procedure rd_kafka_conf_set_consume_cb ( conf : pas_ptr_rd_kafka_conf_t;
-                                                consume_cb : pas_ptr_consume_cb ); cdecl;
+                                                consume_cb : pas_ptr_pas_consume_cb ); cdecl;
 
 
 
@@ -869,6 +875,23 @@ type
        //
        procedure rd_kafka_conf_set_rebalance_cb ( conf : pas_ptr_rd_kafka_conf_t;
                                                   rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl;
+
+       //
+       // consumer: Set offset commit callback for use with consumer groups.
+       //
+       // the results of automatic or manual offset commits will be scheduled
+       // for this callback and is served by rd_kafka_consumer_poll().
+       //
+       // if no partitions had valid offsets to commit this callback will be called
+       // with \p err == RD_KAFKA_RESP_ERR__NO_OFFSET which is not to be considered
+       // an error.
+       //
+       // the \p offsets list contains per-partition information:
+       //   - \c offset: committed offset (attempted)
+       //   - \c err:    commit error
+       ///
+       procedure rd_kafka_conf_set_offset_commit_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                                     offset_commit_cb : pas_ptr_pas_offset_commit_cb ); cdecl;
 
 
 
@@ -969,7 +992,10 @@ procedure rd_kafka_conf_set_rebalance_cb ( conf : pas_ptr_rd_kafka_conf_t;
                                                   rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl; external;
 //
 procedure rd_kafka_conf_set_consume_cb ( conf : pas_ptr_rd_kafka_conf_t;
-                                         consume_cb : pas_ptr_consume_cb ); cdecl;  external;
+                                         consume_cb : pas_ptr_pas_consume_cb ); cdecl;  external;
+//
+procedure rd_kafka_conf_set_offset_commit_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                              offset_commit_cb : pas_ptr_pas_offset_commit_cb ); cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
