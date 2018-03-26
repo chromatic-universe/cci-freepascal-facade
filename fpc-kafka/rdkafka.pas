@@ -351,9 +351,15 @@ type
     //
     pas_ptr_pas_offset_commit_cb = ^pas_offset_commit_cb;
     pas_offset_commit_cb = procedure(  rk : pas_ptr_rd_kafka_t;
-                                        err : pas_rd_kafka_resp_err_t;
-                                        partitions : pas_ptr_rd_kafka_topic_partition_list_t;
-                                        opaque : pointer );
+                                       err : pas_rd_kafka_resp_err_t;
+                                       partitions : pas_ptr_rd_kafka_topic_partition_list_t;
+                                       opaque : pointer );
+    //
+    pas_ptr_pas_error_cb  = ^pas_error_cb;
+    pas_error_cb = procedure( rk : pas_ptr_rd_kafka_t;
+                              err : ctypes.cuint64;
+                              const reason : PAnsiChar;
+                              opaque : pointer );
     ////records
     //
     //error code value, name and description.
@@ -894,6 +900,18 @@ type
                                                      offset_commit_cb : pas_ptr_pas_offset_commit_cb ); cdecl;
 
 
+       //
+       // set error callback in provided conf object.
+       //
+       // the error callback is used by librdkafka to signal critical errors
+       // back to the application.
+       //
+       // if no error_cb is registered then the errors will be logged instead.
+       //
+       procedure rd_kafka_conf_set_error_cb( conf : pas_ptr_rd_kafka_conf_t;
+				             error_cb : pas_ptr_pas_error_cb ); cdecl;
+
+
 
 
 implementation
@@ -989,13 +1007,16 @@ procedure rd_kafka_conf_set_dr_msg_cb( conf : pas_ptr_rd_kafka_conf_t;
                                         msg_cb : pas_ptr_pas_dr_msg_cb ); cdecl; external;
 //
 procedure rd_kafka_conf_set_rebalance_cb ( conf : pas_ptr_rd_kafka_conf_t;
-                                                  rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl; external;
+                                           rebalance_cb : pas_ptr_pas_rebalance_cb ); cdecl; external;
 //
 procedure rd_kafka_conf_set_consume_cb ( conf : pas_ptr_rd_kafka_conf_t;
                                          consume_cb : pas_ptr_pas_consume_cb ); cdecl;  external;
 //
 procedure rd_kafka_conf_set_offset_commit_cb( conf : pas_ptr_rd_kafka_conf_t;
                                               offset_commit_cb : pas_ptr_pas_offset_commit_cb ); cdecl; external;
+//
+procedure rd_kafka_conf_set_error_cb( conf : pas_ptr_rd_kafka_conf_t;
+				             error_cb : pas_ptr_pas_error_cb ); cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var

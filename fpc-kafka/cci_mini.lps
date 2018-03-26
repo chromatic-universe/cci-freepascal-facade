@@ -15,9 +15,9 @@
         <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="982"/>
-        <CursorPos X="114" Y="998"/>
-        <UsageCount Value="170"/>
+        <TopLine Value="336"/>
+        <CursorPos X="52" Y="360"/>
+        <UsageCount Value="177"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -29,7 +29,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="35"/>
         <CursorPos X="59" Y="39"/>
-        <UsageCount Value="166"/>
+        <UsageCount Value="173"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit2>
@@ -42,7 +42,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="34"/>
         <CursorPos X="82" Y="49"/>
-        <UsageCount Value="146"/>
+        <UsageCount Value="153"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -53,7 +53,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="2"/>
         <CursorPos X="30" Y="11"/>
-        <UsageCount Value="109"/>
+        <UsageCount Value="116"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -65,11 +65,11 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos X="10" Y="31"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit5>
       <Unit6>
         <Filename Value="../../cci-mini/cci_mini_kafka.pas"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit6>
       <Unit7>
         <Filename Value="cci_kingi_console.pas"/>
@@ -78,129 +78,145 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="6" Y="2"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit7>
       <Unit8>
         <Filename Value="/usr/share/lazarus/1.8.0/lcl/include/customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2891"/>
         <CursorPos X="68" Y="2908"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit8>
       <Unit9>
         <Filename Value="/dev_t/librdkafka/src/rdkafka.c"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="494"/>
         <CursorPos X="37" Y="515"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="C++"/>
       </Unit9>
     </Units>
-    <JumpHistory Count="26" HistoryIndex="25">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="cci_king_console.pas"/>
-        <Caret Line="36" Column="46" TopLine="30"/>
+        <Caret Line="36" Column="46" TopLine="29"/>
       </Position1>
       <Position2>
-        <Filename Value="cci_king_console.pas"/>
-        <Caret Line="35" Column="46" TopLine="29"/>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="747" Column="43" TopLine="718"/>
       </Position2>
       <Position3>
-        <Filename Value="cci_king_console.pas"/>
-        <Caret Line="36" Column="46" TopLine="29"/>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="836" Column="117" TopLine="824"/>
       </Position3>
       <Position4>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="747" Column="43" TopLine="718"/>
+        <Caret Line="850" Column="95" TopLine="826"/>
       </Position4>
       <Position5>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="836" Column="117" TopLine="824"/>
+        <Caret Line="782" Column="41" TopLine="752"/>
       </Position5>
       <Position6>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="850" Column="95" TopLine="826"/>
+        <Caret Line="890" Column="86" TopLine="871"/>
       </Position6>
       <Position7>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="782" Column="41" TopLine="752"/>
+        <Caret Line="787" Column="96" TopLine="775"/>
       </Position7>
       <Position8>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="890" Column="86" TopLine="871"/>
+        <Caret Line="786" Column="146" TopLine="771"/>
       </Position8>
       <Position9>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="787" Column="96" TopLine="775"/>
+        <Caret Line="881" Column="58" TopLine="867"/>
       </Position9>
       <Position10>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="786" Column="146" TopLine="771"/>
+        <Caret Line="885" TopLine="867"/>
       </Position10>
       <Position11>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="881" Column="58" TopLine="867"/>
+        <Caret Line="851" Column="50" TopLine="820"/>
       </Position11>
       <Position12>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="885" TopLine="867"/>
+        <Caret Line="963" Column="105" TopLine="944"/>
       </Position12>
       <Position13>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="851" Column="50" TopLine="820"/>
+        <Caret Line="334" Column="124" TopLine="316"/>
       </Position13>
       <Position14>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="963" Column="105" TopLine="944"/>
+        <Caret Line="340" Column="70" TopLine="325"/>
       </Position14>
       <Position15>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="334" Column="124" TopLine="316"/>
+        <Caret Line="342" Column="43" TopLine="324"/>
       </Position15>
       <Position16>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="340" Column="70" TopLine="325"/>
+        <Caret Line="316" Column="118" TopLine="304"/>
       </Position16>
       <Position17>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="342" Column="43" TopLine="324"/>
+        <Caret Line="346" Column="55" TopLine="334"/>
       </Position17>
       <Position18>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="316" Column="118" TopLine="304"/>
+        <Caret Line="849" Column="101" TopLine="832"/>
       </Position18>
       <Position19>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="346" Column="55" TopLine="334"/>
+        <Caret Line="801" Column="10" TopLine="780"/>
       </Position19>
       <Position20>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="849" Column="101" TopLine="832"/>
+        <Caret Line="886" Column="39" TopLine="864"/>
       </Position20>
       <Position21>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="801" Column="10" TopLine="780"/>
+        <Caret Line="1006" Column="60" TopLine="986"/>
       </Position21>
       <Position22>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="886" Column="39" TopLine="864"/>
+        <Caret Line="345" Column="54" TopLine="323"/>
       </Position22>
       <Position23>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="1006" Column="60" TopLine="986"/>
+        <Caret Line="995" Column="67" TopLine="977"/>
       </Position23>
       <Position24>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="345" Column="54" TopLine="323"/>
+        <Caret Line="998" Column="86" TopLine="980"/>
       </Position24>
       <Position25>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="995" Column="67" TopLine="977"/>
+        <Caret Line="904" Column="23" TopLine="878"/>
       </Position25>
       <Position26>
         <Filename Value="rdkafka.pas"/>
-        <Caret Line="998" Column="86" TopLine="980"/>
+        <Caret Line="1005" Column="112" TopLine="990"/>
       </Position26>
+      <Position27>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="360" Column="37" TopLine="335"/>
+      </Position27>
+      <Position28>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="358" Column="60" TopLine="473"/>
+      </Position28>
+      <Position29>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="360" Column="64" TopLine="335"/>
+      </Position29>
+      <Position30>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="361" Column="31" TopLine="336"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
