@@ -1,7 +1,7 @@
 object frm_mini_kafka_main: Tfrm_mini_kafka_main
-  Left = 560
+  Left = 603
   Height = 213
-  Top = 356
+  Top = 387
   Width = 695
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsToolWindow

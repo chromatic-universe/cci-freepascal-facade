@@ -10,7 +10,7 @@ object frm_dev_info: Tfrm_dev_info
   ClientWidth = 320
   OnActivate = FormActivate
   Position = poScreenCenter
-  LCLVersion = '1.8.0.6'
+  LCLVersion = '1.8.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 240
