@@ -1,12 +1,12 @@
 object frm_mini_kafka_main: Tfrm_mini_kafka_main
-  Left = 603
-  Height = 213
-  Top = 387
+  Left = 392
+  Height = 220
+  Top = 489
   Width = 695
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsToolWindow
   Caption = 'cci-mini-kafka'
-  ClientHeight = 190
+  ClientHeight = 197
   ClientWidth = 695
   Menu = MainMenu1
   OnCreate = FormCreate
@@ -16,7 +16,7 @@ object frm_mini_kafka_main: Tfrm_mini_kafka_main
   object sb_kafka: TStatusBar
     Left = 0
     Height = 25
-    Top = 165
+    Top = 172
     Width = 695
     Panels = <    
       item
@@ -47,7 +47,7 @@ object frm_mini_kafka_main: Tfrm_mini_kafka_main
   end
   object Image1: TImage
     Left = 0
-    Height = 133
+    Height = 140
     Top = 32
     Width = 491
     Align = alLeft

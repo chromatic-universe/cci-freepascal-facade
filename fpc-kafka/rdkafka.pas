@@ -49,7 +49,7 @@ unit rdkafka;
 
 interface
 
-uses ctypes , sysutils;
+uses ctypes , sysutils , sockets , unix;
 
 type
     {$IFDEF FPC}
@@ -360,6 +360,41 @@ type
                               err : ctypes.cuint64;
                               const reason : PAnsiChar;
                               opaque : pointer );
+    //
+    pas_ptr_pas_log_cb = ^pas_log_cb;
+    pas_log_cb = procedure(  rk : pas_ptr_rd_kafka_t;
+                             const fac : PAnsiChar;
+                             const buf : PAnsiChar );
+    //
+    pas_ptr_pas_stats_cb = ^pas_stats_cb;
+    pas_stats_cb = function( rk : pas_ptr_rd_kafka_t;
+                             json : PAnsiChar;
+                             json_len : ctypes.cuint64;
+                             opaque : pointer ) : ctypes.cint64;
+    //
+    pas_ptr_pas_socket_cb = ^pas_socket_cb;
+    pas_socket_cb = function( domain : ctypes.cint64;
+                              typ : ctypes.cint64;
+                              protocol : ctypes.cint64;
+                              opaque : pointer ) : ctypes.cint64;
+    //
+    pas_ptr_pas_connect_cb = ^pas_connect_cb;
+    pas_ptr_sock_unix_sockaddr  = ^TUnixSockAddr;
+    pas_connect_cb = function( sockfd : ctypes.cint32;
+                               const addr : pas_ptr_sock_unix_sockaddr;
+                               addrlen : ctypes.cint64;
+                               const id : PAnsiChar;
+                               opaque : pointer ) : ctypes.cint64;
+    //
+    pas_ptr_pas_closesocket_cb = ^pas_closesocket_cb;
+    pas_closesocket_cb = function( sockfd : ctypes.cint32;
+                                   opaque : pointer ) : ctypes.cint64;
+    //
+    pas_ptr_open_cb = ^pas_open_cb;
+    pas_open_cb = function( const pathname : PAnsiChar;
+                            flags : cint32;
+                            mode  : mode_t;
+                            opaque : pointer ) : ctypes.cint64; cdecl;
     ////records
     //
     //error code value, name and description.
@@ -790,7 +825,7 @@ type
        // deprecated See rd_kafka_conf_set_dr_msg_cb()
        //
        //
-       // deprecated ->skipped   <willian lk. johnson>
+       // deprecated ->skipped   <willian k. johnson>
        //
 
        //
@@ -912,6 +947,121 @@ type
 				             error_cb : pas_ptr_pas_error_cb ); cdecl;
 
 
+       //
+       // set logger callback.
+       //
+       // the default is to print to stderr, but a syslog logger is also available,
+       // see rd_kafka_log_print and rd_kafka_log_syslog for the builtin alternatives.
+       // Alternatively the application may provide its own logger callback.
+       // Or pass func as NULL to disable logging.
+       //
+       // This is the configuration alternative to the deprecated rd_kafka_set_logger()
+       //
+       // @remark The log_cb will be called spontaneously from librdkafka's internal
+       //         threads unless logs have been forwarded to a poll queue through
+       //         \c rd_kafka_set_log_queue().
+       //         An application MUST NOT call any librdkafka APIs or do any prolonged
+       //         work in a non-forwarded \c log_cb.
+       //
+       procedure rd_kafka_conf_set_log_cb( conf : pas_ptr_rd_kafka_conf_t;
+			                   log_cb : pas_ptr_pas_log_cb ); cdecl;
+
+       //
+       // set statistics callback in provided conf object.
+       //
+       // the statistics callback is triggered from rd_kafka_poll() every
+       // statistics.interval.ms (needs to be configured separately).
+       // function arguments:
+       //   - rk - Kafka handle
+       //   - json - String containing the statistics data in JSON format
+       //   - json_len - Length of json string.
+       //   - opaque - application-provided opaque.
+       //
+       // if the application wishes to hold on to the json pointer and free
+       // it at a later time it must return 1 from the stats_cb.
+       // if the application returns 0 from the stats_cb then librdkafka
+       // will immediately free the json pointer.
+       //
+       procedure  rd_kafka_conf_set_stats_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                              stats_cb : pas_ptr_pas_stats_cb ); cdecl;
+
+       //
+       // set socket callback.
+       //
+       // the socket callback is responsible for opening a socket
+       // according to the supplied domain, type and protocol.
+       // The socket shall be created with \c CLOEXEC set in a racefree fashion, if
+       // possible.
+       //
+       // default:
+       //  - on linux: racefree CLOEXEC
+       //  - others  : non-racefree CLOEXEC
+       //
+       // @remark The callback will be called from an internal librdkafka thread.
+       //
+       procedure rd_kafka_conf_set_socket_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                              socket_cb : pas_ptr_pas_socket_cb ); cdecl;
+
+
+       //
+       // set connect callback.
+       //
+       // The connect callback is responsible for connecting socket \p sockfd
+       // to peer address \p addr.
+       // The id field contains the broker identifier.
+       //
+       // connect_cb shall return 0 on success (socket connected) or an error
+       // number (errno) on error.
+       //
+       // @remark The callback will be called from an internal librdkafka thread.
+       //
+       procedure rd_kafka_conf_set_connect_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                               connect_cb :  pas_ptr_pas_connect_cb ); cdecl;
+
+       //
+       // set close socket callback.
+       //
+       // close a socket (optionally opened with socket_cb()).
+       //
+       // @remark The callback will be called from an internal librdkafka thread.
+       //
+       procedure rd_kafka_conf_set_closesocket_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                                   close_socket_cb :  pas_ptr_pas_closesocket_cb ); cdecl;
+
+       {$IFNDEF _MSC_VER}
+       //
+       // set open callback.
+       //
+       // the open callback is responsible for opening the file specified by
+       // pathname, flags and mode.
+       // the file shall be opened with \c CLOEXEC set in a racefree fashion, if
+       // possible.
+       //
+       // default:
+       //  - on linux: racefree CLOEXEC
+       //  - others  : non-racefree CLOEXEC
+       //
+       // @remark The callback will be called from an internal librdkafka thread.
+       //
+       procedure rd_kafka_conf_set_open_cb ( conf : pas_ptr_rd_kafka_conf_t;
+                                             open_cb : pas_ptr_open_cb ); cdecl;
+
+       {$ENDIF}
+
+
+       //
+       // sets the application's opaque pointer that will be passed to callbacks
+       //
+       procedure rd_kafka_conf_set_opaque( conf : pas_ptr_rd_kafka_conf_t;
+                                           opaque : pointer );  cdecl;
+
+       //
+       // retrieves the opaque pointer previously set with rd_kafka_conf_set_opaque()
+       //
+       function rd_kafka_opaque( const rk : pas_ptr_rd_kafka_t ) : pointer;  cdecl;
+
+
+
 
 
 implementation
@@ -1017,6 +1167,32 @@ procedure rd_kafka_conf_set_offset_commit_cb( conf : pas_ptr_rd_kafka_conf_t;
 //
 procedure rd_kafka_conf_set_error_cb( conf : pas_ptr_rd_kafka_conf_t;
 				             error_cb : pas_ptr_pas_error_cb ); cdecl; external;
+//
+procedure rd_kafka_conf_set_log_cb( conf : pas_ptr_rd_kafka_conf_t;
+			                   log_cb : pas_ptr_pas_log_cb ); cdecl;  external;
+//
+procedure  rd_kafka_conf_set_stats_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                              stats_cb : pas_ptr_pas_stats_cb ); cdecl; external;
+//
+procedure rd_kafka_conf_set_socket_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                              socket_cb : pas_ptr_pas_socket_cb ) cdecl;  external;
+//
+procedure rd_kafka_conf_set_connect_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                        connect_cb :  pas_ptr_pas_connect_cb ); cdecl;  external;
+//
+procedure rd_kafka_conf_set_closesocket_cb( conf : pas_ptr_rd_kafka_conf_t;
+                                            close_socket_cb :  pas_ptr_pas_closesocket_cb ); cdecl; external;
+{$IFNDEF _MSC_VER}
+//
+procedure rd_kafka_conf_set_open_cb ( conf : pas_ptr_rd_kafka_conf_t;
+                                             open_cb : pas_ptr_open_cb ); cdecl;  external;
+
+{$ENDIF}
+//
+procedure rd_kafka_conf_set_opaque( conf : pas_ptr_rd_kafka_conf_t;
+                                    opaque : pointer );  cdecl;  external;
+//
+function rd_kafka_opaque( const rk : pas_ptr_rd_kafka_t ) : pointer;  cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
