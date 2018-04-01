@@ -1069,7 +1069,29 @@ type
                                                        tconf : ptr_pas_rd_kafka_topic_conf_t ); cdecl;
 
 
-
+       //
+       // retrieve configuration value for property \p name.
+       //
+       // if dest is non-NULL the value will be written to \p dest with at
+       // most dest_size.
+       //
+       // dest_size is updated to the full length of the value, thus if
+       // dest_size initially is smaller than the full length the application
+       // may reallocate \p dest to fit the returned \p //dest_size and try again.
+       //
+       // if dest is NULL only the full length of the value is returned.
+       //
+       // fallthrough:
+       // topic-level configuration properties from the \c default_topic_conf
+       // may be retrieved using this interface.
+       //
+       // @returns \p RD_KAFKA_CONF_OK if the property name matched, else
+       // RD_KAFKA_CONF_UNKNOWN.
+       //
+       function rd_kafka_conf_get( conf : pas_ptr_rd_kafka_conf_t;
+                                   const name : PAnsiChar;
+                                   dest : PAnsiChar;
+                                   var dest_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t; cdecl;
 
 
 
@@ -1195,16 +1217,21 @@ procedure rd_kafka_conf_set_closesocket_cb( conf : pas_ptr_rd_kafka_conf_t;
 //
 procedure rd_kafka_conf_set_open_cb ( conf : pas_ptr_rd_kafka_conf_t;
                                              open_cb : pas_ptr_open_cb ); cdecl;  external;
-//
-procedure rd_kafka_conf_set_default_topic_conf( conf : pas_ptr_rd_kafka_conf_t;
-                                                tconf : ptr_pas_rd_kafka_topic_conf_t ); cdecl; external;
-
 {$ENDIF}
 //
 procedure rd_kafka_conf_set_opaque( conf : pas_ptr_rd_kafka_conf_t;
                                     opaque : pointer );  cdecl;  external;
 //
 function rd_kafka_opaque( const rk : pas_ptr_rd_kafka_t ) : pointer;  cdecl;  external;
+//
+procedure rd_kafka_conf_set_default_topic_conf( conf : pas_ptr_rd_kafka_conf_t;
+                                                tconf : ptr_pas_rd_kafka_topic_conf_t ); cdecl; external;
+//
+function rd_kafka_conf_get( conf : pas_ptr_rd_kafka_conf_t;
+                            const name : PAnsiChar;
+                            dest : PAnsiChar;
+                            var dest_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t; cdecl;  external;
+
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
