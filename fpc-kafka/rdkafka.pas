@@ -398,7 +398,22 @@ type
     pas_open_cb = function( const pathname : PAnsiChar;
                             flags : cint32;
                             mode  : mode_t;
-                            opaque : pointer ) : ctypes.cint64; cdecl;
+                            opaque : pointer ) : ctypes.cint64;
+    //
+    pas_ptr_topic_partition_cb = ^topic_partition_cb;
+    topic_partition_cb = function( topic_conf : ptr_pas_rd_kafka_topic_conf_t;
+				   const rkt : pas_rd_kafka_topic_t;
+				   const keydata : pointer;
+                                   keylen : ctypes.cint32;
+				   partition_cnt : ctypes.cuint32;
+                                   rkt_opaque : pointer;
+                                   msg_opaque : pointer ) : ctypes.cint32;
+    //
+    pas_ptr_msg_order_cmp_func = ^msg_order_cmp_func;
+    msg_order_cmp_func = function(  a :pas_ptr_rd_kafka_message_t;
+                                    b :pas_ptr_rd_kafka_message_t ) : ctypes.cint32;
+
+
     ////records
     //
     //error code value, name and description.
@@ -1136,6 +1151,97 @@ type
        procedure  rd_kafka_conf_properties_show( fp : pointer ); cdecl;
 
 
+       //
+       // 7opic configuration
+       // topic configuration property interface
+       //
+       //
+       //
+       // create topic configuration object
+       //
+       // @sa same semantics as for rd_kafka_conf_new().
+       //
+       function rd_kafka_topic_conf_new : ptr_pas_rd_kafka_topic_conf_t; cdecl;
+
+
+
+       //
+       // creates a copy/duplicate of topic configuration object \p conf.
+       //
+       function rd_kafka_topic_conf_dup( const conf : ptr_pas_rd_kafka_topic_conf_t )
+                                                   : ptr_pas_rd_kafka_topic_conf_t; cdecl;
+
+       //
+       // creates a copy/duplicate of rk's default topic configuration
+       // object.
+       //
+       function rd_kafka_default_topic_conf_dup ( rk : pas_ptr_rd_kafka_t )
+                                                   : ptr_pas_rd_kafka_topic_conf_t; cdecl;
+
+       //
+       //  destroys a topic conf object.
+       //
+       procedure rd_kafka_topic_conf_destroy( topic_conf : ptr_pas_rd_kafka_topic_conf_t ); cdecl;
+
+       //
+       // producer: set partitioner callback in provided topic conf object.
+       //
+       // the partitioner may be called in any thread at any time,
+       // it may be called multiple times for the same message/key.
+       //
+       // partitioner function constraints:
+       //   - MUST NOT call any rd_kafka_//() functions except:
+       //       rd_kafka_topic_partition_available()
+       //   - MUST NOT block or execute for prolonged periods of time.
+       //   - MUST return a value between 0 and partition_cnt-1, or the
+       //     special \c RD_KAFKA_PARTITION_UA value if partitioning
+       //     could not be performed.
+       //
+       procedure rd_kafka_topic_conf_set_partitioner_cb( topic_conf : ptr_pas_rd_kafka_topic_conf_t;
+                                                         topic_partition_cb : pas_ptr_topic_partition_cb ); cdecl;
+
+
+       //
+       // producer: Set message queueing order comparator callback.
+       //
+       // the callback may be called in any thread at any time,
+       // it may be called multiple times for the same message.
+       //
+       // ordering comparator function constraints:
+       //   - MUST be stable sort (same input gives same output).
+       //   - MUST NOT call any rd_kafka_//() functions.
+       //   - MUST NOT block or execute for prolonged periods of time.
+       //
+       // the comparator shall compare the two messages and return:
+       //  - < 0 if message \p a should be inserted before message \p b.
+       //  - >=0 if message \p a should be inserted after message \p b.
+       //
+       // @remark Insert sorting will be used to enqueue the message in the
+       //         correct queue position, this comes at a cost of O(n).
+       //
+       // @remark If `queuing.strategy=fifo` new messages are enqueued to the
+       //         tail of the queue regardless of msg_order_cmp, but retried messages
+       //         are still affected by msg_order_cmp.
+       //
+       // @warning THIS IS AN EXPERIMENTAL API, SUBJECT TO CHANGE OR REMOVAL,
+       //          DO NOT USE IN PRODUCTION.
+       //
+       procedure rd_kafka_topic_conf_set_msg_order_cmp( topic_conf : ptr_pas_rd_kafka_topic_conf_t;
+                                                        msg_oder_cmp : pas_ptr_msg_order_cmp_func ); cdecl;
+
+       //
+       // check if partition is available (has a leader broker).
+       //
+       // @returns 1 if the partition is available, else 0.
+       //
+       // @warning This function must only be called from inside a partitioner function
+       //
+       function rd_kafka_topic_partition_available( const rkt : pas_ptr_rd_kafka_t;
+					            partition : ctypes.cint32 )  : ctypes.cint32; cdecl;
+
+
+
+
 
 
 implementation
@@ -1197,7 +1303,7 @@ function rd_kafka_message_timestamp( const rkmessage : pas_ptr_rd_kafka_message_
 procedure rd_kafka_message_destroy( rkmessage : pas_ptr_rd_kafka_message_t ); cdecl;  external;
 //
 function rd_kafka_message_latency (const rkmessage : pas_ptr_rd_kafka_message_t ) : ctypes.cint64;  cdecl; external;
-//
+//                                                                                               rk : pas_ptr_rd_kafka_t
 function rd_kafka_message_headers ( const message : pas_ptr_rd_kafka_message_t;
                                     var hdrsp : pas_ptr_rd_kafka_headers_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
 //
@@ -1208,7 +1314,7 @@ procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
                                                 hdrs : pas_ptr_rd_kafka_headers_t ) cdecl; external;
 //
 function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl; external;
-//
+//                                                                                                                procedure d_kafka_topic_conf_destroy( topic_conf : ptr_pas_rd_kafka_topic_conf_t ); cdecl;
 function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t; cdecl;  external;
 //
 procedure rd_kafka_conf_destroy( conf : pas_ptr_rd_kafka_conf_t ); cdecl;  external;
@@ -1255,7 +1361,7 @@ procedure rd_kafka_conf_set_connect_cb( conf : pas_ptr_rd_kafka_conf_t;
                                         connect_cb :  pas_ptr_pas_connect_cb ); cdecl;  external;
 //
 procedure rd_kafka_conf_set_closesocket_cb( conf : pas_ptr_rd_kafka_conf_t;
-                                            close_socket_cb :  pas_ptr_pas_closesocket_cb ); cdecl; external;
+                                            close_socket_cb :  pas_ptr_pas_closesocket_cb ); cdecl;  external;
 {$IFNDEF _MSC_VER}
 //
 procedure rd_kafka_conf_set_open_cb ( conf : pas_ptr_rd_kafka_conf_t;
@@ -1284,7 +1390,26 @@ function rd_kafka_topic_conf_dump( conf : ptr_pas_rd_kafka_topic_conf_t;
 procedure rd_kafka_conf_dump_free( arr : pas_ptr_ref_char_t;
                                           cnt : ctypes.cuint64 ); cdecl; external;
 //
-procedure  rd_kafka_conf_properties_show( fp : pointer ); cdecl;  external;
+procedure rd_kafka_conf_properties_show( fp : pointer ); cdecl;  external;
+//
+function rd_kafka_topic_conf_new : ptr_pas_rd_kafka_topic_conf_t; cdecl;  external;
+//
+function rd_kafka_topic_conf_dup( const conf : ptr_pas_rd_kafka_topic_conf_t )
+                                                   : ptr_pas_rd_kafka_topic_conf_t; cdecl; external;
+//
+function rd_kafka_default_topic_conf_dup ( rk : pas_ptr_rd_kafka_t )
+                                              : ptr_pas_rd_kafka_topic_conf_t; cdecl;  external;
+//
+procedure rd_kafka_topic_conf_destroy( topic_conf : ptr_pas_rd_kafka_topic_conf_t ); cdecl;  external;
+
+procedure rd_kafka_topic_conf_set_partitioner_cb( topic_conf : ptr_pas_rd_kafka_topic_conf_t;
+                                                  topic_partition_cb : pas_ptr_topic_partition_cb ); cdecl; external;
+//
+procedure rd_kafka_topic_conf_set_msg_order_cmp( topic_conf : ptr_pas_rd_kafka_topic_conf_t;
+                                                        msg_oder_cmp : pas_ptr_msg_order_cmp_func ); cdecl;  external;
+//
+function rd_kafka_topic_partition_available( const rkt : pas_ptr_rd_kafka_t;
+					     partition : ctypes.cint32 )  : ctypes.cint32; cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
