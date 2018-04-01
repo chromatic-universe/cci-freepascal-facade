@@ -322,7 +322,7 @@ type
     pas_ptr_rd_kafka_headers_t                     =  type pointer;
     pas_rd_kafka_topic_t                           =  type pointer;
     pas_ptr_rd_kafka_conf_t                        =  type pointer;
-    ptr_pas_rd_kafka_topic_conf_s                  =  type pointer;
+    ptr_pas_rd_kafka_topic_conf_t                  =  type pointer;
     ptr_pas_rd_kafka_queue_t                       =  type pointer;
     //forward declarations
     pas_ptr_rd_kafka_topic_partition_list_t        =  ^pas_rd_kafka_topic_partition_list_t;
@@ -1050,7 +1050,7 @@ type
 
 
        //
-       // sets the application's opaque pointer that will be passed to callbacks
+       // sets the application's opaque pointer thai will be passed to callbacks
        //
        procedure rd_kafka_conf_set_opaque( conf : pas_ptr_rd_kafka_conf_t;
                                            opaque : pointer );  cdecl;
@@ -1059,6 +1059,15 @@ type
        // retrieves the opaque pointer previously set with rd_kafka_conf_set_opaque()
        //
        function rd_kafka_opaque( const rk : pas_ptr_rd_kafka_t ) : pointer;  cdecl;
+
+       //
+       // Ssts the default topic configuration to use for automatically
+       // subscribed topics (e.g., through pattern-matched topics).
+       // the topic config object is not usable after this call.
+       //
+       procedure rd_kafka_conf_set_default_topic_conf( conf : pas_ptr_rd_kafka_conf_t;
+                                                       tconf : ptr_pas_rd_kafka_topic_conf_t ); cdecl;
+
 
 
 
@@ -1186,6 +1195,9 @@ procedure rd_kafka_conf_set_closesocket_cb( conf : pas_ptr_rd_kafka_conf_t;
 //
 procedure rd_kafka_conf_set_open_cb ( conf : pas_ptr_rd_kafka_conf_t;
                                              open_cb : pas_ptr_open_cb ); cdecl;  external;
+//
+procedure rd_kafka_conf_set_default_topic_conf( conf : pas_ptr_rd_kafka_conf_t;
+                                                tconf : ptr_pas_rd_kafka_topic_conf_t ); cdecl; external;
 
 {$ENDIF}
 //
