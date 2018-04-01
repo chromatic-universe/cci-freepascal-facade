@@ -34,11 +34,14 @@
 // @sa For the C++ interface see rdkafkacpp.h
 //
 
-//cci_mini_kafka    chromatic unviverse 2018  william k .johnson
-//
-//librdkafka wrapper facade for free pascal
-//
-//
+/////////////////////////////////////////////////////////////////////////////////
+//                                                                             //
+// rdkafka.pas    chromatic unviverse 2018  william k .johnson                 //
+//                                                                             //
+// librdkafka wrapper facade for free pascal                                   //
+//                                                                             //
+//                                                                             //
+/////////////////////////////////////////////////////////////////////////////////
 unit rdkafka;
 
 {$mode objfpc}{$H+}
@@ -327,6 +330,7 @@ type
     //forward declarations
     pas_ptr_rd_kafka_topic_partition_list_t        =  ^pas_rd_kafka_topic_partition_list_t;
     pas_ptr_rd_kafka_message_t                     =  ^pas_rd_kafka_message_t;
+    pas_ptr_ref_char_t                             =  ^PAnsiChar;
     ////function pointers & callbacks
     //
     pas_ptr_pas_t_compare_func = ^pas_t_compare_func;
@@ -533,7 +537,7 @@ type
 
      //returns the full list of error codes.
      procedure rd_kafka_get_err_descs( var errdescs : array of pas_rd_kafka_err_desc;
-			                var cntp : ctypes.cuint64 ); cdecl;
+			               var cntp : ctypes.cuint64 ); cdecl;
 
      // destroy a rd_kafka_topic_partition_t.
      // this must not be called for elements in a topic partition list.
@@ -1094,6 +1098,45 @@ type
                                    var dest_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t; cdecl;
 
 
+       //
+       // dump the configuration properties and values of \p conf to an array
+       //        with \"key\", \"value\" pairs.
+       //
+       // the number of entries in the array is returned in  //cntp.
+       //
+       // the dump must be freed with `rd_kafka_conf_dump_free()`.
+       ///
+       function rd_kafka_conf_dump( conf : pas_ptr_rd_kafka_conf_t;
+                                    var cntp : ctypes.cuint32 ) : pas_ptr_ref_char_t ; cdecl;
+
+
+
+       //
+       // dump the topic configuration properties and values of \p conf
+       //        to an array with \"key\", \"value\" pairs.
+       //
+       // the number of entries in the array is returned in \p //cntp.
+       //
+       // the dump must be freed with `rd_kafka_conf_dump_free()`.
+       //
+       function rd_kafka_topic_conf_dump( conf : ptr_pas_rd_kafka_topic_conf_t ;
+                                         var cntp : ctypes.cuint32 ) : pas_ptr_ref_char_t ; cdecl;
+
+       //
+       // frees a configuration dump returned from `rd_kafka_conf_dump()` or
+       //  rd_kafka_topic_conf_dump().
+       //
+       procedure rd_kafka_conf_dump_free( arr : pas_ptr_ref_char_t;
+                                          cnt : ctypes.cuint64 ); cdecl;
+
+       //
+       //  prints a table to fp of all supported configuration properties,
+       //  their default values as well as a description.
+       //
+       procedure  rd_kafka_conf_properties_show( fp : pointer ); cdecl;
+
+
+
 
 implementation
 
@@ -1231,7 +1274,17 @@ function rd_kafka_conf_get( conf : pas_ptr_rd_kafka_conf_t;
                             const name : PAnsiChar;
                             dest : PAnsiChar;
                             var dest_size : ctypes.cuint64 ) : pas_rd_kafka_conf_res_t; cdecl;  external;
-
+//
+function rd_kafka_conf_dump( conf : pas_ptr_rd_kafka_conf_t;
+                             var cntp : ctypes.cuint32 ) :  pas_ptr_ref_char_t; cdecl; external;
+//
+function rd_kafka_topic_conf_dump( conf : ptr_pas_rd_kafka_topic_conf_t;
+                                   var cntp : ctypes.cuint32 ) : pas_ptr_ref_char_t ; cdecl;  external;
+//
+procedure rd_kafka_conf_dump_free( arr : pas_ptr_ref_char_t;
+                                          cnt : ctypes.cuint64 ); cdecl; external;
+//
+procedure  rd_kafka_conf_properties_show( fp : pointer ); cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
