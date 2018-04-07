@@ -52,7 +52,7 @@ unit rdkafka;
 
 interface
 
-uses ctypes , sysutils , sockets , unix;
+uses ctypes , sysutils , sockets , unix , TestFramework;
 
 type
     {$IFDEF FPC}
@@ -1239,6 +1239,21 @@ type
        function rd_kafka_topic_partition_available( const rkt : pas_ptr_rd_kafka_t;
 					            partition : ctypes.cint32 )  : ctypes.cint32; cdecl;
 
+       //
+       // random partitioner.
+       //
+       // will try not to return unavailable partitions.
+       //
+       // @returns a random partition between 0 and \p partition_cnt - 1.
+       //
+       //
+       function rd_kafka_msg_partitioner_random( const rkt : pas_rd_kafka_topic_t;
+					         const key : pointer;
+                                                 keylen : ctypes.cuint64;
+					         partition_cnt : ctypes.cuint64;
+					         opaque : pointer;
+                                                 msg_opaque : pointer ) : ctypes.cint32; cdecl;
+
 
 
 
@@ -1296,7 +1311,7 @@ procedure rd_kafka_topic_partition_list_add_range ( rktparlist : pas_ptr_rd_kafk
 procedure rd_kafka_topic_partition_list_sort( rktparlist : pas_ptr_rd_kafka_topic_partition_list_t;
                                                   cmp : pas_ptr_pas_t_compare_func;
                                                   opaque : pointer ); cdecl; external;
-//                                                                               procedure rd_kafka_conf_destroy( conf : pas_ptr_rd_kafka_conf_t ); cdecl;
+//
 function rd_kafka_message_timestamp( const rkmessage : pas_ptr_rd_kafka_message_t;
 				           tstype : pas_ptr_rd_kafka_timestamp_type_t ) : ctypes.cint64; cdecl; external;
 //
@@ -1314,7 +1329,7 @@ procedure rd_kafka_message_set_headers ( rkmessage : pas_ptr_rd_kafka_message_t;
                                                 hdrs : pas_ptr_rd_kafka_headers_t ) cdecl; external;
 //
 function rd_kafka_header_cnt ( const hdrs : pas_ptr_rd_kafka_headers_t )   : ctypes.cint64; cdecl; external;
-//                                                                                                                procedure d_kafka_topic_conf_destroy( topic_conf : ptr_pas_rd_kafka_topic_conf_t ); cdecl;
+//
 function rd_kafka_conf_new : pas_ptr_rd_kafka_conf_t; cdecl;  external;
 //
 procedure rd_kafka_conf_destroy( conf : pas_ptr_rd_kafka_conf_t ); cdecl;  external;
@@ -1410,6 +1425,13 @@ procedure rd_kafka_topic_conf_set_msg_order_cmp( topic_conf : ptr_pas_rd_kafka_t
 //
 function rd_kafka_topic_partition_available( const rkt : pas_ptr_rd_kafka_t;
 					     partition : ctypes.cint32 )  : ctypes.cint32; cdecl;  external;
+//
+function rd_kafka_msg_partitioner_random( const rkt : pas_rd_kafka_topic_t;
+					  const key : pointer;
+                                          keylen : ctypes.cuint64;
+					  partition_cnt : ctypes.cuint64;
+					  opaque : pointer;
+                                          msg_opaque : pointer ) : ctypes.cint32; cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var

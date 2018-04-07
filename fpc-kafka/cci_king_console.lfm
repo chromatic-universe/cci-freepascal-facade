@@ -530,8 +530,12 @@ object frm_mini_kafka_main: Tfrm_mini_kafka_main
     object mi_utils: TMenuItem
       Caption = 'utils'
       object mi_dev_info: TMenuItem
-        Caption = 'developer information'
+        Caption = 'developer information...'
         OnClick = mi_dev_infoClick
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'rdkafka test...'
+        OnClick = MenuItem5Click
       end
     end
     object MenuItem1: TMenuItem

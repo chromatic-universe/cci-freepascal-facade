@@ -24,12 +24,18 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="LCL"/>
+        <PackageName Value="fptest_lcl"/>
       </Item1>
+      <Item2>
+        <PackageName Value="fptest"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="6">
       <Unit0>
         <Filename Value="cci_mini.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -59,6 +65,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="rdkafka_test.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -70,6 +80,7 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <Libraries Value="/dev_t/lib/;/usr/share/lazarus/1.8.2/components/lazutils/lib/x86_64-linux/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      <SrcPath Value="../fptest;../fptest/src/LCL;../fptest/src/fpGUI"/>
     </SearchPaths>
     <CodeGeneration>
       <TargetCPU Value="x86_64"/>
@@ -84,7 +95,7 @@
     </Linking>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="3">
+    <Exceptions Count="4">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -94,6 +105,9 @@
       <Item3>
         <Name Value="EFOpenError"/>
       </Item3>
+      <Item4>
+        <Name Value="ETestFailure"/>
+      </Item4>
     </Exceptions>
   </Debugging>
 </CONFIG>

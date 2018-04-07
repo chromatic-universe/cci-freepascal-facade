@@ -20,6 +20,7 @@ type
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
     mi_utils: TMenuItem;
     mi_dev_info: TMenuItem;
     sb_kafka: TStatusBar;
@@ -30,6 +31,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItem5Click(Sender: TObject);
     procedure mi_dev_infoClick(Sender: TObject);
   private
     { private declarations }
@@ -45,7 +47,7 @@ var
 implementation
 
  uses
-  rdkafka , cci_dev_info , cci_about;
+  rdkafka , rdkafka_test  , cci_dev_info , cci_about , GuiTestRunner;
 
 {$R *.lfm}
 
@@ -59,6 +61,7 @@ end;
 procedure Tfrm_mini_kafka_main.FormCreate(Sender: TObject);
 begin
       sb_kafka.Panels[0].Text :=  concat( 'kafka version->' , rdkafka.rd_kafka_version_str );
+      rdkafka_test.RegisterTests;
 
 end;
 
@@ -70,6 +73,11 @@ end;
 procedure Tfrm_mini_kafka_main.MenuItem4Click(Sender: TObject);
 begin
         close;
+end;
+
+procedure Tfrm_mini_kafka_main.MenuItem5Click(Sender: TObject);
+begin
+        RunRegisteredTests;
 end;
 
 procedure Tfrm_mini_kafka_main.mi_dev_infoClick(Sender: TObject);
