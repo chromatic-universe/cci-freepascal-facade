@@ -52,7 +52,7 @@ unit rdkafka;
 
 interface
 
-uses ctypes , sysutils , sockets , unix , TestFramework;
+uses ctypes , sysutils , sockets , unix;
 
 type
     {$IFDEF FPC}

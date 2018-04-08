@@ -6,83 +6,43 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ComCtrls, Menus, ExtCtrls;
+  ExtCtrls, ComCtrls, cci_about, rdkafka, cci_dev_info;
 
 type
 
-  { Tfrm_mini_kafka_main }
+  { Tfrm_cci_mini }
 
-  Tfrm_mini_kafka_main = class(TForm)
+  Tfrm_cci_mini = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
     Image1: TImage;
-    ImageList1: TImageList;
-    MainMenu1: TMainMenu;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
-    MenuItem5: TMenuItem;
-    mi_utils: TMenuItem;
-    mi_dev_info: TMenuItem;
-    sb_kafka: TStatusBar;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
-    TrayIcon1: TTrayIcon;
-    procedure btn_kafkaClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure MenuItem2Click(Sender: TObject);
-    procedure MenuItem4Click(Sender: TObject);
-    procedure MenuItem5Click(Sender: TObject);
-    procedure mi_dev_infoClick(Sender: TObject);
+    Panel1: TPanel;
+    StatusBar1: TStatusBar;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { private declarations }
   public
     { public declarations }
   end;
 
-
-
 var
-  frm_mini_kafka_main: Tfrm_mini_kafka_main;
+  frm_cci_mini: Tfrm_cci_mini;
 
 implementation
 
- uses
-  rdkafka , rdkafka_test  , cci_dev_info , cci_about , GuiTestRunner;
-
 {$R *.lfm}
 
-{ Tfrm_mini_kafka_main }
+{ Tfrm_cci_mini }
 
-procedure Tfrm_mini_kafka_main.btn_kafkaClick(Sender: TObject);
+procedure Tfrm_cci_mini.Button1Click(Sender: TObject);
 begin
-
+   frm_dev_info.ShowModal;
 end;
 
-procedure Tfrm_mini_kafka_main.FormCreate(Sender: TObject);
+procedure Tfrm_cci_mini.Button2Click(Sender: TObject);
 begin
-      sb_kafka.Panels[0].Text :=  concat( 'kafka version->' , rdkafka.rd_kafka_version_str );
-      rdkafka_test.RegisterTests;
-
-end;
-
-procedure Tfrm_mini_kafka_main.MenuItem2Click(Sender: TObject);
-begin
-        frm_about.show;
-end;
-
-procedure Tfrm_mini_kafka_main.MenuItem4Click(Sender: TObject);
-begin
-        close;
-end;
-
-procedure Tfrm_mini_kafka_main.MenuItem5Click(Sender: TObject);
-begin
-        RunRegisteredTests;
-end;
-
-procedure Tfrm_mini_kafka_main.mi_dev_infoClick(Sender: TObject);
-begin
-      cci_dev_info.frm_dev_info.ShowMOdal;
+   frm_about.ShowModal;
 end;
 
 end.

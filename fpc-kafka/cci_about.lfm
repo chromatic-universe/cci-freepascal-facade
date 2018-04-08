@@ -8,8 +8,7 @@ object frm_about: Tfrm_about
   ClientHeight = 184
   ClientWidth = 299
   Position = poScreenCenter
-  LCLVersion = '1.8.2.0'
-  Visible = True
+  LCLVersion = '1.6.0.4'
   object Image2: TImage
     Left = 0
     Height = 134

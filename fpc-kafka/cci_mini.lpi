@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="9"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
@@ -24,18 +24,12 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="1">
       <Item1>
-        <PackageName Value="fptest_lcl"/>
-      </Item1>
-      <Item2>
-        <PackageName Value="fptest"/>
-      </Item2>
-      <Item3>
         <PackageName Value="LCL"/>
-      </Item3>
+      </Item1>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="5">
       <Unit0>
         <Filename Value="cci_mini.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -45,30 +39,26 @@
         <IsPartOfProject Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="cci_king_console.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frm_mini_kafka_main"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit2>
-      <Unit3>
         <Filename Value="cci_dev_info.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_dev_info"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit3>
-      <Unit4>
+      </Unit2>
+      <Unit3>
         <Filename Value="cci_about.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_about"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="rdkafka_test.pas"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="cci_king_console.pas"/>
         <IsPartOfProject Value="True"/>
-      </Unit5>
+        <ComponentName Value="frm_cci_mini"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -78,14 +68,9 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <Libraries Value="/dev_t/lib/;/usr/share/lazarus/1.8.2/components/lazutils/lib/x86_64-linux/"/>
+      <Libraries Value="/dev_t/lib/"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
-      <SrcPath Value="../fptest;../fptest/src/LCL;../fptest/src/fpGUI"/>
     </SearchPaths>
-    <CodeGeneration>
-      <TargetCPU Value="x86_64"/>
-      <TargetOS Value="linux"/>
-    </CodeGeneration>
     <Linking>
       <Options>
         <Win32>

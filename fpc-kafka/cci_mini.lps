@@ -1,70 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectSession>
-    <Version Value="10"/>
+    <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="10">
+    <Units Count="12">
       <Unit0>
         <Filename Value="cci_mini.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="15" Y="10"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="47" Y="6"/>
         <UsageCount Value="252"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="60"/>
-        <CursorPos X="53" Y="47"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="80"/>
+        <CursorPos X="19" Y="72"/>
         <UsageCount Value="236"/>
-        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="cci_king_console.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="frm_mini_kafka_main"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="45"/>
-        <CursorPos X="55" Y="68"/>
-        <UsageCount Value="232"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
-      </Unit2>
-      <Unit3>
         <Filename Value="cci_dev_info.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_dev_info"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="32"/>
-        <CursorPos X="74" Y="74"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="26"/>
+        <CursorPos X="54" Y="27"/>
         <UsageCount Value="212"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
-      </Unit3>
-      <Unit4>
+      </Unit2>
+      <Unit3>
         <Filename Value="cci_about.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frm_about"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="30" Y="11"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="5"/>
+        <CursorPos X="49" Y="17"/>
         <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="rdkafka_test.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="64" Y="7"/>
+        <UsageCount Value="24"/>
       </Unit4>
       <Unit5>
-        <Filename Value="rdkafka_test.pas"/>
+        <Filename Value="cci_king_console.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="55"/>
-        <CursorPos X="39" Y="25"/>
+        <ComponentName Value="frm_cci_mini"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="14"/>
+        <CursorPos X="29" Y="22"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="/dev_t/librdkafka/src/rdkafka.c"/>
@@ -88,7 +87,7 @@
       <Unit8>
         <Filename Value="../fptest/demo/LCL/project1.lpr"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="24" Y="19"/>
+        <CursorPos X="46" Y="10"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit8>
@@ -97,128 +96,97 @@
         <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="/usr/lib/lazarus/1.6/lcl/include/application.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2146"/>
+        <CursorPos X="44" Y="2156"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../fptest/src/TestFrameworkProxy.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="619"/>
+        <CursorPos X="43" Y="638"/>
+        <UsageCount Value="10"/>
+      </Unit11>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="19" HistoryIndex="18">
       <Position1>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1292" Column="78" TopLine="1251"/>
-      </Position1>
-      <Position2>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1147" Column="101" TopLine="1119"/>
-      </Position2>
-      <Position3>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1296" Column="49" TopLine="1264"/>
-      </Position3>
-      <Position4>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1294" Column="164" TopLine="1267"/>
-      </Position4>
-      <Position5>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1145" Column="14" TopLine="1132"/>
-      </Position5>
-      <Position6>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1146" Column="16" TopLine="1131"/>
-      </Position6>
-      <Position7>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1150" Column="17" TopLine="1122"/>
-      </Position7>
-      <Position8>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1329" Column="94" TopLine="1302"/>
-      </Position8>
-      <Position9>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1184" Column="29" TopLine="1155"/>
-      </Position9>
-      <Position10>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1186" Column="79" TopLine="1161"/>
-      </Position10>
-      <Position11>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1351" Column="121" TopLine="1340"/>
-      </Position11>
-      <Position12>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1357" Column="113" TopLine="1338"/>
-      </Position12>
-      <Position13>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1351" Column="117" TopLine="1340"/>
-      </Position13>
-      <Position14>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1221" Column="22" TopLine="1182"/>
-      </Position14>
-      <Position15>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1232" Column="139" TopLine="1205"/>
-      </Position15>
-      <Position16>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="410" Column="78" TopLine="392"/>
-      </Position16>
-      <Position17>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="414" Column="75" TopLine="395"/>
-      </Position17>
-      <Position18>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="583" Column="107" TopLine="564"/>
-      </Position18>
-      <Position19>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1238" Column="15" TopLine="1216"/>
-      </Position19>
-      <Position20>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1255" Column="35" TopLine="1227"/>
-      </Position20>
-      <Position21>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1249" Column="16" TopLine="1223"/>
-      </Position21>
-      <Position22>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1252" Column="74" TopLine="1242"/>
-      </Position22>
-      <Position23>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="1255" Column="82" TopLine="1230"/>
-      </Position23>
-      <Position24>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="56" Column="68" TopLine="33"/>
-      </Position24>
-      <Position25>
-        <Filename Value="rdkafka.pas"/>
-        <Caret Line="47" Column="53" TopLine="30"/>
-      </Position25>
-      <Position26>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="48" Column="25" TopLine="22"/>
-      </Position26>
-      <Position27>
+      </Position1>
+      <Position2>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="34" Column="29" TopLine="27"/>
-      </Position27>
-      <Position28>
+      </Position2>
+      <Position3>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="46" Column="27" TopLine="37"/>
-      </Position28>
-      <Position29>
+      </Position3>
+      <Position4>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="55" Column="93" TopLine="37"/>
-      </Position29>
-      <Position30>
+      </Position4>
+      <Position5>
         <Filename Value="cci_king_console.pas"/>
         <Caret Line="61" Column="85" TopLine="17"/>
-      </Position30>
+      </Position5>
+      <Position6>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="28" Column="26" TopLine="26"/>
+      </Position6>
+      <Position7>
+        <Filename Value="cci_king_console.pas"/>
+      </Position7>
+      <Position8>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="11" Column="54"/>
+      </Position8>
+      <Position9>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="29" Column="20" TopLine="21"/>
+      </Position9>
+      <Position10>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="42" Column="24" TopLine="26"/>
+      </Position10>
+      <Position11>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="43" Column="24" TopLine="27"/>
+      </Position11>
+      <Position12>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="44" Column="24" TopLine="28"/>
+      </Position12>
+      <Position13>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="45" Column="24" TopLine="29"/>
+      </Position13>
+      <Position14>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="44" Column="24" TopLine="28"/>
+      </Position14>
+      <Position15>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="45" Column="24" TopLine="29"/>
+      </Position15>
+      <Position16>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="44" Column="24" TopLine="28"/>
+      </Position16>
+      <Position17>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="45" Column="24" TopLine="29"/>
+      </Position17>
+      <Position18>
+        <Filename Value="cci_king_console.pas"/>
+        <Caret Line="44" Column="24" TopLine="28"/>
+      </Position18>
+      <Position19>
+        <Filename Value="cci_mini.lpr"/>
+        <Caret Line="16"/>
+      </Position19>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
