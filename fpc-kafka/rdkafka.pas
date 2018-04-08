@@ -1256,6 +1256,68 @@ type
 
 
 
+         //
+         // consistent partitioner.
+         //
+         // uses consistent hashing to map identical keys onto identical partitions.
+         //
+         // @returns a random partition between 0 and  partition_cnt - 1 based on
+         //          the CRC value of the key
+         //
+         function rd_kafka_msg_partitioner_consistent ( const rkt : pas_rd_kafka_topic_t;
+					                const key : pointer;
+                                                        keylen : ctypes.cuint64;
+					                partition_cnt : ctypes.cuint64;
+					                opaque : pointer;
+                                                        msg_opaque : pointer ) : ctypes.cint32; cdecl;
+
+         //
+         // cnsistent-random partitioner.
+         //
+         // this is the default partitioner.
+         // uses consistent hashing to map identical keys onto identical partitions, and
+         // messages without keys will be assigned via the random partitioner.
+         //
+         // @returns a random partition between 0 and \p partition_cnt - 1 based on
+         //          the CRC value of the key (if provided)
+         //
+         function rd_kafka_msg_partitioner_consistent_random( const rkt : pas_rd_kafka_topic_t;
+					                      const key : pointer;
+                                                              keylen : ctypes.cuint64;
+					                      partition_cnt : ctypes.cuint64;
+					                      opaque : pointer;
+                                                              msg_opaque : pointer ) : ctypes.cint32; cdecl;
+
+          //
+          // murmur2 partitioner (Java compatible).
+          //
+          // uses consistent hashing to map identical keys onto identical partitions
+          // using Java-compatible Murmur2 hashing.
+          //
+          // @returns a partition between 0 and partition_cnt - 1.
+          ///
+          function rd_kafka_msg_partitioner_murmur2( const rkt : pas_rd_kafka_topic_t;
+					             const key : pointer;
+                                                     keylen : ctypes.cuint64;
+					             partition_cnt : ctypes.cuint64;
+					             opaque : pointer;
+                                                     msg_opaque : pointer ) : ctypes.cint32; cdecl;
+
+           //
+           // consistent-Random Murmur2 partitioner (Java compatible).
+           //
+           // uses consistent hashing to map identical keys onto identical partitions
+           // using Java-compatible Murmur2 hashing.
+           // messages without keys will be assigned via the random partitioner.
+           //
+           // @returns a partition between 0 and \p partition_cnt - 1.
+           //
+           function rd_kafka_msg_partitioner_murmur2_random(   const rkt : pas_rd_kafka_topic_t;
+					                       const key : pointer;
+                                                               keylen : ctypes.cuint64;
+					                       partition_cnt : ctypes.cuint64;
+					                       opaque : pointer;
+                                                               msg_opaque : pointer ) : ctypes.cint32; cdecl;
 
 
 
@@ -1432,6 +1494,34 @@ function rd_kafka_msg_partitioner_random( const rkt : pas_rd_kafka_topic_t;
 					  partition_cnt : ctypes.cuint64;
 					  opaque : pointer;
                                           msg_opaque : pointer ) : ctypes.cint32; cdecl;  external;
+//
+function rd_kafka_msg_partitioner_consistent ( const rkt : pas_rd_kafka_topic_t;
+					       const key : pointer;
+                                               keylen : ctypes.cuint64;
+					       partition_cnt : ctypes.cuint64;
+					       opaque : pointer;
+                                               msg_opaque : pointer ) : ctypes.cint32; cdecl;  external;
+//
+function rd_kafka_msg_partitioner_consistent_random(  const rkt : pas_rd_kafka_topic_t;
+					              const key : pointer;
+                                                      keylen : ctypes.cuint64;
+					              partition_cnt : ctypes.cuint64;
+					              opaque : pointer;
+                                                      msg_opaque : pointer ) : ctypes.cint32; cdecl; external;
+//
+function rd_kafka_msg_partitioner_murmur2( const rkt : pas_rd_kafka_topic_t;
+					             const key : pointer;
+                                                     keylen : ctypes.cuint64;
+					             partition_cnt : ctypes.cuint64;
+					             opaque : pointer;
+                                                     msg_opaque : pointer ) : ctypes.cint32; cdecl;  external;
+//
+function rd_kafka_msg_partitioner_murmur2_random(   const rkt : pas_rd_kafka_topic_t;
+       				                    const key : pointer;
+                                                    keylen : ctypes.cuint64;
+       				                    partition_cnt : ctypes.cuint64;
+       				                    opaque : pointer;
+                                                    msg_opaque : pointer ) : ctypes.cint32; cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
