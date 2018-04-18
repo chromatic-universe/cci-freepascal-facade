@@ -1,7 +1,7 @@
 object frm_cci_mini: Tfrm_cci_mini
-  Left = 578
+  Left = 404
   Height = 183
-  Top = 311
+  Top = 386
   Width = 616
   BorderStyle = bsToolWindow
   Caption = 'cci mini kafka'

@@ -1319,6 +1319,57 @@ type
 					                       opaque : pointer;
                                                                msg_opaque : pointer ) : ctypes.cint32; cdecl;
 
+           ///
+           // creates a new Kafka handle and starts its operation according to the
+           //        specified \p type (\p RD_KAFKA_CONSUMER or \p RD_KAFKA_PRODUCER).
+           //
+           // conf is an optional struct created with `rd_kafka_conf_new()` that will
+           // be used instead of the default configuration.
+           // The \p conf object is freed by this function on success and must not be used
+           // or destroyed by the application sub-sequently.
+           // See `rd_kafka_conf_set()` et.al for more information.
+           //
+           //  errstr must be a pointer to memory of at least size  errstr_size where
+           // `rd_kafka_new()` may write a human readable error message in case the
+           // creation of a new handle fails. In which case the function returns NULL.
+           //
+           // @remark \b RD_KAFKA_CONSUMER: When a new \p RD_KAFKA_CONSUMER
+           //           rd_kafka_t handle is created it may either operate in the
+           //           legacy simple consumer mode using the rd_kafka_consume_start()
+           //           interface, or the High-level KafkaConsumer API.
+           // @remark An application must only use one of these groups of APIs on a given
+           //         rd_kafka_t RD_KAFKA_CONSUMER handle.
+           //
+           // @returns The Kafka handle on success or NULL on error (see \p errstr)
+           //
+           // @sa To destroy the Kafka handle, use rd_kafka_destroy().
+           //
+           function  rd_kafka_new(  typ :  pas_rd_kakfa_type_t;
+                                    conf : pas_ptr_rd_kafka_conf_t;
+			            errstr : PAnsiChar;
+                                    errstr_size : ctypes.cuint64 )  : pas_ptr_rd_kafka_t; cdecl;
+
+
+           //
+           // destroy Kafka handle.
+           //
+           // this is a blocking operation.
+           //
+           procedure rd_kafka_destroy( rk : pas_ptr_rd_kafka_t );  cdecl;
+
+
+           //
+           // returns Kafka handle name.
+           ///
+           function rd_kafka_name( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl;
+
+
+           //
+           // returns Kafka handle type.
+           //
+           function rd_kafka_type( const rkt : pas_ptr_rd_kafka_t ) : pas_rd_kakfa_type_t; cdecl;
+
+
 
 
 implementation
@@ -1522,6 +1573,17 @@ function rd_kafka_msg_partitioner_murmur2_random(   const rkt : pas_rd_kafka_top
        				                    partition_cnt : ctypes.cuint64;
        				                    opaque : pointer;
                                                     msg_opaque : pointer ) : ctypes.cint32; cdecl;  external;
+//
+function  rd_kafka_new(   typ :  pas_rd_kakfa_type_t;
+                          conf : pas_ptr_rd_kafka_conf_t;
+			  errstr : PAnsiChar;
+                          errstr_size : ctypes.cuint64 )  : pas_ptr_rd_kafka_t; cdecl; external;
+//
+function rd_kafka_name( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl; external;
+//
+procedure rd_kafka_destroy( rk : pas_ptr_rd_kafka_t );  cdecl; external;
+//
+function rd_kafka_type( const rkt : pas_ptr_rd_kafka_t ) : pas_rd_kakfa_type_t; cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
