@@ -1370,6 +1370,19 @@ type
            function rd_kafka_type( const rkt : pas_ptr_rd_kafka_t ) : pas_rd_kakfa_type_t; cdecl;
 
 
+           ///
+           // returns this client's broker-assigned group member id
+           //
+           // @remark this currently requires the high-level KafkaConsumer
+           //
+           // @returns an allocated string containing the current broker-assigned group
+           //          member id, or NULL if not available.
+           //          The application must free the string with \p free() or
+           //          rd_kafka_mem_free()
+           ///
+           function rd_kafka_memberid( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl;
+
+
 
 
 implementation
@@ -1584,6 +1597,8 @@ function rd_kafka_name( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl; ext
 procedure rd_kafka_destroy( rk : pas_ptr_rd_kafka_t );  cdecl; external;
 //
 function rd_kafka_type( const rkt : pas_ptr_rd_kafka_t ) : pas_rd_kakfa_type_t; cdecl; external;
+//
+function rd_kafka_memberid( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
