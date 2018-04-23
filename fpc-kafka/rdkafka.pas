@@ -1382,6 +1382,53 @@ type
            ///
            function rd_kafka_memberid( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl;
 
+           //
+           // @brief returns the ClusterId as reported in broker metadata.
+           //
+           // @param timeout_ms If there is no cached value from metadata retrieval
+           //                   then this specifies the maximum amount of time
+           //                   (in milliseconds) the call will block waiting
+           //                   for metadata to be retrieved.
+           //                   Use 0 for non-blocking calls.
+
+           // @remark requires broker version >=0.10.0 and api.version.request=true.
+           //
+           // @remark the application must free the returned pointer
+           //         using rd_kafka_mem_free().
+           //
+           // @returns a newly allocated string containing the ClusterId, or NULL
+           //          if no ClusterId could be retrieved in the allotted timespan.
+           ///
+           function rd_kafka_clusterid(  const rkt : pas_ptr_rd_kafka_t;
+                                         timeout_ms  : ctypes.cint32 ) : PAnsiChar; cdecl;
+
+           //
+           // creates a new topic handle for topic named \p topic.
+           //
+           // \p conf is an optional configuration for the topic created with
+           // `rd_kafka_topic_conf_new()` that will be used instead of the default
+           // topic configuration.
+           // the \p conf object is freed by this function and must not be used or
+           // destroyed by the application sub-sequently.
+           // see `rd_kafka_topic_conf_set()` et.al for more information.
+           //
+           // topic handles are refcounted internally and calling rd_kafka_topic_new()
+           // again with the same topic name will return the previous topic handle
+           // without updating the original handle's configuration.
+           // applications must eventually call rd_kafka_topic_destroy() for each
+           // succesfull call to rd_kafka_topic_new() to clear up resources.
+           //
+           // @returns the new topic handle or NULL on error (use rd_kafka_errno2err()
+           //          to convert system \p errno to an rd_kafka_resp_err_t error code.
+           //
+           // @sa rd_kafka_topic_destroy()
+           //
+           function rd_kafka_topic_new( const rkt : pas_ptr_rd_kafka_t;
+                                        topic : PAnsiChar;
+				        conf : pas_ptr_rd_kafka_conf_t )  : pas_rd_kafka_topic_t;  cdecl;
+
+
+
 
 
 
@@ -1550,7 +1597,7 @@ procedure rd_kafka_topic_conf_set_msg_order_cmp( topic_conf : ptr_pas_rd_kafka_t
                                                         msg_oder_cmp : pas_ptr_msg_order_cmp_func ); cdecl;  external;
 //
 function rd_kafka_topic_partition_available( const rkt : pas_ptr_rd_kafka_t;
-					     partition : ctypes.cint32 )  : ctypes.cint32; cdecl;  external;
+					     partition : ctypes.cint32 )  : ctypes.cint32;   cdecl; external;
 //
 function rd_kafka_msg_partitioner_random( const rkt : pas_rd_kafka_topic_t;
 					  const key : pointer;
@@ -1599,6 +1646,13 @@ procedure rd_kafka_destroy( rk : pas_ptr_rd_kafka_t );  cdecl; external;
 function rd_kafka_type( const rkt : pas_ptr_rd_kafka_t ) : pas_rd_kakfa_type_t; cdecl; external;
 //
 function rd_kafka_memberid( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl; external;
+//
+function rd_kafka_clusterid(  const rkt : pas_ptr_rd_kafka_t;
+                              timeout_ms  : ctypes.cint32 ) : PAnsiChar; cdecl;   external;
+//
+function rd_kafka_topic_new( const rkt : pas_ptr_rd_kafka_t;
+                             topic : PAnsiChar;
+			     conf : pas_ptr_rd_kafka_conf_t )  : pas_rd_kafka_topic_t;  cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
