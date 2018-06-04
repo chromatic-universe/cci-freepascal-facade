@@ -1399,7 +1399,7 @@ type
            // @returns a newly allocated string containing the ClusterId, or NULL
            //          if no ClusterId could be retrieved in the allotted timespan.
            ///
-           function rd_kafka_clusterid(  const rkt : pas_ptr_rd_kafka_t;
+           function rd_kafka_clusterid(  rkt : pas_ptr_rd_kafka_t;
                                          timeout_ms  : ctypes.cint32 ) : PAnsiChar; cdecl;
 
            //
@@ -1423,9 +1423,20 @@ type
            //
            // @sa rd_kafka_topic_destroy()
            //
-           function rd_kafka_topic_new( const rkt : pas_ptr_rd_kafka_t;
+           function rd_kafka_topic_new( rkt : pas_ptr_rd_kafka_t;
                                         topic : PAnsiChar;
 				        conf : pas_ptr_rd_kafka_conf_t )  : pas_rd_kafka_topic_t;  cdecl;
+
+           //
+           //  loose application's topic handle refcount as previously created
+           //        with `rd_kafka_topic_new()`.
+           //
+           //  @remark since topic objects are refcounted (both internally and for the app)
+           //         the topic object might not actually be destroyed by this call,
+           //         but the application must consider the object destroyed.
+           ///
+           procedure rd_kafka_topic_destroy( rkt : pas_ptr_rd_kafka_t ); cdecl;
+
 
 
 
@@ -1647,12 +1658,14 @@ function rd_kafka_type( const rkt : pas_ptr_rd_kafka_t ) : pas_rd_kakfa_type_t; 
 //
 function rd_kafka_memberid( const rkt : pas_ptr_rd_kafka_t ) : PAnsiChar; cdecl; external;
 //
-function rd_kafka_clusterid(  const rkt : pas_ptr_rd_kafka_t;
+function rd_kafka_clusterid(  rkt : pas_ptr_rd_kafka_t;
                               timeout_ms  : ctypes.cint32 ) : PAnsiChar; cdecl;   external;
 //
-function rd_kafka_topic_new( const rkt : pas_ptr_rd_kafka_t;
+function rd_kafka_topic_new( rkt : pas_ptr_rd_kafka_t;
                              topic : PAnsiChar;
 			     conf : pas_ptr_rd_kafka_conf_t )  : pas_rd_kafka_topic_t;  cdecl; external;
+//
+procedure rd_kafka_topic_destroy( rkt : pas_ptr_rd_kafka_t ); cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
