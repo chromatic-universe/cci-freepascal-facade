@@ -1,17 +1,17 @@
 object frm_cci_mini: Tfrm_cci_mini
-  Left = 404
-  Height = 183
-  Top = 386
-  Width = 616
+  Left = 315
+  Height = 171
+  Top = 319
+  Width = 725
   BorderStyle = bsToolWindow
   Caption = 'cci mini kafka'
-  ClientHeight = 183
-  ClientWidth = 616
+  ClientHeight = 171
+  ClientWidth = 725
   Position = poScreenCenter
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '1.6.0.4'
   object Image1: TImage
     Left = 0
-    Height = 108
+    Height = 102
     Top = 50
     Width = 416
     Align = alLeft
@@ -446,11 +446,11 @@ object frm_cci_mini: Tfrm_cci_mini
     Left = 0
     Height = 50
     Top = 0
-    Width = 616
+    Width = 725
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 50
-    ClientWidth = 616
+    ClientWidth = 725
     TabOrder = 0
     object SpeedButton1: TSpeedButton
       Left = 8
@@ -473,9 +473,9 @@ object frm_cci_mini: Tfrm_cci_mini
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 25
-    Top = 158
-    Width = 616
+    Height = 19
+    Top = 152
+    Width = 725
     Panels = <>
   end
 end

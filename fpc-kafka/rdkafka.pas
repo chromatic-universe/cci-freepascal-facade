@@ -1435,7 +1435,64 @@ type
            //         the topic object might not actually be destroyed by this call,
            //         but the application must consider the object destroyed.
            ///
-           procedure rd_kafka_topic_destroy( rkt : pas_ptr_rd_kafka_t ); cdecl;
+           procedure rd_kafka_topic_destroy( rkt : pas_rd_kafka_topic_t ); cdecl;
+
+           //
+           // returns the topic name.
+           //
+           function rd_kafka_topic_name( const rk : pas_rd_kafka_topic_t ) : PAnsiChar; cdecl;
+
+
+           //
+           // get the rkt_opaque pointer that was set in the topic configuration.
+           //
+           procedure rd_kafka_topic_opaque ( const rk : pas_rd_kafka_topic_t) ;  cdecl;
+
+           //
+           // polls the provided kafka handle for events.
+           //
+           // events will cause application provided callbacks to be called.
+           //
+           // the timeout_ms argument specifies the maximum amount of time
+           // (in milliseconds) that the call will block waiting for events.
+           // for non-blocking calls, provide 0 as \p timeout_ms.
+           // to wait indefinately for an event, provide -1.
+           //
+           // an application should make sure to call poll() at regular
+           // intervals to serve any queued callbacks waiting to be called.
+           //
+           // events:
+           //   - delivery report callbacks  (if dr_cb/dr_msg_cb is configured) [producer]
+           //   - error callbacks (rd_kafka_conf_set_error_cb()) [all]
+           //   - stats callbacks (rd_kafka_conf_set_stats_cb()) [all]
+           //   - throttle callbacks (rd_kafka_conf_set_throttle_cb()) [all]
+           //
+           // @returns the number of events served.
+           //
+           function rd_kafka_poll( rkt : pas_ptr_rd_kafka_t; timeout_ms :  ctypes.cint64 ) : ctypes.cint64; cdecl;
+
+           //
+           // cancels the current callback dispatcher (rd_kafka_poll(),
+           // rd_kafka_consume_callback(), etc).
+           //
+           // a callback may use this to force an immediate return to the calling
+           // code (caller of e.g. rd_kafka_poll()) without processing any further
+           // events.
+           //
+           // @remark This function MUST ONLY be called from within a librdkafka callback.
+           ///
+           procedure rd_kafka_yield( rkt : pas_ptr_rd_kafka_t ); cdecl;
+
+           //
+           // pause producing or consumption for the provided list of partitions.
+           //
+           // success or error is returned per-partition \p err in the \p partitions list.
+           //
+           // @returns RD_KAFKA_RESP_ERR_NO_ERROR
+           //
+           function  rd_kafka_pause_partitions( rkt : pas_ptr_rd_kafka_t;
+	                       partitions : pas_ptr_rd_kafka_topic_partition_list_t ) : pas_rd_kafka_resp_err_t; cdecl;
+
 
 
 
@@ -1665,7 +1722,18 @@ function rd_kafka_topic_new( rkt : pas_ptr_rd_kafka_t;
                              topic : PAnsiChar;
 			     conf : pas_ptr_rd_kafka_conf_t )  : pas_rd_kafka_topic_t;  cdecl; external;
 //
-procedure rd_kafka_topic_destroy( rkt : pas_ptr_rd_kafka_t ); cdecl;  external;
+procedure rd_kafka_topic_destroy( rkt : pas_rd_kafka_topic_t ); cdecl;  external;
+//
+function rd_kafka_topic_name( const rk : pas_rd_kafka_topic_t ) : PAnsiChar; cdecl; external;
+//
+procedure rd_kafka_topic_opaque ( const rk : pas_rd_kafka_topic_t ) ;  cdecl; external;
+//
+function rd_kafka_poll( rkt : pas_ptr_rd_kafka_t; timeout_ms :  ctypes.cint64 ) : ctypes.cint64; cdecl; external;
+//
+procedure rd_kafka_yield ( rkt : pas_ptr_rd_kafka_t ); cdecl; external;
+//
+function  rd_kafka_pause_partitions( rkt : pas_ptr_rd_kafka_t;
+	                       partitions : pas_ptr_rd_kafka_topic_partition_list_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
