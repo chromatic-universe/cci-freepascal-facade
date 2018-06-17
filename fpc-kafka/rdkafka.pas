@@ -1493,8 +1493,53 @@ type
            function  rd_kafka_pause_partitions( rkt : pas_ptr_rd_kafka_t;
 	                       partitions : pas_ptr_rd_kafka_topic_partition_list_t ) : pas_rd_kafka_resp_err_t; cdecl;
 
+           //
+           // resume producing consumption for the provided list of partitions.
+           //
+           // success or error is returned per-partition \p err in the \p partitions list.
+           //
+           // @returns RD_KAFKA_RESP_ERR_NO_ERROR
+           //
+           function rd_kafka_resume_partitions( rkt : pas_ptr_rd_kafka_t;
+	                       partitions : pas_ptr_rd_kafka_topic_partition_list_t ) : pas_rd_kafka_resp_err_t; cdecl;
 
 
+
+           //
+           // query broker for low (oldest/beginning) and high (newest/end) offsets
+           //        for partition.
+           //
+           // offsets are returned in low and high respectively.
+           //
+           // @returns RD_KAFKA_RESP_ERR_NO_ERROR on success or an error code on failure.
+           //
+           function rd_kafka_query_watermark_offsets( rkt : pas_ptr_rd_kafka_t;
+	                                              const topic : PAnsiChar;
+                                                      partition : ctypes.cint32;
+		                                      low : ctypes.cint64;
+                                                      high : ctypes.cint64;
+                                                      timeout_ms : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl;
+
+           //
+           // get last known low (oldest/beginning) and high (newest/end) offsets
+           //        for partition.
+           //
+           // the low offset is updated periodically (if statistics.interval.ms is set)
+           // while the high offset is updated on each fetched message set from the broker.
+           //
+           // if there is no cached offset (either low or high, or both) then
+           // RD_KAFKA_OFFSET_INVALID will be returned for the respective offset.
+           //
+           // offsets are returned in \p //low and \p //high respectively.
+           //
+           // @returns RD_KAFKA_RESP_ERR_NO_ERROR on success or an error code on failure.
+           //
+           // @remark shall only be used with an active consumer instance.
+           ///
+           function rd_kafka_get_watermark_offsets( kt : pas_ptr_rd_kafka_t;
+				           partition : ctypes.cint32;
+		                           var low : ctypes.cint64;
+                                           var high : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl;
 
 
 
@@ -1734,6 +1779,21 @@ procedure rd_kafka_yield ( rkt : pas_ptr_rd_kafka_t ); cdecl; external;
 //
 function  rd_kafka_pause_partitions( rkt : pas_ptr_rd_kafka_t;
 	                       partitions : pas_ptr_rd_kafka_topic_partition_list_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
+//
+function rd_kafka_resume_partitions ( rkt : pas_ptr_rd_kafka_t;
+                             partitions : pas_ptr_rd_kafka_topic_partition_list_t ) : pas_rd_kafka_resp_err_t; cdecl;  external;
+//
+function rd_kafka_query_watermark_offsets( rkt : pas_ptr_rd_kafka_t;
+                                           const topic : PAnsiChar;
+                                           partition : ctypes.cint32;
+       	                                   low : ctypes.cint64;
+                                           high : ctypes.cint64;
+                                           timeout_ms : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl;   external;
+//
+function rd_kafka_get_watermark_offsets( kt : pas_ptr_rd_kafka_t;
+      			                 partition : ctypes.cint32;
+      	                                 var low : ctypes.cint64;
+                                         var high : ctypes.cint64) : pas_rd_kafka_resp_err_t; cdecl; external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var
