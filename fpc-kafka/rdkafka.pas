@@ -1536,10 +1536,39 @@ type
            //
            // @remark shall only be used with an active consumer instance.
            ///
-           function rd_kafka_get_watermark_offsets( kt : pas_ptr_rd_kafka_t;
+           function rd_kafka_get_watermark_offsets( rkt : pas_ptr_rd_kafka_t;
 				           partition : ctypes.cint32;
 		                           var low : ctypes.cint64;
                                            var high : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl;
+
+           //
+           // @brief Look up the offsets for the given partitions by timestamp.
+           //
+           // The returned offset for each partition is the earliest offset whose
+           // timestamp is greater than or equal to the given timestamp in the
+           // corresponding partition.
+           //
+           // The timestamps to query are represented as \c offset in \p offsets
+           // on input, and \c offset will contain the offset on output.
+           //
+           // The function will block for at most \p timeout_ms milliseconds.
+           //
+           // @remark Duplicate Topic+Partitions are not supported.
+           // @remark Per-partition errors may be returned in \c rd_kafka_topic_partition_t.err
+           //
+           // @returns RD_KAFKA_RESP_ERR_NO_ERROR if offsets were be queried (do note
+           //          that per-partition errors might be set),
+           //          RD_KAFKA_RESP_ERR__TIMED_OUT if not all offsets could be fetched
+           //          within \p timeout_ms,
+           //          RD_KAFKA_RESP_ERR__INVALID_ARG if the \p offsets list is empty,
+           //          RD_KAFKA_RESP_ERR__UNKNOWN_PARTITION if all partitions are unknown,
+           //          RD_KAFKA_RESP_ERR_LEADER_NOT_AVAILABLE if unable to query leaders
+           //          for the given partitions.
+           //
+           function rd_kafka_offsets_for_times(  rkt : pas_ptr_rd_kafka_t;
+                                                 offsets : pas_ptr_rd_kafka_topic_partition_list_t;
+                                                 timeout_ms : ctypes.cint64 ) :  pas_rd_kafka_resp_err_t; cdecl;
+
 
 
 
@@ -1790,10 +1819,14 @@ function rd_kafka_query_watermark_offsets( rkt : pas_ptr_rd_kafka_t;
                                            high : ctypes.cint64;
                                            timeout_ms : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl;   external;
 //
-function rd_kafka_get_watermark_offsets( kt : pas_ptr_rd_kafka_t;
+function rd_kafka_get_watermark_offsets( rkt : pas_ptr_rd_kafka_t;
       			                 partition : ctypes.cint32;
       	                                 var low : ctypes.cint64;
-                                         var high : ctypes.cint64) : pas_rd_kafka_resp_err_t; cdecl; external;
+                                         var high : ctypes.cint64 ) : pas_rd_kafka_resp_err_t; cdecl; external;
+//
+function rd_kafka_offsets_for_times(  rkt : pas_ptr_rd_kafka_t;
+                                      offsets : pas_ptr_rd_kafka_topic_partition_list_t;
+                                      timeout_ms : ctypes.cint64 ) :  pas_rd_kafka_resp_err_t; cdecl;  external;
 //
 function rd_kafka_message_errstr( const rkmessage : pas_ptr_rd_kafka_message_t ) : PAnsiChar ; inline;
 var

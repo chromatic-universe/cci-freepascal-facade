@@ -15,8 +15,8 @@
         <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="1782"/>
-        <CursorPos X="66" Y="1796"/>
+        <TopLine Value="1819"/>
+        <CursorPos X="28" Y="1829"/>
         <UsageCount Value="236"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -52,13 +52,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="116" Y="10"/>
-        <UsageCount Value="89"/>
+        <UsageCount Value="92"/>
       </Unit4>
       <Unit5>
         <Filename Value="rdkafka_test.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="64" Y="7"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit5>
       <Unit6>
         <Filename Value="../fptest/src/LCL/guitestrunner.pas"/>
@@ -69,35 +69,35 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="255"/>
         <CursorPos X="25" Y="257"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit6>
       <Unit7>
         <Filename Value="../fptest/demo/LCL/project1.lpr"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="46" Y="10"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit7>
       <Unit8>
         <Filename Value="../fptest/tests/ref/RefGUITestRunner.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit8>
       <Unit9>
         <Filename Value="/usr/lib/lazarus/1.6/lcl/include/application.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2146"/>
         <CursorPos X="44" Y="2156"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit9>
       <Unit10>
         <Filename Value="../fptest/src/TestFrameworkProxy.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="619"/>
         <CursorPos X="43" Y="638"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit10>
     </Units>
-    <JumpHistory Count="18" HistoryIndex="17">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="rdkafka.pas"/>
         <Caret Line="1437" Column="20" TopLine="1425"/>
@@ -170,6 +170,14 @@
         <Filename Value="rdkafka.pas"/>
         <Caret Line="1796" Column="129" TopLine="1781"/>
       </Position18>
+      <Position19>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="1567" Column="67" TopLine="1542"/>
+      </Position19>
+      <Position20>
+        <Filename Value="rdkafka.pas"/>
+        <Caret Line="1569" Column="92" TopLine="1558"/>
+      </Position20>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
