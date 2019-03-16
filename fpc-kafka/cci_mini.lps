@@ -3,7 +3,7 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="11">
+    <Units Count="12">
       <Unit0>
         <Filename Value="cci_mini.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -14,9 +14,8 @@
       <Unit1>
         <Filename Value="rdkafka.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="1819"/>
-        <CursorPos X="28" Y="1829"/>
+        <CursorPos X="68" Y="1824"/>
         <UsageCount Value="236"/>
         <Loaded Value="True"/>
       </Unit1>
@@ -26,7 +25,7 @@
         <ComponentName Value="frm_dev_info"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="53"/>
         <CursorPos X="4" Y="54"/>
         <UsageCount Value="212"/>
@@ -49,10 +48,11 @@
         <ComponentName Value="frm_cci_mini"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="4"/>
-        <CursorPos X="116" Y="10"/>
-        <UsageCount Value="92"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="18"/>
+        <CursorPos X="47" Y="30"/>
+        <UsageCount Value="93"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="rdkafka_test.pas"/>
@@ -96,6 +96,16 @@
         <CursorPos X="43" Y="638"/>
         <UsageCount Value="2"/>
       </Unit10>
+      <Unit11>
+        <Filename Value="../KafkaGate/kafka.pas"/>
+        <UnitName Value="Kafka"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="100"/>
+        <CursorPos X="60" Y="122"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit11>
     </Units>
     <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
