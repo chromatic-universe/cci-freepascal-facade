@@ -8,6 +8,9 @@
       <Unit0>
         <Filename Value="KafkaGate.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="31"/>
+        <CursorPos X="102" Y="27"/>
         <UsageCount Value="64"/>
         <Bookmarks Count="1">
           <Item0 X="6" Y="31" ID="8"/>
@@ -18,89 +21,80 @@
         <Filename Value="..\FavCommon\msgqueue\kafka.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Kafka"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="529"/>
         <CursorPos X="64" Y="546"/>
         <UsageCount Value="63"/>
-        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\FavCommon\msgqueue\zmq.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="145"/>
         <CursorPos X="22" Y="181"/>
         <UsageCount Value="53"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\FavCommon\msgqueue\zmqclass.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ZMQClass"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="123"/>
         <CursorPos X="157" Y="143"/>
         <UsageCount Value="53"/>
-        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="..\FavCommon\msgqueue\kafkaclass.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="KafkaClass"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
         <CursorPos Y="13"/>
         <UsageCount Value="53"/>
         <Bookmarks Count="1">
           <Item0 X="5" Y="278" ID="9"/>
         </Bookmarks>
-        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
+        <Filename Value="kafka2zero.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Kafka2Zero"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="204"/>
+        <CursorPos X="116" Y="223"/>
+        <UsageCount Value="23"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="zero2kafka.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Zero2Kafka"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="32"/>
+        <UsageCount Value="22"/>
+      </Unit6>
+      <Unit7>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\objpas.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos X="8" Y="33"/>
         <UsageCount Value="13"/>
-      </Unit5>
-      <Unit6>
+      </Unit7>
+      <Unit8>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\systemh.inc"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="744"/>
         <CursorPos X="21" Y="760"/>
         <UsageCount Value="30"/>
-        <Loaded Value="True"/>
-      </Unit6>
-      <Unit7>
+      </Unit8>
+      <Unit9>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="691"/>
         <CursorPos X="14" Y="704"/>
         <UsageCount Value="25"/>
-        <Loaded Value="True"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="kafka2zero.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Kafka2Zero"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="204"/>
-        <CursorPos X="116" Y="223"/>
-        <UsageCount Value="23"/>
-        <Loaded Value="True"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="zero2kafka.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Zero2Kafka"/>
-        <EditorIndex Value="2"/>
-        <CursorPos Y="32"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
       </Unit9>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="12" HistoryIndex="11">
       <Position1>
         <Filename Value="KafkaGate.lpr"/>
         <Caret Line="600" TopLine="571"/>
@@ -142,77 +136,13 @@
         <Caret Line="591" Column="59" TopLine="574"/>
       </Position10>
       <Position11>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="199" Column="67" TopLine="172"/>
-      </Position11>
-      <Position12>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="127" TopLine="93"/>
-      </Position12>
-      <Position13>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="76" Column="5" TopLine="66"/>
-      </Position13>
-      <Position14>
         <Filename Value="KafkaGate.lpr"/>
         <Caret Line="613" TopLine="607"/>
-      </Position14>
-      <Position15>
+      </Position11>
+      <Position12>
         <Filename Value="KafkaGate.lpr"/>
         <Caret Line="296" Column="166" TopLine="288"/>
-      </Position15>
-      <Position16>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="112" Column="61" TopLine="97"/>
-      </Position16>
-      <Position17>
-        <Filename Value="zero2kafka.pas"/>
-      </Position17>
-      <Position18>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="204" Column="72" TopLine="170"/>
-      </Position18>
-      <Position19>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="31" Column="11" TopLine="7"/>
-      </Position19>
-      <Position20>
-        <Filename Value="zero2kafka.pas"/>
-      </Position20>
-      <Position21>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="31" Column="58"/>
-      </Position21>
-      <Position22>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="116" Column="24" TopLine="82"/>
-      </Position22>
-      <Position23>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="198" Column="24" TopLine="164"/>
-      </Position23>
-      <Position24>
-        <Filename Value="zero2kafka.pas"/>
-        <Caret Line="177" Column="16" TopLine="170"/>
-      </Position24>
-      <Position25>
-        <Filename Value="kafka2zero.pas"/>
-        <Caret Line="203" Column="3" TopLine="211"/>
-      </Position25>
-      <Position26>
-        <Filename Value="kafka2zero.pas"/>
-      </Position26>
-      <Position27>
-        <Filename Value="kafka2zero.pas"/>
-        <Caret Line="34"/>
-      </Position27>
-      <Position28>
-        <Filename Value="kafka2zero.pas"/>
-      </Position28>
-      <Position29>
-        <Filename Value="kafka2zero.pas"/>
-        <Caret Line="33" Column="58"/>
-      </Position29>
+      </Position12>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

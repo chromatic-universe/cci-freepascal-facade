@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Kafka, KafkaClass, IniFiles;
+  ExtCtrls, Menus, Kafka, KafkaClass, IniFiles;
 
 type
 
@@ -108,7 +108,7 @@ end;
 procedure TfrmMainKafkaTest.rbConsumerChange(Sender: TObject);
 begin
   if rbConsumer.Checked then begin
-    pTop.Color := clMoneyGreen;
+
     mParams.Lines.LoadFromFile('./consumer.ini');
     pLeftCaption.Caption := 'Params: ./consumer.ini';
   end
@@ -124,7 +124,6 @@ procedure TfrmMainKafkaTest.OnKafkaMessageReceived(InMessage: String;
 begin
   Inc(_MessageCount);
   //mResult.Clear;
-  mResult.
   mResult.Lines.Add(FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz: ', Now) + ' ' + IntToStr(_MessageCount));
   mResult.Lines.Add(InMessage);
 end;
