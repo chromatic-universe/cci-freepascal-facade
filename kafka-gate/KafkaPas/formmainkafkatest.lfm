@@ -1,14 +1,14 @@
 object frmMainKafkaTest: TfrmMainKafkaTest
-  Left = 516
+  Left = 33
   Height = 320
-  Top = 288
+  Top = 126
   Width = 1024
   Caption = 'cci-mini-kafka-run <cci-stream-ecosys>'
   ClientHeight = 320
   ClientWidth = 1024
   Font.Name = 'Tahoma'
   OnCreate = FormCreate
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '1.6.0.4'
   object pLeft: TPanel
     Left = 0
     Height = 216

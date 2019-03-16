@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
@@ -158,7 +158,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="KafkaPas.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -181,6 +181,12 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="KafkaClass"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="frrm_message_lst.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frm_message_lst"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
