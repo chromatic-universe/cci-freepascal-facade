@@ -1,0 +1,29 @@
+object frm_message_lst: Tfrm_message_lst
+  Left = 397
+  Height = 185
+  Top = 473
+  Width = 881
+  Caption = 'message stream'
+  ClientHeight = 185
+  ClientWidth = 881
+  FormStyle = fsStayOnTop
+  LCLVersion = '1.6.0.4'
+  Visible = True
+  object stream_messages: TListBox
+    Left = 0
+    Height = 185
+    Top = 0
+    Width = 881
+    Align = alClient
+    Color = clMedGray
+    Font.Color = clNavy
+    Items.Strings = (
+      'snatch'
+    )
+    ItemHeight = 21
+    OnClick = stream_messagesClick
+    ParentFont = False
+    ScrollWidth = 879
+    TabOrder = 0
+  end
+end
