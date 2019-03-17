@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="/usr/bin/fpc" Date="1454176020"/>
-  <Params Value=" -MObjFPC -Scaghi -Cirot -O1 -gw2 -godwarfsets -gl -gh -Xg -l -vewnhibq -Fi/cci_src/cci-freepascal-facade/kafka-gate/KafkaPas/lib/arm-linux -Fl/dev_t/lib -Fl/usr/lib -Fl/opt/gnome/lib -Fu/usr/lib/lazarus/1.6/lcl/units/arm-linux/gtk2 -Fu/usr/lib/lazarus/1.6/lcl/units/arm-linux -Fu/usr/lib/lazarus/1.6/components/lazutils/lib/arm-linux -Fu/usr/lib/lazarus/1.6/packager/units/arm-linux -Fu/cci_src/cci-freepascal-facade/kafka-gate/KafkaPas/ -FU/cci_src/cci-freepascal-facade/kafka-gate/KafkaPas/lib/arm-linux/ -okafka_pas_arm -dLCL -dLCLgtk2 KafkaPas.lpr"/>
-</CONFIG>
