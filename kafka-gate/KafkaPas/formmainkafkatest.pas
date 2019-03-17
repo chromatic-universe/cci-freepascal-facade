@@ -24,6 +24,19 @@ type
     lBrokerCaption: TLabel;
     lTopicCaption: TLabel;
     lConfCaption: TLabel;
+    MainMenu1: TMainMenu;
+    MenuItem1: TMenuItem;
+    MenuItem10: TMenuItem;
+    MenuItem11: TMenuItem;
+    MenuItem12: TMenuItem;
+    MenuItem2: TMenuItem;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    MenuItem5: TMenuItem;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    MenuItem9: TMenuItem;
     mResult: TMemo;
     mParams: TMemo;
     pLeftCaption: TPanel;
@@ -38,6 +51,7 @@ type
     procedure btnStartClick(Sender: TObject);
     procedure btnStopClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItem1Click(Sender: TObject);
     procedure rbConsumerChange(Sender: TObject);
   private
 
@@ -106,6 +120,11 @@ begin
 //   mResult.Lines.Add('Reading configuration');
   mParams.Lines.LoadFromFile('./consumer.ini');
   rbConsumerChange(rbConsumer);
+end;
+
+procedure TfrmMainKafkaTest.MenuItem1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TfrmMainKafkaTest.rbConsumerChange(Sender: TObject);

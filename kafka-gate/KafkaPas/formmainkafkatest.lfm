@@ -1,26 +1,27 @@
 object frmMainKafkaTest: TfrmMainKafkaTest
-  Left = 33
+  Left = 244
   Height = 320
-  Top = 126
+  Top = 103
   Width = 1024
   Caption = 'cci-mini-kafka-run <cci-stream-ecosys>'
-  ClientHeight = 320
+  ClientHeight = 299
   ClientWidth = 1024
   Font.Name = 'Tahoma'
+  Menu = MainMenu1
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   object pLeft: TPanel
     Left = 0
-    Height = 216
+    Height = 195
     Top = 0
     Width = 278
     Align = alLeft
-    ClientHeight = 216
+    ClientHeight = 195
     ClientWidth = 278
     TabOrder = 0
     object mParams: TMemo
       Left = 1
-      Height = 188
+      Height = 167
       Top = 27
       Width = 276
       Align = alClient
@@ -45,16 +46,16 @@ object frmMainKafkaTest: TfrmMainKafkaTest
   end
   object pCenter: TPanel
     Left = 283
-    Height = 216
+    Height = 195
     Top = 0
     Width = 741
     Align = alClient
-    ClientHeight = 216
+    ClientHeight = 195
     ClientWidth = 741
     TabOrder = 1
     object mResult: TMemo
       Left = 1
-      Height = 188
+      Height = 167
       Top = 27
       Width = 739
       Align = alClient
@@ -77,7 +78,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
   object pBottom: TPanel
     Left = 0
     Height = 104
-    Top = 216
+    Top = 195
     Width = 1024
     Align = alBottom
     ClientHeight = 104
@@ -185,9 +186,9 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object rbConsumer: TRadioButton
       Left = 174
-      Height = 22
+      Height = 21
       Top = 24
-      Width = 90
+      Width = 89
       Caption = 'Consumer'
       Checked = True
       Font.Color = clNavy
@@ -199,9 +200,9 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object rbProducer: TRadioButton
       Left = 174
-      Height = 22
+      Height = 21
       Top = 60
-      Width = 81
+      Width = 80
       Caption = 'Producer'
       Font.Color = clNavy
       Font.Name = 'Tahoma'
@@ -210,7 +211,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object cbMaxMessageSize: TComboBox
       Left = 632
-      Height = 25
+      Height = 23
       Top = 8
       Width = 226
       Font.Color = clBlack
@@ -229,7 +230,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object cbSendPause: TComboBox
       Left = 631
-      Height = 25
+      Height = 23
       Top = 64
       Width = 226
       Font.Color = clBlack
@@ -258,8 +259,48 @@ object frmMainKafkaTest: TfrmMainKafkaTest
   end
   object splLeftCenter: TSplitter
     Left = 278
-    Height = 216
+    Height = 195
     Top = 0
     Width = 5
+  end
+  object MainMenu1: TMainMenu
+    left = 82
+    top = 9
+    object MenuItem1: TMenuItem
+      Caption = 'endpoints'
+      object MenuItem2: TMenuItem
+        Caption = 'topics'
+      end
+      object MenuItem3: TMenuItem
+        Caption = 'phenomenona'
+      end
+      object MenuItem4: TMenuItem
+        Caption = 'compulsions'
+      end
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'diaspora'
+      object MenuItem6: TMenuItem
+        Caption = 'arch-peers'
+      end
+      object MenuItem7: TMenuItem
+        Caption = 'peers'
+      end
+      object MenuItem8: TMenuItem
+        Caption = 'drifters'
+      end
+      object MenuItem9: TMenuItem
+        Caption = 'suspects'
+      end
+    end
+    object MenuItem10: TMenuItem
+      Caption = 'meta'
+    end
+    object MenuItem11: TMenuItem
+      Caption = 'config'
+    end
+    object MenuItem12: TMenuItem
+      Caption = 'help'
+    end
   end
 end

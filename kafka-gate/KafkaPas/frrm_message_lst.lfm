@@ -1,13 +1,13 @@
 object frm_message_lst: Tfrm_message_lst
-  Left = 397
+  Left = 395
   Height = 185
-  Top = 473
+  Top = 366
   Width = 881
   Caption = 'message stream'
   ClientHeight = 185
   ClientWidth = 881
   FormStyle = fsStayOnTop
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '2.0.0.4'
   Visible = True
   object stream_messages: TListBox
     Left = 0
@@ -15,7 +15,7 @@ object frm_message_lst: Tfrm_message_lst
     Top = 0
     Width = 881
     Align = alClient
-    Color = clMedGray
+    Color = clBlue
     Font.Color = clNavy
     Items.Strings = (
       'snatch'
