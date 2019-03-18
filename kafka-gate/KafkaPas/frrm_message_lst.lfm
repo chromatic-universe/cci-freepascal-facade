@@ -1,7 +1,7 @@
 object frm_message_lst: Tfrm_message_lst
-  Left = 395
+  Left = 437
   Height = 185
-  Top = 366
+  Top = 460
   Width = 881
   Caption = 'message stream'
   ClientHeight = 185
@@ -15,8 +15,7 @@ object frm_message_lst: Tfrm_message_lst
     Top = 0
     Width = 881
     Align = alClient
-    Color = clBlue
-    Font.Color = clNavy
+    Font.Color = clSilver
     Items.Strings = (
       'snatch'
     )
@@ -24,6 +23,7 @@ object frm_message_lst: Tfrm_message_lst
     OnClick = stream_messagesClick
     ParentFont = False
     ScrollWidth = 879
+    Style = lbVirtual
     TabOrder = 0
   end
 end
