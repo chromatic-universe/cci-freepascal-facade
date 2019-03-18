@@ -3,6 +3,7 @@ object frm_message_lst: Tfrm_message_lst
   Height = 185
   Top = 588
   Width = 881
+  BorderStyle = bsSizeToolWin
   Caption = 'message stream'
   ClientHeight = 185
   ClientWidth = 881
@@ -15,10 +16,13 @@ object frm_message_lst: Tfrm_message_lst
     Top = 0
     Width = 881
     Align = alClient
+    Color = clBlack
+    Font.Color = clScrollBar
     Items.Strings = (
       'snatch'
     )
     ItemHeight = 23
+    ParentFont = False
     ScrollWidth = 879
     TabOrder = 0
   end

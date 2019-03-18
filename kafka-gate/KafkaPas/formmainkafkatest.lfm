@@ -1,7 +1,7 @@
 object frmMainKafkaTest: TfrmMainKafkaTest
-  Left = 354
+  Left = 231
   Height = 320
-  Top = 216
+  Top = 148
   Width = 1024
   Caption = 'cci-mini-kafka-run <cci-stream-ecosys>'
   ClientHeight = 297

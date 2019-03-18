@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="82"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -20,9 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="FormMainKafkaTest"/>
-        <TopLine Value="127"/>
-        <CursorPos X="19" Y="149"/>
-        <UsageCount Value="82"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="100"/>
+        <CursorPos X="50" Y="123"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -33,7 +34,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="29"/>
         <CursorPos X="12" Y="14"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -43,7 +44,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="882"/>
         <CursorPos X="19" Y="917"/>
-        <UsageCount Value="59"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -52,10 +53,9 @@
         <ComponentName Value="frm_message_lst"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="23" Y="16"/>
-        <UsageCount Value="45"/>
+        <CursorPos X="32" Y="30"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -64,7 +64,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="136" Y="9"/>
-        <UsageCount Value="43"/>
+        <UsageCount Value="42"/>
         <Bookmarks Count="2">
           <Item0 X="38" Y="382" ID="8"/>
           <Item1 Y="518" ID="9"/>
@@ -75,32 +75,32 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3074"/>
         <CursorPos Y="3099"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="22"/>
       </Unit6>
       <Unit7>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\sysosh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="23"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="21"/>
       </Unit7>
       <Unit8>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos X="4" Y="63"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="21"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-extra\src\win\winsock.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="31"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ctypes.pp"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit10>
       <Unit11>
         <Filename Value="C:\codetyphon\typhon\lcl\forms.pp"/>
@@ -108,14 +108,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1454"/>
         <CursorPos X="15" Y="1473"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit11>
       <Unit12>
         <Filename Value="..\..\fpc-kafka\rdkafka.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="33" Y="52"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit12>
       <Unit13>
         <Filename Value="..\..\..\..\usr\lib\lazarus\1.6\lcl\stdctrls.pp"/>
@@ -123,7 +123,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="756"/>
         <CursorPos X="15" Y="768"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit13>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
