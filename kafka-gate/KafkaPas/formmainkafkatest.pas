@@ -148,7 +148,7 @@ begin
   //mResult.Clear;
   frm_message_lst.stream_messages.Items.Add( FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz: ', Now) + ' ' + IntToStr(_MessageCount ) );
   frm_message_lst.stream_messages.Items.Add( InMessage );
-  frm_message_lst.stream_messages.TopIndex := frm_message_lst.stream_messages.Items.Count - 1;
+  //frm_message_lst.stream_messages.TopIndex := frm_message_lst.stream_messages.Items.Count - 1;
 
   //mResult.Lines.Add(FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz: ', Now) + ' ' + IntToStr(_MessageCount));
   //mResult.Lines.Add(InMessage);
