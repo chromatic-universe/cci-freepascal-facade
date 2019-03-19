@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, Menus, Kafka, KafkaClass, IniFiles;
+  ExtCtrls, Menus, Kafka, KafkaClass, IniFiles , fpjson, jsonparser;
 
 type
 
@@ -118,7 +118,7 @@ begin
   mResult.Lines.Add('*************************************************************');
 
 //   mResult.Lines.Add('Reading configuration');
-  mParams.Lines.LoadFromFile('./consumer.ini');
+  mParams.Lines.LoadFromFile('/etc/chromatic-universe//consumer.ini');
   rbConsumerChange(rbConsumer);
 end;
 
@@ -131,13 +131,13 @@ procedure TfrmMainKafkaTest.rbConsumerChange(Sender: TObject);
 begin
   if rbConsumer.Checked then begin
 
-    mParams.Lines.LoadFromFile('./consumer.ini');
-    pLeftCaption.Caption := 'Params: ./consumer.ini';
+    mParams.Lines.LoadFromFile( '/etc/chromatic-universe/consumer.ini');
+    pLeftCaption.Caption := 'Params: consumer.ini';
   end
   else begin
     pTop.Color := clSkyBlue;
-    mParams.Lines.LoadFromFile('./producer.ini');
-    pLeftCaption.Caption := 'Params: ./producer.ini';
+    mParams.Lines.LoadFromFile('/etc/chromatic-universe/producer.ini');
+    pLeftCaption.Caption := 'Params: producer.ini';
   end;
 end;
 
@@ -146,9 +146,9 @@ procedure TfrmMainKafkaTest.OnKafkaMessageReceived(InMessage: String;
 begin
   Inc(_MessageCount);
   //mResult.Clear;
-  frm_message_lst.stream_messages.Items.Add( FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz: ', Now) + ' ' + IntToStr(_MessageCount ) );
+  //frm_message_lst.stream_messages.Items.Add( FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz: ', Now) + ' ' + IntToStr(_MessageCount ) );
   frm_message_lst.stream_messages.Items.Add( InMessage );
-  //frm_message_lst.stream_messages.TopIndex := frm_message_lst.stream_messages.Items.Count - 1;
+  frm_message_lst.stream_messages.TopIndex := frm_message_lst.stream_messages.Items.Count - 1;
 
   //mResult.Lines.Add(FormatDateTime('yyyy-mm-dd hh:nn:ss.zzz: ', Now) + ' ' + IntToStr(_MessageCount));
   //mResult.Lines.Add(InMessage);
