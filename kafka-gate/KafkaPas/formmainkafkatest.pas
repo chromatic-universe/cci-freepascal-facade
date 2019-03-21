@@ -29,6 +29,7 @@ type
     MenuItem10: TMenuItem;
     MenuItem11: TMenuItem;
     MenuItem12: TMenuItem;
+    MenuItem16: TMenuItem;
     MenuItem2: TMenuItem;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
@@ -39,6 +40,7 @@ type
     MenuItem9: TMenuItem;
     mResult: TMemo;
     mParams: TMemo;
+    Panel1: TPanel;
     pLeftCaption: TPanel;
     pBottom: TPanel;
     pCenter: TPanel;
@@ -51,6 +53,7 @@ type
     procedure btnStartClick(Sender: TObject);
     procedure btnStopClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure rbConsumerChange(Sender: TObject);
   private
@@ -74,6 +77,7 @@ type
 var
   frmMainKafkaTest: TfrmMainKafkaTest;
 
+
 implementation
 
 {$R *.lfm}
@@ -81,7 +85,7 @@ implementation
 { TfrmMainKafkaTest }
 
 uses
-  frrm_message_lst;
+  frrm_message_lst , about;
 
 procedure TfrmMainKafkaTest.btnStartClick(Sender: TObject);
 begin
@@ -120,6 +124,11 @@ begin
 //   mResult.Lines.Add('Reading configuration');
   mParams.Lines.LoadFromFile('/etc/chromatic-universe//consumer.ini');
   rbConsumerChange(rbConsumer);
+end;
+
+procedure TfrmMainKafkaTest.MenuItem16Click(Sender: TObject);
+begin
+     frm_about.Show();
 end;
 
 procedure TfrmMainKafkaTest.MenuItem1Click(Sender: TObject);

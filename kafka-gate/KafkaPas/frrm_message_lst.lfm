@@ -1,14 +1,14 @@
 object frm_message_lst: Tfrm_message_lst
-  Left = 473
+  Left = 360
   Height = 185
-  Top = 427
+  Top = 457
   Width = 881
   BorderStyle = bsSizeToolWin
   Caption = 'message stream'
   ClientHeight = 185
   ClientWidth = 881
   FormStyle = fsStayOnTop
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '1.6.0.4'
   Visible = True
   object stream_messages: TListBox
     Left = 0
