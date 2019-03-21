@@ -1,21 +1,21 @@
 object frm_about: Tfrm_about
-  Left = 961
+  Left = 595
   Height = 277
-  Top = 395
+  Top = 248
   Width = 407
   Caption = 'about'
   ClientHeight = 277
   ClientWidth = 407
   FormStyle = fsStayOnTop
   Position = poDesktopCenter
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '1.6.0.4'
   object Panel1: TPanel
     Left = 0
     Height = 50
     Top = 227
     Width = 407
     Align = alBottom
-    Caption = 'chromatic universe 2019   william k. johnsn'
+    Caption = 'chromatic universe 2019   william k. johnson'
     TabOrder = 0
   end
   object Image1: TImage

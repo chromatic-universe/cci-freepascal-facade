@@ -18,6 +18,8 @@ object frm_message_lst: Tfrm_message_lst
     Align = alClient
     ItemHeight = 0
     OnClick = stream_messagesClick
+    OnMouseMove = stream_messagesMouseMove
+    OnShowHint = stream_messagesShowHint
     ScrollWidth = 879
     TabOrder = 0
     TopIndex = -1
