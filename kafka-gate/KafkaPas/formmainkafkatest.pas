@@ -40,7 +40,6 @@ type
     MenuItem9: TMenuItem;
     mResult: TMemo;
     mParams: TMemo;
-    Panel1: TPanel;
     pLeftCaption: TPanel;
     pBottom: TPanel;
     pCenter: TPanel;
