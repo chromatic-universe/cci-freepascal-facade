@@ -1,0 +1,9 @@
+object form_post_up_one_partition: Tform_post_up_one_partition
+  Left = 737
+  Height = 202
+  Top = 469
+  Width = 755
+  Caption = 'post up one partition'
+  Position = poScreenCenter
+  LCLVersion = '1.8.2.0'
+end
