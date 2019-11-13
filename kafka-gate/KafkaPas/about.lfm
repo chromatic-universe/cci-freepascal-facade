@@ -1,7 +1,7 @@
 object frm_about: Tfrm_about
-  Left = 834
+  Left = 869
   Height = 277
-  Top = 239
+  Top = 307
   Width = 407
   ActiveControl = Panel1
   Caption = 'about'
@@ -9,7 +9,7 @@ object frm_about: Tfrm_about
   ClientWidth = 407
   FormStyle = fsStayOnTop
   Position = poDesktopCenter
-  LCLVersion = '2.0.0.4'
+  LCLVersion = '1.8.2.0'
   object Panel1: TPanel
     Left = 0
     Height = 50

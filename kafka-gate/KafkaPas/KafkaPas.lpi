@@ -110,6 +110,11 @@
               </Win32>
             </Options>
           </Linking>
+          <Other>
+            <CompilerMessages>
+              <IgnoredMessages idx5057="True"/>
+            </CompilerMessages>
+          </Other>
         </CompilerOptions>
       </Item4>
       <Item5 Name="Release">
@@ -199,6 +204,7 @@
         <Filename Value="frm_post_up_one_partition.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="form_post_up_one_partition"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit6>
     </Units>
