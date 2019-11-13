@@ -84,7 +84,7 @@ object form_post_up_one_partition: Tform_post_up_one_partition
     OnClick = btn_post_upClick
     TabOrder = 4
   end
-  object Memo1: TMemo
+  object memoPartition: TMemo
     Left = 392
     Height = 360
     Top = 0
@@ -99,5 +99,21 @@ object form_post_up_one_partition: Tform_post_up_one_partition
     ParentFont = False
     ReadOnly = True
     TabOrder = 5
+  end
+  object edGroup: TEdit
+    Left = 25
+    Height = 27
+    Top = 201
+    Width = 279
+    TabOrder = 6
+    Text = 'cci_stram_ecosys'
+  end
+  object Label4: TLabel
+    Left = 25
+    Height = 17
+    Top = 184
+    Width = 33
+    Caption = 'group'
+    ParentColor = False
   end
 end

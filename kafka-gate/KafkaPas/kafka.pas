@@ -29,7 +29,7 @@ const
   				  *            call rd_kafka_poll() (or equiv.)
   				  *            to make sure delivered messages
   				  *            are drained from the internal
-  				  *            delivery report queue.
+  				  *            delivery report queue.      rd_kafka_conf_set
   				  *            Failure to do so will result
   				  *            in indefinately blocking on
   				  *            the produce() call when the
