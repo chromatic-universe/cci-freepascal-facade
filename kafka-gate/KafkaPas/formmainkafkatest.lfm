@@ -9,6 +9,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
   Font.Name = 'Tahoma'
   Menu = MainMenu1
   OnCreate = FormCreate
+  Position = poDefault
   LCLVersion = '1.8.2.0'
   object pLeft: TPanel
     Left = 0
@@ -25,9 +26,10 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Top = 27
       Width = 276
       Align = alClient
-      Font.Height = 14
+      Font.Height = -12
       Font.Name = 'Tahoma'
       ParentFont = False
+      ScrollBars = ssAutoBoth
       TabOrder = 0
     end
     object pLeftCaption: TPanel
@@ -59,6 +61,10 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Top = 27
       Width = 739
       Align = alClient
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      ParentFont = False
+      ScrollBars = ssVertical
       TabOrder = 0
     end
     object pCenterCaption: TPanel
@@ -188,7 +194,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Left = 174
       Height = 22
       Top = 24
-      Width = 80
+      Width = 88
       Caption = 'consumer'
       Checked = True
       Font.Color = clNavy
@@ -202,7 +208,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Left = 174
       Height = 22
       Top = 60
-      Width = 75
+      Width = 81
       Caption = 'producer'
       Font.Color = clNavy
       Font.Name = 'Tahoma'
@@ -211,7 +217,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object cbMaxMessageSize: TComboBox
       Left = 632
-      Height = 27
+      Height = 25
       Top = 8
       Width = 226
       Font.Color = clBlack
@@ -230,7 +236,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object cbSendPause: TComboBox
       Left = 631
-      Height = 27
+      Height = 25
       Top = 64
       Width = 226
       Font.Color = clBlack

@@ -6,23 +6,31 @@ interface
 
 uses
   classes, sysUtils, fileUtil, forms, controls, graphics, dialogs, stdctrls,
-  comctrls , process , kafka, kafkaclass , termio;
+  comctrls, ExtCtrls, Buttons , process , kafka, kafkaclass , termio;
 
 type
 
   { Tform_post_up_one_partition }
 
+  TLog_level = ( info , notice , error , critical );
+
   Tform_post_up_one_partition = class(TForm)
-          btn_post_up: TButton;
+          edGroup: TEdit;
           edHost: TEdit;
           edPartition: TEdit;
-          edGroup: TEdit;
           edPort: TEdit;
+          il_log: TImageList;
           Label1: TLabel;
           Label2: TLabel;
           Label3: TLabel;
           Label4: TLabel;
-          memoPartition: TMemo;
+          lv_log: TListView;
+          memo_partition: TMemo;
+          Panel1: TPanel;
+          Panel2: TPanel;
+          SpeedButton1: TSpeedButton;
+          Splitter1: TSplitter;
+          Splitter2: TSplitter;
           StatusBar1: TStatusBar;
           procedure btn_post_upClick(Sender: TObject);
           procedure FormCreate(Sender: TObject);
@@ -50,11 +58,13 @@ type
         public
 
            procedure kafka_init_vars;
+           procedure post_atom_to_log_view( level : TLog_level; payload : string );
+           //procedure kafka_preamble;
 
 
   end;
 
-  procedure proc_log_cb( rk: Prd_kafka_t; level: Int32; fac: PChar;buf: PChar ); cdecl;
+procedure proc_log_cb( rk: Prd_kafka_t; level: Int32; fac: PChar;buf: PChar ); cdecl;
 
 var
   form_post_up_one_partition: Tform_post_up_one_partition;
@@ -71,7 +81,37 @@ implementation
 procedure proc_log_cb( rk: Prd_kafka_t; level: Int32; fac: PChar;buf: PChar ); cdecl ;
 begin
 
+
 end;
+
+
+procedure Tform_post_up_one_partition.post_atom_to_log_view( level : TLog_level; payload : string );
+var
+  str : string;
+  item : TListItem;
+begin
+        str := '';
+        case level of
+             info :
+               str  := 'INFO';
+             notice :
+               str := 'NOTICE';
+             error :
+               str := 'ERROR';
+             critical :
+               str := 'CRITICAL';
+        end;
+        {memo_partition.Lines.Add( Format ( '%s: %s... %s...',
+                                          [str ,
+                                          DateTimeToStr(Now) ,
+                                          payload ] ) ); }
+        item := lv_log.Items.Add;
+        item.caption :=  DateTimeToStr(Now);
+        item.subitems.add( str );
+        item.subitems.add( payload );
+        item.ImageIndex := 2;
+end;
+
 
 procedure Tform_post_up_one_partition.GroupBox1Click(Sender: TObject);
 begin
@@ -103,13 +143,15 @@ begin
           proc := PProc_log_cb( @proc_log_cb );
           ret_val := 0;
           s := '';
-          memoPartition.Lines.Add( '------------------------------------' );
-          memoPartition.Lines.Add( Format ('%s: ',[DateTimeToStr(Now)]) );
+          memo_partition.Lines.Add( '------------------------------------' );
+
 
           //kafka library configuration
           self.conf :=  rd_kafka_conf_new();
+          self.post_atom_to_log_view( info , 'kafka library configuation' );
           //log callback
           rd_kafka_conf_set_log_cb( self.conf ,  proc );
+          self.post_atom_to_log_view( info , 'logging callback handler'  );
           //quick termination
           fmtstr( s , '%d' , [SIGIO] );
           rd_kafka_conf_set( conf ,
@@ -117,8 +159,10 @@ begin
                              PChar( s ),
                              nil ,
                              0 );
+          self.post_atom_to_log_view( info , 'quick termination config' );
           //topic configuration
           topic_conf := rd_kafka_topic_conf_new();
+          self.post_atom_to_log_view( info , 'new topic config' );
           //debug configuration
           setlength( self.err_str , 512 );
           ret_val := rd_kafka_conf_set(   conf ,
@@ -128,13 +172,15 @@ begin
                                          length( self.err_str ) * sizeof( self.err_str[0] ) );
           if ret_val <> RD_KAFKA_CONF_OK then
           begin
-              Application.MessageBox( 'error..could not set debug configuation...,' ,
-               'post up one parition' );
-          end;
-
+              self.post_atom_to_log_view( error, 'error..could not set debug configuation' );
+          end
+          else
+           begin
+                self.post_atom_to_log_view( info , 'debug configuation' );
+           end;
        except
              on E: Exception do begin
-               //
+              self.post_atom_to_log_view( error ,  E.Message );
              end;
        end;
 
