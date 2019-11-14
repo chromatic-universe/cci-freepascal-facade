@@ -15,6 +15,7 @@ type
   Tfrm_message_lst = class(TForm)
     stream_messages: TListBox;
     PopupMenu1: TPopupMenu;
+    procedure FormShow(Sender: TObject);
     procedure stream_messagesClick(Sender: TObject);
     procedure stream_messagesMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
@@ -45,6 +46,13 @@ begin
     // ShowMessage( out );
      //jdata :=  GetJson( out);
      //dw :=
+end;
+
+procedure Tfrm_message_lst.FormShow(Sender: TObject);
+begin
+     top := screen.height - self.height;
+     left := screen.width - self.width;;
+
 end;
 
 procedure Tfrm_message_lst.stream_messagesMouseMove(Sender: TObject;

@@ -54,6 +54,7 @@ type
     procedure btnStartClick(Sender: TObject);
     procedure btnStopClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure MenuItem14Click(Sender: TObject);
     procedure MenuItem16Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
@@ -128,6 +129,13 @@ begin
 //   mResult.Lines.Add('Reading configuration');
   mParams.Lines.LoadFromFile('/etc/chromatic-universe//consumer.ini');
   rbConsumerChange(rbConsumer);
+end;
+
+procedure TfrmMainKafkaTest.FormShow(Sender: TObject);
+begin
+     top := 0;
+     width := screen.width;
+     left := 0;
 end;
 
 procedure TfrmMainKafkaTest.MenuItem14Click(Sender: TObject);

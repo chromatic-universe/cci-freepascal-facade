@@ -1,14 +1,15 @@
 object frmMainKafkaTest: TfrmMainKafkaTest
-  Left = 327
+  Left = 304
   Height = 320
-  Top = 216
-  Width = 1024
+  Top = 170
+  Width = 1146
   Caption = 'cci-mini-kafka-run <cci-stream-ecosys>'
   ClientHeight = 297
-  ClientWidth = 1024
+  ClientWidth = 1146
   Font.Name = 'Tahoma'
   Menu = MainMenu1
   OnCreate = FormCreate
+  OnShow = FormShow
   Position = poDefault
   LCLVersion = '1.8.2.0'
   object pLeft: TPanel
@@ -29,6 +30,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Font.Height = -12
       Font.Name = 'Tahoma'
       ParentFont = False
+      ReadOnly = True
       ScrollBars = ssAutoBoth
       TabOrder = 0
     end
@@ -50,16 +52,16 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     Left = 283
     Height = 193
     Top = 0
-    Width = 741
+    Width = 863
     Align = alClient
     ClientHeight = 193
-    ClientWidth = 741
+    ClientWidth = 863
     TabOrder = 1
     object mResult: TMemo
       Left = 1
       Height = 165
       Top = 27
-      Width = 739
+      Width = 861
       Align = alClient
       Font.Height = -12
       Font.Name = 'Tahoma'
@@ -71,7 +73,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Left = 1
       Height = 26
       Top = 1
-      Width = 739
+      Width = 861
       Align = alTop
       BevelOuter = bvNone
       Caption = 'meta'
@@ -85,10 +87,10 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     Left = 0
     Height = 104
     Top = 193
-    Width = 1024
+    Width = 1146
     Align = alBottom
     ClientHeight = 104
-    ClientWidth = 1024
+    ClientWidth = 1146
     Font.Color = clNavy
     Font.Name = 'Tahoma'
     ParentFont = False
@@ -106,7 +108,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       TabOrder = 0
     end
     object btnStop: TButton
-      Left = 862
+      Left = 984
       Height = 88
       Top = 8
       Width = 150
