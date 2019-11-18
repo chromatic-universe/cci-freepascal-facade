@@ -99,122 +99,96 @@ object form_post_up_one_partition: Tform_post_up_one_partition
     ClientHeight = 442
     ClientWidth = 371
     TabOrder = 2
-    object edHost: TEdit
-      Left = 25
-      Height = 27
-      Top = 27
-      Width = 296
-      Font.Color = clNavy
-      ParentFont = False
+    object Panel3: TPanel
+      Left = 1
+      Height = 440
+      Top = 1
+      Width = 369
+      Align = alClient
+      ClientHeight = 440
+      ClientWidth = 369
       TabOrder = 0
-      Text = 'cci-arm-ssd'
-    end
-    object Label1: TLabel
-      Left = 25
-      Height = 17
-      Top = 13
-      Width = 24
-      Caption = 'host'
-      ParentColor = False
-    end
-    object edPort: TEdit
-      Left = 25
-      Height = 27
-      Top = 88
-      Width = 81
-      Font.Color = clNavy
-      ParentFont = False
-      TabOrder = 1
-      Text = '9093'
-    end
-    object Label2: TLabel
-      Left = 24
-      Height = 17
-      Top = 65
-      Width = 23
-      Caption = 'port'
-      ParentColor = False
-    end
-    object edPartition: TEdit
-      Left = 24
-      Height = 27
-      Top = 144
-      Width = 80
-      Font.Color = clNavy
-      ParentFont = False
-      TabOrder = 2
-      Text = '8'
-    end
-    object Label3: TLabel
-      Left = 24
-      Height = 17
-      Top = 127
-      Width = 47
-      Caption = 'partition'
-      ParentColor = False
-    end
-    object edGroup: TEdit
-      Left = 25
-      Height = 27
-      Top = 201
-      Width = 279
-      Font.Color = clNavy
-      ParentFont = False
-      TabOrder = 3
-      Text = 'cci_stream_ecosys'
-    end
-    object Label4: TLabel
-      Left = 25
-      Height = 17
-      Top = 184
-      Width = 33
-      Caption = 'group'
-      ParentColor = False
-    end
-    object SpeedButton1: TSpeedButton
-      Left = 25
-      Height = 38
-      Top = 280
-      Width = 279
-      AllowAllUp = True
-      Caption = 'post up'
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000B06F4009AB66
-        3CB7A45D38FA9E543406FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00BA7C4AB7BF87
-        5CFFB97E56FFA7623AFA9F5735749B51324E95492F398F432B1E8B412804FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00C4885AFAC692
-        68FFCDA280FFC59670FFB67B53FFAB6A46FFA35E3DFF9C5235FF91442CC68E41
-        2909FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00CD956A06C68C
-        60FAD1A683FFCC9F7BFFCB9E7BFFC79974FFC3926CFFBE8D65FFA86945FF9449
-        2E76FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00CE98
-        7074D0A17CFFD7AE8FFFC9976FFFC38F66FFBD885CFFC08C64FFBC8861FF8351
-        3CFA7D4B3809FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00D7A5
-        7F4ED7A682FFDCB699FFD0A17DFFCB9A73FFCFA482FFC79974FF896C58FF8787
-        87FF4E4E4E9FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00E0AE
-        8C39DDAE8CFFE2BEA4FFD8AB89FFD9B394FFCF9F7AFFA37858FA939393FFA9A9
-        A9FF555555D84E4E4E12883F271EFFFFFF00FFFFFF00FFFFFF00FFFFFF00E6B8
-        981EE3B493FFE8C6ADFFE3C0A6FFDBB08FFFB48D71F9C1885D3E7171719F6767
-        67D85E5E5E18954A2F3C8F432BF58B4128AF863E2509FFFFFF00FFFFFF00ECC0
-        A104E7BB9CDAE8C0A3FFE5BFA3FFB59D8AFBAEAEAEFF8383839F7A7A7A037171
-        7112A75F393C9F5734F6AD724CFFA25F3FFF8E4129DA883F2704FFFFFF00FFFF
-        FF00EDC3A509EABE9FAFCEAF9AF8B7B7B7FFBCBCBCFF8C8C8C9FFFFFFF00B576
-        443CAE6D40F6BB835CFFC08F67FFBB8A60FF995033FF8F432B1EFFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00ECC0A11E9E9E9E9C9999999FFFFFFF00C78F657CC386
-        57F7C9976FFFCB9F7CFFBC8559FFC3926BFFA6633EFF984D3139FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00D9A78185D9AB88FFDAB2
-        94FFD8B092FFCB9972FFC49068FFC89C78FFB2724AFFA25A374EFFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00E6B89A06E2B18FF7E7C1A8FFE0BA
-        9FFFD8AC8BFFD2A582FFCE9D77FFD1A684FFBE865CFFAD693D74FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00E9BD9E76E8C0A4FFE9C8
-        B0FFE5C3A9FFE1BDA2FFDCB699FFD5AB8AFFD0A482FFB57644FAFFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00EFC4A709ECBEA1C6E7BB
-        9DFFE4B697FFE0B292FFDAAE8FFFDCB598FFCF9F7AFFC38657B7FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00F0C6AA04ECC3
-        A41EE9BD9E39E5B5954EDFAE8B74D9A781FAD39E76B7CC946906
-      }
-      GroupIndex = 1
+      object SpeedButton1: TSpeedButton
+        Left = 8
+        Height = 30
+        Top = 385
+        Width = 232
+        AllowAllUp = True
+        Caption = 'post up'
+        GroupIndex = 1
+      end
+      object edGroup: TEdit
+        Left = 8
+        Height = 27
+        Top = 200
+        Width = 232
+        Font.Color = clNavy
+        ParentFont = False
+        TabOrder = 0
+        Text = 'cci_stream_ecosys'
+      end
+      object Label4: TLabel
+        Left = 9
+        Height = 17
+        Top = 187
+        Width = 33
+        Caption = 'group'
+        ParentColor = False
+      end
+      object edPartition: TEdit
+        Left = 8
+        Height = 27
+        Top = 147
+        Width = 80
+        Font.Color = clNavy
+        ParentFont = False
+        TabOrder = 1
+        Text = '8'
+      end
+      object Label3: TLabel
+        Left = 8
+        Height = 17
+        Top = 130
+        Width = 47
+        Caption = 'partition'
+        ParentColor = False
+      end
+      object edPort: TEdit
+        Left = 9
+        Height = 27
+        Top = 91
+        Width = 81
+        Font.Color = clNavy
+        ParentFont = False
+        TabOrder = 2
+        Text = '9093'
+      end
+      object Label2: TLabel
+        Left = 8
+        Height = 17
+        Top = 68
+        Width = 23
+        Caption = 'port'
+        ParentColor = False
+      end
+      object edHost: TEdit
+        Left = 9
+        Height = 27
+        Top = 30
+        Width = 231
+        Font.Color = clNavy
+        ParentFont = False
+        TabOrder = 3
+        Text = 'cci-arm-ssd'
+      end
+      object Label1: TLabel
+        Left = 9
+        Height = 17
+        Top = 16
+        Width = 24
+        Caption = 'host'
+        ParentColor = False
+      end
     end
   end
   object Splitter2: TSplitter

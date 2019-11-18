@@ -28,6 +28,7 @@ type
           memo_partition: TMemo;
           Panel1: TPanel;
           Panel2: TPanel;
+          Panel3: TPanel;
           SpeedButton1: TSpeedButton;
           Splitter1: TSplitter;
           Splitter2: TSplitter;
