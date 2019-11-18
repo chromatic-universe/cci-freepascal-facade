@@ -196,7 +196,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Left = 174
       Height = 22
       Top = 24
-      Width = 88
+      Width = 80
       Caption = 'consumer'
       Checked = True
       Font.Color = clNavy
@@ -210,7 +210,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
       Left = 174
       Height = 22
       Top = 60
-      Width = 81
+      Width = 75
       Caption = 'producer'
       Font.Color = clNavy
       Font.Name = 'Tahoma'
@@ -219,7 +219,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object cbMaxMessageSize: TComboBox
       Left = 632
-      Height = 25
+      Height = 27
       Top = 8
       Width = 226
       Font.Color = clBlack
@@ -238,7 +238,7 @@ object frmMainKafkaTest: TfrmMainKafkaTest
     end
     object cbSendPause: TComboBox
       Left = 631
-      Height = 25
+      Height = 27
       Top = 64
       Width = 226
       Font.Color = clBlack

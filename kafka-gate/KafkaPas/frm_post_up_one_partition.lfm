@@ -1,7 +1,7 @@
 object form_post_up_one_partition: Tform_post_up_one_partition
-  Left = 279
+  Left = 521
   Height = 469
-  Top = 426
+  Top = 281
   Width = 1148
   BorderStyle = bsSizeToolWin
   Caption = 'post up one partition'
@@ -96,8 +96,8 @@ object form_post_up_one_partition: Tform_post_up_one_partition
     Width = 373
     Align = alClient
     BorderStyle = bsSingle
-    ClientHeight = 444
-    ClientWidth = 373
+    ClientHeight = 442
+    ClientWidth = 371
     TabOrder = 2
     object edHost: TEdit
       Left = 25

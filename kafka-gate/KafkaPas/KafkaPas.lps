@@ -4,13 +4,13 @@
     <PathDelim Value="\"/>
     <Version Value="10"/>
     <BuildModes Active="Debug"/>
-    <Units Count="17">
+    <Units Count="15">
       <Unit0>
         <Filename Value="KafkaPas.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="33" Y="11"/>
-        <UsageCount Value="175"/>
+        <UsageCount Value="250"/>
       </Unit0>
       <Unit1>
         <Filename Value="formmainkafkatest.pas"/>
@@ -22,8 +22,8 @@
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="134"/>
-        <CursorPos X="48" Y="142"/>
-        <UsageCount Value="175"/>
+        <CursorPos X="89" Y="154"/>
+        <UsageCount Value="250"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -34,7 +34,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="713"/>
         <CursorPos X="78" Y="745"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="227"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -44,7 +44,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="685"/>
         <CursorPos X="52" Y="89"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="227"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -56,7 +56,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="27"/>
         <CursorPos X="92" Y="48"/>
-        <UsageCount Value="138"/>
+        <UsageCount Value="213"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -69,7 +69,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="6"/>
         <CursorPos X="6" Y="21"/>
-        <UsageCount Value="97"/>
+        <UsageCount Value="172"/>
       </Unit5>
       <Unit6>
         <Filename Value="frm_post_up_one_partition.pas"/>
@@ -79,7 +79,7 @@
         <ResourceBaseClass Value="Form"/>
         <TopLine Value="78"/>
         <CursorPos X="29" Y="112"/>
-        <UsageCount Value="75"/>
+        <UsageCount Value="150"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit6>
@@ -88,7 +88,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos X="136" Y="9"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="26"/>
         <Bookmarks Count="2">
           <Item0 X="38" Y="382" ID="8"/>
           <Item1 Y="518" ID="9"/>
@@ -99,63 +99,52 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="3074"/>
         <CursorPos Y="3099"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="6"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\win\sysosh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="8"/>
         <CursorPos X="3" Y="23"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="5"/>
       </Unit9>
       <Unit10>
         <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos X="4" Y="63"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="5"/>
       </Unit10>
       <Unit11>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\rtl-extra\src\win\winsock.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <UsageCount Value="7"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\ctypes.pp"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
-      </Unit12>
-      <Unit13>
         <Filename Value="..\..\fpc-kafka\rdkafka.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="859"/>
         <CursorPos X="33" Y="52"/>
-        <UsageCount Value="8"/>
-      </Unit13>
-      <Unit14>
+        <UsageCount Value="1"/>
+      </Unit11>
+      <Unit12>
         <Filename Value="..\..\..\..\usr\lib\lazarus\1.6\lcl\stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="756"/>
         <CursorPos X="15" Y="768"/>
-        <UsageCount Value="0"/>
-      </Unit14>
-      <Unit15>
+        <UsageCount Value="3"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="..\..\fpc-kafka\rdkafka_test.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
-        <UsageCount Value="8"/>
-      </Unit15>
-      <Unit16>
+        <UsageCount Value="1"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="..\..\..\..\dev_t\librdkafka\src\rdkafka_conf.c"/>
         <EditorIndex Value="3"/>
         <TopLine Value="1821"/>
         <CursorPos X="58" Y="1843"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="57"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="C++"/>
-      </Unit16>
+      </Unit14>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>

@@ -165,7 +165,7 @@ begin
     mParams.Lines.LoadFromFile('/etc/chromatic-universe/producer.ini');
     pLeftCaption.Caption := 'Params: producer.ini';
   end;
-end;
+end;                                                                                                                                                     =
 
 procedure TfrmMainKafkaTest.OnKafkaMessageReceived(InMessage: String;
   InKey: String; OutMsg: Prd_kafka_message_t);
