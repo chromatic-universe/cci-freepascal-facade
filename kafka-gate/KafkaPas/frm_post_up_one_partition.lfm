@@ -1,7 +1,7 @@
 object form_post_up_one_partition: Tform_post_up_one_partition
-  Left = 521
+  Left = 655
   Height = 469
-  Top = 281
+  Top = 245
   Width = 1148
   BorderStyle = bsSizeToolWin
   Caption = 'post up one partition'
@@ -10,11 +10,11 @@ object form_post_up_one_partition: Tform_post_up_one_partition
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poScreenCenter
-  LCLVersion = '1.8.2.0'
+  LCLVersion = '2.0.12.0'
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 25
-    Top = 444
+    Height = 17
+    Top = 452
     Width = 1148
     Panels = <    
       item
@@ -29,11 +29,11 @@ object form_post_up_one_partition: Tform_post_up_one_partition
   end
   object Panel1: TPanel
     Left = 378
-    Height = 444
+    Height = 452
     Top = 0
     Width = 770
     Align = alRight
-    ClientHeight = 444
+    ClientHeight = 452
     ClientWidth = 770
     TabOrder = 1
     object memo_partition: TMemo
@@ -64,7 +64,7 @@ object form_post_up_one_partition: Tform_post_up_one_partition
     end
     object lv_log: TListView
       Left = 1
-      Height = 261
+      Height = 269
       Top = 182
       Width = 768
       Align = alClient
@@ -72,16 +72,16 @@ object form_post_up_one_partition: Tform_post_up_one_partition
         item
           AutoSize = True
           Caption = 'timestamp'
-          Width = 68
+          Width = 81
         end      
         item
           AutoSize = True
           Caption = 'level'
-          Width = 34
+          Width = 45
         end      
         item
           AutoSize = True
-          Width = 664
+          Width = 640
         end>
       ScrollBars = ssAutoBoth
       SmallImages = il_log
@@ -91,21 +91,21 @@ object form_post_up_one_partition: Tform_post_up_one_partition
   end
   object Panel2: TPanel
     Left = 0
-    Height = 444
+    Height = 452
     Top = 0
     Width = 373
     Align = alClient
     BorderStyle = bsSingle
-    ClientHeight = 442
+    ClientHeight = 450
     ClientWidth = 371
     TabOrder = 2
     object Panel3: TPanel
       Left = 1
-      Height = 440
+      Height = 448
       Top = 1
       Width = 369
       Align = alClient
-      ClientHeight = 440
+      ClientHeight = 448
       ClientWidth = 369
       TabOrder = 0
       object SpeedButton1: TSpeedButton
@@ -129,9 +129,9 @@ object form_post_up_one_partition: Tform_post_up_one_partition
       end
       object Label4: TLabel
         Left = 9
-        Height = 17
+        Height = 14
         Top = 187
-        Width = 33
+        Width = 37
         Caption = 'group'
         ParentColor = False
       end
@@ -147,9 +147,9 @@ object form_post_up_one_partition: Tform_post_up_one_partition
       end
       object Label3: TLabel
         Left = 8
-        Height = 17
+        Height = 14
         Top = 130
-        Width = 47
+        Width = 52
         Caption = 'partition'
         ParentColor = False
       end
@@ -165,9 +165,9 @@ object form_post_up_one_partition: Tform_post_up_one_partition
       end
       object Label2: TLabel
         Left = 8
-        Height = 17
+        Height = 14
         Top = 68
-        Width = 23
+        Width = 26
         Caption = 'port'
         ParentColor = False
       end
@@ -183,9 +183,9 @@ object form_post_up_one_partition: Tform_post_up_one_partition
       end
       object Label1: TLabel
         Left = 9
-        Height = 17
+        Height = 14
         Top = 16
-        Width = 24
+        Width = 27
         Caption = 'host'
         ParentColor = False
       end
@@ -193,15 +193,15 @@ object form_post_up_one_partition: Tform_post_up_one_partition
   end
   object Splitter2: TSplitter
     Left = 373
-    Height = 444
+    Height = 452
     Top = 0
     Width = 5
     Align = alRight
     ResizeAnchor = akRight
   end
   object il_log: TImageList
-    left = 944
-    top = 88
+    Left = 944
+    Top = 88
     Bitmap = {
       4C690500000010000000100000006781F8006883F9006985FB136782FA686C85
       F7CA7089F7F06E88F6F0657FF2CA5C76EF685873EC13516BE4004963DC000000
