@@ -30,7 +30,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="pascal_curl.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -46,6 +46,10 @@
         <Filename Value="cci_curl_pascal.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="/usr/share/lazarus/2.0.12/components/libpascurl/source/libpascurl.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

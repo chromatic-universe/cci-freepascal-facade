@@ -42,13 +42,23 @@ function write_function_callback( ptr : PChar; size : LongWord;
 var
     strm : TStringStream;
 begin
-          //strm := TSTringStream.Create();
+
           strm :=  TStringStream( data^ );
           if Assigned( strm ) then
-           begin
+          begin
                 strm.WriteString( string( ptr ) );
           end;
           result := size * nmemb;
+end;
+
+function debug_trace_callback ( curl : CURL;
+                                typ : curl_infotype;
+                                data : PCHAR ;
+                                size : LongInt ;
+                                userp : Pointer ) : integer;
+begin
+          writeln( string( data ) );
+          result := 0;
 end;
 
 procedure Tfrm_pascal_run.Button1Click(Sender: TObject);
@@ -62,9 +72,9 @@ begin
           //construct request
           //
           curl_header_lst := nil;
-          //init curl environment
+          //init curl environment; once on main thread
           curl_global_init( CURL_GLOBAL_DEFAULT);
-          //init local handle
+          //init local curl stack
           h_curl := curl_easy_init();
           //headers  data
           curl_header_lst := curl_slist_append( curl_header_lst ,  PChar( 'Content-Type: application/json' ) );
@@ -74,7 +84,7 @@ begin
           curl_easy_setopt( h_curl, CURLOPT_POSTFIELDS , PChar( O.FormatJson ) );
           //destination url
           curl_easy_setopt( h_curl , CURLOPT_URL, PChar('https://localhost:7080/mongo/imap2017/plain_text_auth') );
-          curl_easy_setopt( h_curl ,  CURLOPT_FAILONERROR , 1 );
+          curl_easy_setopt( h_curl , CURLOPT_FAILONERROR , 1 );
           //set write callback
           curl_easy_setopt( h_curl , CURLOPT_WRITEFUNCTION, @write_function_callback );
           //write callback elastic buffer
@@ -84,8 +94,10 @@ begin
           curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYPEER, 0 );
           //skip host verification
           curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYHOST, 0 );
-          //debug
-          //curl_easy_setopt( h_curl, CURLOPT_DEBUGFUNCTION, @debug_trace_callback );
+          //debug( follow redirects )_
+          curl_easy_setopt( h_curl , CURLOPT_VERBOSE,  1 );
+          curl_easy_setopt( h_curl , CURLOPT_DEBUGFUNCTION, @debug_trace_callback );
+          curl_easy_setopt( h_curl , CURLOPT_FOLLOWLOCATION, 1 );
           //
           //perform
           //
@@ -119,6 +131,7 @@ begin
 
                 end;
           finally
+              //deinit
               buffer.free;
               curl_slist_free_all( curl_header_lst );
               curl_global_cleanup;

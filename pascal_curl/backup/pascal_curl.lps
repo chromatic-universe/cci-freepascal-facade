@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="67"/>
       </Unit0>
       <Unit1>
         <Filename Value="curlpp.pas"/>
@@ -19,157 +19,157 @@
         <ComponentName Value="frm_pascal_run"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="31"/>
-        <CursorPos X="12" Y="48"/>
-        <UsageCount Value="48"/>
+        <TopLine Value="63"/>
+        <CursorPos X="43" Y="74"/>
+        <UsageCount Value="67"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="136"/>
+        <CursorPos X="76" Y="143"/>
+        <UsageCount Value="59"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
         <Filename Value="/home/wiljoh/curl_pas/project1.lpr"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="4"/>
-        <UsageCount Value="7"/>
-      </Unit2>
-      <Unit3>
-        <Filename Value="/usr/share/lazarus/2.0.12/components/libpascurl/source/libpascurl.pas"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="957"/>
-        <CursorPos X="94" Y="982"/>
-        <UsageCount Value="22"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="5"/>
       </Unit3>
       <Unit4>
-        <Filename Value="cci_curl_pascal.pas"/>
+        <Filename Value="/usr/share/lazarus/2.0.12/components/libpascurl/source/libpascurl.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="34"/>
-        <CursorPos X="27" Y="50"/>
-        <UsageCount Value="39"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="94" Y="982"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
       </Unit4>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="cci_curl_pascal.pas"/>
-        <Caret Line="99" Column="25" TopLine="70"/>
+        <Filename Value="curlpp.pas"/>
+        <Caret Line="48" Column="12" TopLine="31"/>
       </Position1>
       <Position2>
-        <Filename Value="cci_curl_pascal.pas"/>
-        <Caret Line="22" Column="30" TopLine="6"/>
+        <Filename Value="curlpp.pas"/>
+        <Caret Line="94" TopLine="79"/>
       </Position2>
       <Position3>
         <Filename Value="curlpp.pas"/>
-        <Caret Line="46" Column="24" TopLine="48"/>
+        <Caret Line="95" TopLine="79"/>
       </Position3>
       <Position4>
         <Filename Value="curlpp.pas"/>
-        <Caret Line="60" Column="108" TopLine="49"/>
+        <Caret Line="97" TopLine="79"/>
       </Position4>
       <Position5>
-        <Filename Value="/usr/share/lazarus/2.0.12/components/libpascurl/source/libpascurl.pas"/>
-        <Caret Line="654" Column="23" TopLine="648"/>
+        <Filename Value="curlpp.pas"/>
+        <Caret Line="82" Column="62" TopLine="66"/>
       </Position5>
       <Position6>
-        <Filename Value="/usr/share/lazarus/2.0.12/components/libpascurl/source/libpascurl.pas"/>
-        <Caret Line="2788" Column="57" TopLine="2768"/>
+        <Filename Value="curlpp.pas"/>
+        <Caret Line="88" Column="38" TopLine="82"/>
       </Position6>
       <Position7>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="48" Column="60" TopLine="31"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="113" Column="68" TopLine="92"/>
       </Position7>
       <Position8>
         <Filename Value="cci_curl_pascal.pas"/>
-        <Caret Line="138" Column="21" TopLine="117"/>
+        <Caret Line="109" Column="78" TopLine="94"/>
       </Position8>
       <Position9>
         <Filename Value="cci_curl_pascal.pas"/>
-        <Caret Line="50" TopLine="34"/>
+        <Caret Line="39" Column="75" TopLine="30"/>
       </Position9>
       <Position10>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="30" Column="29" TopLine="20"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="120" Column="49" TopLine="109"/>
       </Position10>
       <Position11>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="24" Column="11" TopLine="20"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="129" Column="44" TopLine="107"/>
       </Position11>
       <Position12>
         <Filename Value="cci_curl_pascal.pas"/>
-        <Caret Line="50" Column="27" TopLine="34"/>
+        <Caret Line="135" Column="22" TopLine="118"/>
       </Position12>
       <Position13>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="46" Column="20" TopLine="22"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="134" Column="17" TopLine="116"/>
       </Position13>
       <Position14>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="39" Column="68" TopLine="28"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="132" Column="11" TopLine="116"/>
       </Position14>
       <Position15>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="44" Column="17" TopLine="28"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="130" Column="13" TopLine="116"/>
       </Position15>
       <Position16>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="69" Column="63" TopLine="51"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="131" Column="17" TopLine="116"/>
       </Position16>
       <Position17>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="74" Column="68" TopLine="58"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="132" Column="11" TopLine="116"/>
       </Position17>
       <Position18>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="46" TopLine="60"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="56" Column="33" TopLine="40"/>
       </Position18>
       <Position19>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="45" TopLine="29"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="133" Column="23" TopLine="117"/>
       </Position19>
       <Position20>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="46" TopLine="29"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="132" Column="19" TopLine="116"/>
       </Position20>
       <Position21>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="93" TopLine="81"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="118" Column="65" TopLine="123"/>
       </Position21>
       <Position22>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="43" Column="21" TopLine="28"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="120" Column="114" TopLine="106"/>
       </Position22>
       <Position23>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="47" Column="17" TopLine="28"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="124" Column="34" TopLine="108"/>
       </Position23>
       <Position24>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="23" TopLine="7"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="120" Column="51" TopLine="105"/>
       </Position24>
       <Position25>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="45" Column="37" TopLine="35"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="123" Column="43" TopLine="108"/>
       </Position25>
       <Position26>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="46" Column="65" TopLine="29"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="115" Column="41" TopLine="104"/>
       </Position26>
       <Position27>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="44" Column="50" TopLine="31"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="48" Column="64" TopLine="28"/>
       </Position27>
       <Position28>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="48" TopLine="37"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="115" Column="62" TopLine="97"/>
       </Position28>
       <Position29>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="50" TopLine="37"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="137" Column="52" TopLine="120"/>
       </Position29>
       <Position30>
-        <Filename Value="curlpp.pas"/>
-        <Caret Line="94" TopLine="68"/>
+        <Filename Value="cci_curl_pascal.pas"/>
+        <Caret Line="132" Column="54" TopLine="122"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -177,15 +177,4 @@
       <Modes Count="0" ActiveMode=""/>
     </RunParams>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="curlpp.pas"/>
-        <Line Value="94"/>
-      </Item1>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>
