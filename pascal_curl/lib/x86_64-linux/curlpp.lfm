@@ -1,7 +1,7 @@
 object frm_pascal_run: Tfrm_pascal_run
-  Left = 857
+  Left = 1245
   Height = 240
-  Top = 339
+  Top = 228
   Width = 320
   Caption = 'frm_pascal_run'
   ClientHeight = 240

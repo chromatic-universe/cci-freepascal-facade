@@ -1,9 +1,9 @@
-object Form1: TForm1
-  Left = 857
+object frm_pascal_run: Tfrm_pascal_run
+  Left = 1245
   Height = 240
-  Top = 339
+  Top = 228
   Width = 320
-  Caption = 'Form1'
+  Caption = 'frm_pascal_run'
   ClientHeight = 240
   ClientWidth = 320
   LCLVersion = '2.0.12.0'
@@ -12,7 +12,7 @@ object Form1: TForm1
     Height = 25
     Top = 178
     Width = 75
-    Caption = 'Button1'
+    Caption = 'connect'
     OnClick = Button1Click
     TabOrder = 0
   end
