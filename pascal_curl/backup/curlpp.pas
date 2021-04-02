@@ -63,79 +63,51 @@ end;
 
 procedure Tfrm_pascal_run.Button1Click(Sender: TObject);
 var
-
-    O : TJSONObject;
-    curl_header_lst :  pcurl_slist;
-    buffer : TStringStream;
-begin
-          //
-          //construct request
-          //
-          curl_header_lst := nil;
-          //init curl environment
-          curl_global_init( CURL_GLOBAL_DEFAULT);
-          //init local handle
-          h_curl := curl_easy_init();
-          //headers  data
-          curl_header_lst := curl_slist_append( curl_header_lst ,  PChar( 'Content-Type: application/json' ) );
-          curl_easy_setopt( h_curl, CURLOPT_HTTPHEADER , curl_header_lst );
-          //post data
-          O := TJSONObject.Create( ['user','william.kevin.johnson','password','Argentina1'] );
-          curl_easy_setopt( h_curl, CURLOPT_POSTFIELDS , PChar( O.FormatJson ) );
-          //destination url
-          curl_easy_setopt( h_curl , CURLOPT_URL, PChar('https://localhost:7080/mongo/imap2017/plain_text_auth') );
-          curl_easy_setopt( h_curl , CURLOPT_FAILONERROR , 1 );
-          //set write callback
-          curl_easy_setopt( h_curl , CURLOPT_WRITEFUNCTION, @write_function_callback );
-          //write callback elastic buffer
-          buffer := TStringStream.Create( '' );
-          curl_easy_setopt( h_curl , CURLOPT_WRITEDATA, @buffer );
-          //skip peer verification
-          curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYPEER, 0 );
-          //skip host verification
-          curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYHOST, 0 );
-          //debug( follow redirects )_
-          curl_easy_setopt( h_curl , CURLOPT_VERBOSE,  1 );
-          curl_easy_setopt( h_curl , CURLOPT_DEBUGFUNCTION, @debug_trace_callback );
-          curl_easy_setopt( h_curl , CURLOPT_FOLLOWLOCATION, 1 );
-          //
-          //perform
-          //
-          try
-                ret  :=  curl_easy_perform( h_curl );
-                if ret = CURLE_OK then
-                begin
-                  New(effectiveUrl);
-                  New(contentType);
-                  New(ip);
-                  //
-                  //out
-                  //
-                  curl_easy_getinfo(h_curl, CURLINFO_EFFECTIVE_URL, @effectiveUrl);
-                  curl_easy_getinfo(h_curl, CURLINFO_RESPONSE_CODE, @responseCode);
-                  curl_easy_getinfo(h_curl, CURLINFO_HEADER_SIZE, @headerSize);
-                  curl_easy_getinfo(h_curl, CURLINFO_CONTENT_TYPE, @contentType);
-                  curl_easy_getinfo(h_curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD_T, @contentLength);
-                  curl_easy_getinfo(h_curl, CURLINFO_LOCAL_IP, @ip);
-                  curl_easy_getinfo(h_curl, CURLINFO_TOTAL_TIME_T, @totalTime);
-
-                  writeln('URL: ':20,                 effectiveUrl);
-                  writeln('Response code: ':20,       responseCode);
-                  writeln('Header size, kB: ':20,     FormatFloat('0.00', headerSize / 1024));
-                  writeln('Content type: ',           contentType);
-                  writeln('Content length, kB: ':20,  FormatFloat('0.00', contentLength / 1024));
-                  writeln('IP: ':20,                  ip);
-                  writeln('Total time, ms: ':20,      totalTime);
-                  writeln('==== Content ====');
-                  writeln(buffer.DataString);
-
-                end;
+    jsn        : TJSONObject;
+    cci_cp    : Tcci_curl_pas;
+    endpoint  : string;
+    h_curl    : CURL;
+    ret :CURLcode;
+ begin
+          {try
+            //
+            //construct request
+            //
+            //init curl environment; once on main thread
+            curl_global_init( CURL_GLOBAL_DEFAULT);
+            //post data
+            jsn := TJSONObject.Create( ['user','giron-d','password','Argentina1'] );
+            //dsn - https by default
+            endpoint := 'https://chromatic-universe-expansion:7080/mongo/imap2017/plain_text_auth';
+            //instantiate                    dsn        debug   verif-peer verify-host  https=default
+            cci_cp := Tcci_curl_pas.create(  endpoint , false , false , false );
+            //call
+            cci_cp.results_by_naked_param( jsn );
+            //out
+            writeln( cci_cp .stream() );
+            //
           finally
-              buffer.free;
-              curl_slist_free_all( curl_header_lst );
-              curl_global_cleanup;
-          end;
+            //
+            //deinut
+            //
+            cci_cp.free;
+            curl_global_cleanup;
+          end;      }
 
+
+          h_curl := curl_easy_init();
+          curl_easy_setopt( h_curl, CURLOPT_USERNAME, 'william.kevin.johnson' );
+          curl_easy_setopt(h_curl, CURLOPT_PASSWORD, 'Argentina1' );
+          curl_easy_setopt(h_curl, CURLOPT_URL , 'imaps://localhost:993/INBOX/;UID=46' );
+          //curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYPEER, 0 );
+          curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYHOST, 0 );
+          curl_easy_setopt(h_curl, CURLOPT_VERBOSE, 1 );
+
+          ret := curl_easy_perform( h_curl );
+          if ret = CURLE_OK then
+          begin
+                writeln( 'ok' );
+          end;
 
 end;
 
