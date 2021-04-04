@@ -37,6 +37,8 @@ implementation
 { Tfrm_pascal_run }
 
 
+
+
 function write_function_callback( ptr : PChar; size : LongWord;
     nmemb : LongWord; data : Pointer )  : integer;
 var

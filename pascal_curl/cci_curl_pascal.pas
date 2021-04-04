@@ -3,13 +3,23 @@ unit cci_curl_pascal;
 
 {$mode objfpc}{$H+}
 
+
+
 interface
 
 uses
     Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,libpascurl,
-    fpjson;
+    fpjson,unix,baseunix;
 
-    type
+
+     type
+
+        Timap_naked_params = record
+             user    : string;
+             passwd  : string;
+             dsn     : string;
+        end;
+
        Tcci_curl_pas = class
 
        private
@@ -45,12 +55,13 @@ uses
            function stream() : string;
            //services
            procedure results_by_naked_param(  const jsn : TJSONObject );
+           function imap_multi_results_by_naked_param( const atoms : array of Timap_naked_params ) : boolean;
            //function imap_results_by_custom_request( const cr : string ) : boolean;
 
 
 
     end;
-///
+//
 //static
 //
 function debug_trace_callback ( curl : CURL;
@@ -58,18 +69,22 @@ function debug_trace_callback ( curl : CURL;
                                 data : PCHAR ;
                                 size : LongInt ;
                                 userp : Pointer ) : integer;
-function write_function_callback( ptr : PChar; size : LongWord;
-    nmemb : LongWord; data : Pointer )  : integer;
+function write_function_callback( ptr : PChar;
+                                  size : LongWord;
+                                  nmemb : LongWord;
+                                  data : Pointer )  : integer;
+function tvnow() : timeval;
+function tvdiff(  newer : timeval; older : timeval) : LongInt;
 
 var
 
     buffer : TStringStream;
-    h_curl : CURL;
     effectiveUrl, contentType, ip : PChar;
     responseCode, headerSize : Longint;
     contentLength, totalTime : Longword;
     ret :CURLcode;
-
+const
+    MULTI_PERFORM_HANG_TIMEOUT  = 60 * 1000;
 
 implementation
 
@@ -100,6 +115,26 @@ begin
           end;
           result := size * nmemb;
 end;
+
+function tvnow() : timeval;
+var
+     now  : timeval;
+     zone : timezone;
+begin
+        //talue of time in seconds since the epoch
+        fpgettimeofday( @now , @zone );
+        now.tv_usec := 0;
+
+        result := now;
+end;
+
+function tvdiff(  newer : timeval;  older : timeval ) :  LongInt;
+begin
+
+         result :=  trunc( ( newer.tv_sec - older.tv_sec ) * 1000 ) +
+                    trunc( ( newer.tv_usec - older.tv_usec ) / 1000 );
+end;
+
 //
 //runtime
 //
@@ -129,6 +164,7 @@ end;
 procedure Tcci_curl_pas.results_by_naked_param(  const jsn : TJSONObject );
 var
     curl_header_lst :  pcurl_slist;
+    h_curl           : CURL;
 begin
            if not assigned( m_stream )  then
            begin
@@ -170,7 +206,7 @@ begin
           begin
             curl_easy_setopt( h_curl , CURLOPT_VERBOSE,  1 );
             curl_easy_setopt( h_curl , CURLOPT_DEBUGFUNCTION, @debug_trace_callback );
-            //curl_easy_setopt( h_curl , CURLOPT_FOLLOWLOCATION, 1 );
+            curl_easy_setopt( h_curl , CURLOPT_FOLLOWLOCATION, 1 );
           end;
           //
           //perform
@@ -212,6 +248,127 @@ begin
           finally
               //deinit
               curl_slist_free_all( curl_header_lst );
+          end;
+end;
+
+function Tcci_curl_pas.imap_multi_results_by_naked_param( const atoms : array of Timap_naked_params ) : boolean;
+var
+     mh_curl        : CURLM;
+     still_running  : integer;
+     mp_start       : timeval;
+     v_curls        : array of CURL;
+     i              : integer;
+     fdread         : TFDSet;
+     fdwrite        : TFDSet;
+     fdexcep        : TFDSet;
+     maxfd          : integer;
+     rc             : integer;
+     mc             : CURLMcode; //curl_multi_fdset() return code
+     curl_timeo     : integer;
+     timeout        : timeval;
+     fmt            : string;
+     h_curl         : CURL;
+     wait           : timeval;
+begin
+          if length( atoms ) = 0 then result := false;
+          still_running := 1;
+          maxfd := -1;
+          rc   := 0;
+          curl_timeo := -1;
+
+          try
+               //
+               //construct multi request
+               //
+               //init local mult interface stack
+               mh_curl := curl_multi_init();
+               if not Assigned( mh_curl ) then result := false;
+               //initialize curl handle array
+               setlength( v_curls , length( atoms ) );
+               //populate handle array with initilaized atoms
+               for i  := 0 to length( atoms ) - 1 do
+               begin
+                   h_curl := nil;
+                   h_curl := curl_easy_init();
+                   //init local curl stack
+                   if  not Assigned( h_curl ) then result := false;
+                   //user credentials
+                   curl_easy_setopt( h_curl , CURLOPT_USERNAME , PCHAR( atoms[i].user ) );
+                   curl_easy_setopt( h_curl , CURLOPT_PASSWORD, PCHAR( atoms[i].passwd ) );
+                   //url
+                   curl_easy_setopt( h_curl , CURLOPT_URL , PCHAR( atoms[i].dsn  ) );
+                   //no verfiy ssl
+                   curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYPEER, 0 );
+                   curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYHOST, 0 );
+                   //assign
+                   v_curls[i] := h_curl;
+                   //tell the multi stack about our easy handle
+                   curl_multi_add_handle( mh_curl, v_curls[i] );
+               end;
+               //record the start time which we can use later *
+               mp_start := tvnow();
+               //start some action by calling perform right away
+               curl_multi_perform( mh_curl , @still_running );
+               //
+               //preamble
+               //
+               while still_running = 1 do
+               begin
+                      //initialise the file descriptors
+                      fpFD_ZERO( fdread );
+                      fpFD_ZERO( fdwrite );
+                      fpFD_ZERO( fdexcep );
+
+                      //Set a suitable timeout
+                      timeout.tv_sec := 1;
+                      timeout.tv_usec := 0;
+                      //configure timeout
+                      curl_multi_timeout(  mh_curl ,  @curl_timeo );
+                      if( curl_timeo >= 0)  then
+                      begin
+                        timeout.tv_sec := Int64( curl_timeo mod 1000 );
+                        if( timeout.tv_sec > 1 ) then  timeout.tv_sec := 1
+                        else timeout.tv_usec := ( curl_timeo mod 1000 ) * 1000;
+                      end;
+                      //get file descriptors from the transfers
+                      mc := curl_multi_fdset( mh_curl , @fdread , @fdwrite , @fdexcep , @maxfd );
+                      if mc <> CURLM_OK then
+                      begin
+                          writeln( 'curl_multi_fdset() failed...; ');
+                          break;
+                      end;
+                      //on success the value of maxfd is guaranteed to be >= -1. We call
+                      //select(maxfd + 1, ...); specially in case of (maxfd == -1) there are
+                      //no fds ready yet so we call select(0, ...) -
+                      if maxfd  = -1 then
+                      begin
+                        //portable sleep
+                        wait.tv_sec := 0 ;
+                        wait.tv_usec := 100 * 1000;//100ms
+                        rc := fpselect( 0, nil , nil , nil, @wait) ;
+                      end;
+                      //handle haang scenario
+                      if( tvdiff( tvnow(), mp_start ) >  MULTI_PERFORM_HANG_TIMEOUT )  then
+                      begin
+                          writeln(  'aborting: Since it seems that we would have run forever....\n' );
+                          break;
+                      end;
+                      //perform
+                      case( rc ) of
+                        -1 :
+                           begin
+                            break;  //select error
+                           end;
+                         0 :  ;     //timeout
+                         else
+                            begin
+                                 curl_multi_perform( mh_curl,  @still_running ) ;  //action
+                            end;
+                      end;
+              end;
+
+          finally
+              //
           end;
 end;
 

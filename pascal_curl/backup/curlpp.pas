@@ -36,6 +36,8 @@ implementation
 
 { Tfrm_pascal_run }
 
+{DEFINE  MULTI_PERFORM_HANG_TIMEOUT  := 60 * 1000}
+
 
 function write_function_callback( ptr : PChar; size : LongWord;
     nmemb : LongWord; data : Pointer )  : integer;
@@ -99,7 +101,7 @@ var
           curl_easy_setopt( h_curl, CURLOPT_USERNAME, 'william.kevin.johnson' );
           curl_easy_setopt(h_curl, CURLOPT_PASSWORD, 'Argentina1' );
           curl_easy_setopt(h_curl, CURLOPT_URL , 'imaps://localhost:993/INBOX/;UID=46' );
-          //curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYPEER, 0 );
+          curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYPEER, 0 );
           curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYHOST, 0 );
           curl_easy_setopt(h_curl, CURLOPT_VERBOSE, 1 );
 
