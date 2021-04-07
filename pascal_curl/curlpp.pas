@@ -97,7 +97,7 @@ var
           end;      }
 
 
-          h_curl := curl_easy_init();
+         { h_curl := curl_easy_init();
           curl_easy_setopt( h_curl, CURLOPT_USERNAME, 'william.kevin.johnson' );
           curl_easy_setopt(h_curl, CURLOPT_PASSWORD, 'Argentina1' );
           curl_easy_setopt(h_curl, CURLOPT_URL , 'imaps://localhost:993/INBOX/;UID=46' );
@@ -109,6 +109,31 @@ var
           if ret = CURLE_OK then
           begin
                 writeln( 'ok' );
+          end;       }
+
+          try
+            //
+            //construct request
+            //
+            //init curl environment; once on main thread
+            curl_global_init( CURL_GLOBAL_DEFAULT);
+            //post data
+            jsn := TJSONObject.Create( ['user','giron-d','password','Argentina1'] );
+            //dsn - https by default
+            endpoint := 'https://chromatic-universe-expansion:7080/mongo/imap2017/plain_text_auth';
+            //instantiate                    dsn        debug   verif-peer verify-host  https=default
+            cci_cp := Tcci_curl_pas.create(  endpoint , false , false , false );
+            //call
+            cci_cp.results_by_naked_param( jsn );
+            //out
+            writeln( cci_cp .stream() );
+            //
+          finally
+            //
+            //deinut
+            //
+            cci_cp.free;
+            curl_global_cleanup;
           end;
 
 end;

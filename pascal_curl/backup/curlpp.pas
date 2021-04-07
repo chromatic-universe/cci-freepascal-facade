@@ -36,7 +36,7 @@ implementation
 
 { Tfrm_pascal_run }
 
-{DEFINE  MULTI_PERFORM_HANG_TIMEOUT  := 60 * 1000}
+
 
 
 function write_function_callback( ptr : PChar; size : LongWord;

@@ -18,6 +18,7 @@ uses
              user    : string;
              passwd  : string;
              dsn     : string;
+             stream  : TStringStream;
         end;
 
        Tcci_curl_pas = class
@@ -55,7 +56,7 @@ uses
            function stream() : string;
            //services
            procedure results_by_naked_param(  const jsn : TJSONObject );
-           function imap_multi_results_by_naked_param( const atoms : array of Timap_naked_params ) : boolean;
+           function imap_multi_results_by_naked_param( var atoms : array of Timap_naked_params ) : boolean;
            //function imap_results_by_custom_request( const cr : string ) : boolean;
 
 
@@ -78,7 +79,6 @@ function tvdiff(  newer : timeval; older : timeval) : LongInt;
 
 var
 
-    buffer : TStringStream;
     effectiveUrl, contentType, ip : PChar;
     responseCode, headerSize : Longint;
     contentLength, totalTime : Longword;
@@ -165,6 +165,7 @@ procedure Tcci_curl_pas.results_by_naked_param(  const jsn : TJSONObject );
 var
     curl_header_lst :  pcurl_slist;
     h_curl           : CURL;
+    ret :CURLcode;
 begin
            if not assigned( m_stream )  then
            begin
@@ -244,6 +245,8 @@ begin
                     writeln(' Out of memory!');
                   on e: EAccessViolation do
                     writeln(' Access violation! in Tcci_curl_pas.results_by_naked_param' );
+                  else
+                    writeln( '..exception in n Tcci_curl_pas.results_by_naked_param' );
                 end;
           finally
               //deinit
@@ -251,7 +254,7 @@ begin
           end;
 end;
 
-function Tcci_curl_pas.imap_multi_results_by_naked_param( const atoms : array of Timap_naked_params ) : boolean;
+function Tcci_curl_pas.imap_multi_results_by_naked_param( var atoms : array of Timap_naked_params ) : boolean;
 var
      mh_curl        : CURLM;
      still_running  : integer;
@@ -300,6 +303,12 @@ begin
                    //no verfiy ssl
                    curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYPEER, 0 );
                    curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYHOST, 0 );
+                   //initialize stream
+                   atoms[i].stream := TStringStream.create();;
+                   //set write callback
+                   curl_easy_setopt( h_curl , CURLOPT_WRITEFUNCTION, @write_function_callback );
+                   //write callback elastic buffer
+                   curl_easy_setopt( h_curl , CURLOPT_WRITEDATA, @atoms[i].stream );
                    //assign
                    v_curls[i] := h_curl;
                    //tell the multi stack about our easy handle
@@ -368,7 +377,13 @@ begin
               end;
 
           finally
-              //
+              //deinit
+              for i  := 0 to length( v_curls ) - 1 do
+              begin
+                   curl_multi_remove_handle( mh_curl , v_curls[i] );
+                   curl_easy_cleanup( v_curls[i] );
+              end;
+              curl_multi_cleanup( mh_curl) ;
           end;
 end;
 
