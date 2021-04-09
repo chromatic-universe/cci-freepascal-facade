@@ -65,11 +65,16 @@ end;
 
 procedure Tfrm_pascal_run.Button1Click(Sender: TObject);
 var
-    jsn        : TJSONObject;
+    jsn       : TJSONObject;
     cci_cp    : Tcci_curl_pas;
     endpoint  : string;
     h_curl    : CURL;
-    ret :CURLcode;
+    ret       :  CURLcode;
+    naked     : array of Timap_naked_params;
+    n_param   : Timap_naked_params;
+    b_ret     : boolean;
+    i         : integer;
+    s         : string;
  begin
           {try
             //
@@ -97,7 +102,7 @@ var
           end;      }
 
 
-          h_curl := curl_easy_init();
+         { h_curl := curl_easy_init();
           curl_easy_setopt( h_curl, CURLOPT_USERNAME, 'william.kevin.johnson' );
           curl_easy_setopt(h_curl, CURLOPT_PASSWORD, 'Argentina1' );
           curl_easy_setopt(h_curl, CURLOPT_URL , 'imaps://localhost:993/INBOX/;UID=46' );
@@ -109,8 +114,93 @@ var
           if ret = CURLE_OK then
           begin
                 writeln( 'ok' );
-          end;
+          end;       }
 
+          {try
+            //
+            //construct request
+            //
+            //init curl environment; once on main thread
+            curl_global_init( CURL_GLOBAL_DEFAULT);
+            //post data
+            jsn := TJSONObject.Create( ['user','giron-d','password','Argentina1'] );
+            //dsn - https by default
+            endpoint := 'https://chromatic-universe-expansion:7080/mongo/imap2017/plain_text_auth';
+            //instantiate                    dsn        debug   verif-peer verify-host  https=default
+            cci_cp := Tcci_curl_pas.create(  endpoint , false , false , false );
+            //call
+            cci_cp.results_by_naked_param( jsn );
+            //out
+            writeln( cci_cp .stream() );
+            //
+          finally
+            //
+            //deinut
+            //
+            cci_cp.free;
+            curl_global_cleanup;
+          end;   }
+
+
+          try
+            //
+            //construct request
+            //
+            //init curl environment; once on main thread
+            curl_global_init( CURL_GLOBAL_DEFAULT);
+            //naked params
+            setlength( naked , 3 );
+            with n_param do
+            begin
+              user := 'william.kevin.johnson';
+              passwd := 'Argentina1';
+              dsn := 'imaps://localhost:993';
+              stream := nil;
+            end;
+            naked[0] :=  n_param;
+            with n_param do
+            begin
+              user := 'jimmy.joe.meeker';
+              passwd := 'Argentina1';
+              dsn := 'imaps://localhost:993';
+              stream := nil;
+            end;
+            naked[1] :=  n_param;
+            with n_param do
+            begin
+              user :=  'mann-k';
+              passwd := 'Argentina1';
+              dsn := 'imaps://localhost:993';
+              stream := nil;
+            end;
+            naked[2] :=  n_param;
+            //naked[1] :=  n_param;
+            //instantiate  - no need of dsn  for firts param;  dsn   debug   verif-peer verify-host  https=default
+            cci_cp := Tcci_curl_pas.create(  '' ,  false , false , false );
+            //call
+            b_ret := cci_cp.imap_multi_results_by_naked_param( naked );
+            //out
+            //writeln( cci_cp .stream() );
+            //
+            {if b_ret = true then
+            begin
+                  for i := 0 to length( naked ) - 1 do
+                  begin
+                      s :=  naked[i].stream.DataString;
+                     if Assigned( naked[i].stream ) then writeln( naked[i].stream.DataString );
+                  end;
+            end; }
+          finally
+            //
+            //deinit
+            //
+            for  i := 0 to length( naked ) - 1 do
+            begin
+                 if Assigned( naked[i].stream ) then naked[i].stream.free;
+            end;
+            cci_cp.free;
+            curl_global_cleanup;
+          end;
 end;
 
 end.

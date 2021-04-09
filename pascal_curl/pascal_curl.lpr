@@ -7,8 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, curlpp, cci_curl_pascal, libpascurl
-  { you can add units after this };
+  Forms, curlpp, cci_curl_pascal, libpascurl;
 
 {$R *.res}
 

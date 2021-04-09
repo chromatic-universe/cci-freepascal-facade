@@ -98,7 +98,7 @@ function debug_trace_callback ( curl : CURL;
                                 size : LongInt ;
                                 userp : Pointer ) : integer;
 begin
-          writeln( string( data ) );
+          writeln( data );
           result := 0;
 end;
 
@@ -106,14 +106,17 @@ function write_function_callback( ptr : PChar; size : LongWord;
     nmemb : LongWord; data : Pointer )  : integer;
 var
     strm : TStringStream;
+    s : string;
 begin
 
           strm :=  TStringStream( data^ );
           if Assigned( strm ) then
           begin
-                strm.WriteString( string( ptr ) );
+               //s := string( ptr );
+               strm.writestring( string( ptr )  );
+
           end;
-          result := size * nmemb;
+          result := size;
 end;
 
 function tvnow() : timeval;
@@ -272,6 +275,8 @@ var
      fmt            : string;
      h_curl         : CURL;
      wait           : timeval;
+     m_ret          : CURLMcode;
+     s              : string;
 begin
           if length( atoms ) = 0 then result := false;
           still_running := 1;
@@ -321,7 +326,7 @@ begin
                //
                //preamble
                //
-               while still_running = 1 do
+               while still_running > 0 do
                begin
                       //initialise the file descriptors
                       fpFD_ZERO( fdread );
@@ -368,10 +373,15 @@ begin
                            begin
                             break;  //select error
                            end;
-                         0 :  ;     //timeout
+                         0 :  //timeout
+                           begin
+                                 m_ret := curl_multi_perform( mh_curl,  @still_running ) ;  //action
+                                 continue;
+                          end;
                          else
-                            begin
-                                 curl_multi_perform( mh_curl,  @still_running ) ;  //action
+                           begin
+                                 m_ret := curl_multi_perform( mh_curl,  @still_running ) ;  //action
+                                 continue;
                             end;
                       end;
               end;
@@ -385,6 +395,9 @@ begin
               end;
               curl_multi_cleanup( mh_curl) ;
           end;
+
+          if m_ret = CURLM_OK then  result := true else result := false;
+
 end;
 
 procedure Tcci_curl_pas.debug( debug : boolean );
