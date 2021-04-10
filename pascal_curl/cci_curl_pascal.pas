@@ -21,6 +21,12 @@ uses
              stream  : TStringStream;
         end;
 
+        Timap_syscall_params = record
+             dsn     : string;
+             jsn     : TJSONObject;
+             stream  : TStringStream;
+        end;
+
        Tcci_curl_pas = class
 
        private
@@ -57,7 +63,7 @@ uses
            //services
            procedure results_by_naked_param(  const jsn : TJSONObject );
            function imap_multi_results_by_naked_param( var atoms : array of Timap_naked_params ) : boolean;
-           //function imap_results_by_custom_request( const cr : string ) : boolean;
+           function imap_multi_post_by_naked_param( var atoms :  array of Timap_syscall_params  ) : boolean;
 
 
 
@@ -112,8 +118,9 @@ begin
           strm :=  TStringStream( data^ );
           if Assigned( strm ) then
           begin
-               //s := string( ptr );
-               strm.writestring( string( ptr )  );
+               s := string( ptr );
+               //strm.writestring( string( ptr ) );
+               //writeln( string( ptr ) );
 
           end;
           result := size;
@@ -358,7 +365,7 @@ begin
                       begin
                         //portable sleep
                         wait.tv_sec := 0 ;
-                        wait.tv_usec := 100 * 1000;//100ms
+                        wait.tv_usec := 10000 * 1000;//100ms
                         rc := fpselect( 0, nil , nil , nil, @wait) ;
                       end;
                       //handle haang scenario
@@ -398,6 +405,100 @@ begin
 
           if m_ret = CURLM_OK then  result := true else result := false;
 
+end;
+
+function Tcci_curl_pas.imap_multi_post_by_naked_param( var atoms :  array of Timap_syscall_params ) : boolean;
+var
+     mh_curl        : CURLM;
+     still_running  : integer;
+     mp_start       : timeval;
+     v_curls        : array of CURL;
+     i              : integer;
+     fdread         : TFDSet;
+     fdwrite        : TFDSet;
+     fdexcep        : TFDSet;
+     maxfd          : integer;
+     rc             : integer;
+     mc             : CURLMcode; //curl_multi_fdset() return code
+     curl_timeo     : integer;
+     timeout        : timeval;
+     fmt            : string;
+     h_curl         : CURL;
+     wait           : timeval;
+     m_ret          : CURLMcode;
+     s              : string;
+     curl_header_lst :  pcurl_slist;
+begin
+           try
+               //
+               //construct multi request
+               //
+               //init local mult interface stack
+               mh_curl := curl_multi_init();
+               if not Assigned( mh_curl ) then result := false;
+               //initialize curl handle array
+               setlength( v_curls , length( atoms ) );
+               //construct multi request
+               //
+               //init local mult interface stack
+               mh_curl := curl_multi_init();
+               if not Assigned( mh_curl ) then result := false;
+               //initialize curl handle array
+               setlength( v_curls , length( atoms ) );
+               //populate handle array with initilaized atoms
+               for i  := 0 to length( atoms ) - 1 do
+               begin
+                      //
+                      //construct request
+                      //
+                      curl_header_lst := nil;
+                      //init local curl stack
+                      h_curl := curl_easy_init();
+                      //headers  data
+                      curl_header_lst := curl_slist_append( curl_header_lst ,  PChar( 'Content-Type: application/json' ) );
+                      curl_easy_setopt( h_curl, CURLOPT_HTTPHEADER , curl_header_lst );
+                      //post data
+                      curl_easy_setopt( h_curl, CURLOPT_POSTFIELDS , PChar( atoms[i].jsn.FormatJson ) );
+                      //destination url
+                      curl_easy_setopt( h_curl , CURLOPT_URL, PChar( atoms[i].dsn ) );
+                      curl_easy_setopt( h_curl , CURLOPT_FAILONERROR , 1 );
+                      //initialize stream
+                      atoms[i].stream := TStringStream.create();;
+                      //set write callback
+                      curl_easy_setopt( h_curl , CURLOPT_WRITEFUNCTION, @write_function_callback );
+                      //write callback elastic buffer
+                      curl_easy_setopt( h_curl , CURLOPT_WRITEDATA, @atoms[i].stream );
+                      //ssl
+                      if m_https = true then
+                      begin
+                        //skip peer verification
+                        if m_verify_peer = false  then curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYPEER, 0 );
+                        //skip host verification
+                        if m_verify_host = false then curl_easy_setopt( h_curl , CURLOPT_SSL_VERIFYHOST, 0 );
+                      end;
+                      //debug( follow redirects )
+                      {if m_debug = true then
+                      begin
+                        curl_easy_setopt( h_curl , CURLOPT_VERBOSE,  1 );
+                        curl_easy_setopt( h_curl , CURLOPT_DEBUGFUNCTION, @debug_trace_callback );
+                        curl_easy_setopt( h_curl , CURLOPT_FOLLOWLOCATION, 1 );
+                      end; }
+              end;
+              //record the start time which we can use later *
+              mp_start := tvnow();
+              //start some action by calling perform right away
+              curl_multi_perform( mh_curl , @still_running );
+           finally
+              //deinit
+              for i  := 0 to length( v_curls ) - 1 do
+              begin
+                   curl_multi_remove_handle( mh_curl , v_curls[i] );
+                   curl_easy_cleanup( v_curls[i] );
+              end;
+              curl_multi_cleanup( mh_curl) ;
+          end;
+
+          if m_ret = CURLM_OK then  result := true else result := false;
 end;
 
 procedure Tcci_curl_pas.debug( debug : boolean );

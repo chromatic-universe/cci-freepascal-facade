@@ -48,7 +48,8 @@ begin
           strm :=  TStringStream( data^ );
           if Assigned( strm ) then
           begin
-                strm.WriteString( string( ptr ) );
+                //strm.WriteString( string( ptr ) );
+                writeln( string( ptr ) );
           end;
           result := size * nmemb;
 end;
@@ -105,7 +106,7 @@ var
          { h_curl := curl_easy_init();
           curl_easy_setopt( h_curl, CURLOPT_USERNAME, 'william.kevin.johnson' );
           curl_easy_setopt(h_curl, CURLOPT_PASSWORD, 'Argentina1' );
-          curl_easy_setopt(h_curl, CURLOPT_URL , 'imaps://localhost:993/INBOX/;UID=46' );
+          curl_easy_setopt(h_curl, CURLOPT_URL , 'imaps://chromatic-universe-expansion:10000/INBOX/;UID=46' );
           curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYPEER, 0 );
           curl_easy_setopt(h_curl, CURLOPT_SSL_VERIFYHOST, 0 );
           curl_easy_setopt(h_curl, CURLOPT_VERBOSE, 1 );
@@ -149,31 +150,47 @@ var
             //init curl environment; once on main thread
             curl_global_init( CURL_GLOBAL_DEFAULT);
             //naked params
-            setlength( naked , 3 );
+            setlength( naked , 5 );
             with n_param do
             begin
-              user := 'william.kevin.johnson';
+              user := 'lay-k';
               passwd := 'Argentina1';
-              dsn := 'imaps://localhost:993';
+              dsn := 'imaps://chromatic-universe-expansion:10000';
               stream := nil;
             end;
             naked[0] :=  n_param;
             with n_param do
             begin
-              user := 'jimmy.joe.meeker';
+              user := 'skilling-j';
               passwd := 'Argentina1';
-              dsn := 'imaps://localhost:993';
+              dsn := 'imaps://chromatic-universe-expansion:10000';
               stream := nil;
             end;
             naked[1] :=  n_param;
             with n_param do
             begin
-              user :=  'mann-k';
+              user :=  'dasovich-j';
               passwd := 'Argentina1';
-              dsn := 'imaps://localhost:993';
+             dsn := 'imaps://chromatic-universe-expansion:10000/INBOX/;UID=44';
               stream := nil;
             end;
             naked[2] :=  n_param;
+            with n_param do
+            begin
+              user :=  'dasovich-j';
+              passwd := 'Argentina1';
+              dsn := 'imaps://chromatic-universe-expansion:10000/INBOX/;UID=43';
+              stream := nil;
+            end;
+            naked[3] :=  n_param;
+            with n_param do
+            begin
+              user :=  'lay-k' ;
+              passwd := 'Argentina1';
+              dsn := 'imaps://chromatic-universe-expansion:10000/INBOX/;UID=44';
+              stream := nil;
+            end;
+            naked[4] :=  n_param;
             //naked[1] :=  n_param;
             //instantiate  - no need of dsn  for firts param;  dsn   debug   verif-peer verify-host  https=default
             cci_cp := Tcci_curl_pas.create(  '' ,  false , false , false );
@@ -186,8 +203,12 @@ var
             begin
                   for i := 0 to length( naked ) - 1 do
                   begin
-                      s :=  naked[i].stream.DataString;
-                     if Assigned( naked[i].stream ) then writeln( naked[i].stream.DataString );
+
+                      writeln( );
+                      writeln ( naked[i].user  );
+                      writeln();
+                      //s :=  naked[i].stream.DataString;
+                      if Assigned( naked[i].stream ) then writeln( naked[i].stream.DataString );
                   end;
             end;
           finally
